@@ -38,16 +38,16 @@
     "doc_briefing_date": "2026-05-24",
     "last_swept": "2026-05-24",
     "sodclaw_git_state": {
-      "repo": false,
-      "state": "not_a_repo",
-      "remote": null,
-      "uncommitted": null,
-      "unpushed": null,
-      "branch": null,
-      "last_commit": null,
-      "checked": "2026-05-27"
+      "repo": true,
+      "state": "synced",
+      "remote": "https://github.com/kevin-sotka/SodClaw.git",
+      "uncommitted": 0,
+      "unpushed": 0,
+      "branch": "main",
+      "last_commit": "2026-05-28",
+      "checked": "2026-05-28"
     },
-    "git_inventory_run": "2026-05-27"
+    "git_inventory_run": "2026-05-28"
   },
   "projects": [
     {
@@ -83,7 +83,7 @@
         "unpushed": 0,
         "branch": "main",
         "last_commit": "2026-05-27",
-        "checked": "2026-05-27"
+        "checked": "2026-05-28"
       }
     },
     {
@@ -119,7 +119,7 @@
         "unpushed": 0,
         "branch": "main",
         "last_commit": "2026-05-27",
-        "checked": "2026-05-27"
+        "checked": "2026-05-28"
       }
     },
     {
@@ -155,7 +155,7 @@
         "unpushed": null,
         "branch": null,
         "last_commit": null,
-        "checked": "2026-05-27"
+        "checked": "2026-05-28"
       }
     },
     {
@@ -191,7 +191,7 @@
         "unpushed": null,
         "branch": null,
         "last_commit": null,
-        "checked": "2026-05-27"
+        "checked": "2026-05-28"
       }
     },
     {
@@ -227,7 +227,7 @@
         "unpushed": null,
         "branch": null,
         "last_commit": null,
-        "checked": "2026-05-27"
+        "checked": "2026-05-28"
       }
     },
     {
@@ -263,7 +263,7 @@
         "unpushed": null,
         "branch": null,
         "last_commit": null,
-        "checked": "2026-05-27"
+        "checked": "2026-05-28"
       }
     },
     {
@@ -299,7 +299,7 @@
         "unpushed": null,
         "branch": null,
         "last_commit": null,
-        "checked": "2026-05-27"
+        "checked": "2026-05-28"
       }
     },
     {
@@ -335,7 +335,7 @@
         "unpushed": null,
         "branch": null,
         "last_commit": null,
-        "checked": "2026-05-27"
+        "checked": "2026-05-28"
       }
     },
     {
@@ -371,7 +371,7 @@
         "unpushed": 0,
         "branch": "main",
         "last_commit": "2026-02-19",
-        "checked": "2026-05-27"
+        "checked": "2026-05-28"
       }
     },
     {
@@ -407,7 +407,7 @@
         "unpushed": 0,
         "branch": "main",
         "last_commit": "2026-04-26",
-        "checked": "2026-05-27"
+        "checked": "2026-05-28"
       }
     },
     {
@@ -443,7 +443,7 @@
         "unpushed": null,
         "branch": null,
         "last_commit": null,
-        "checked": "2026-05-27"
+        "checked": "2026-05-28"
       }
     },
     {
@@ -479,7 +479,7 @@
         "unpushed": null,
         "branch": null,
         "last_commit": null,
-        "checked": "2026-05-27"
+        "checked": "2026-05-28"
       }
     },
     {
@@ -515,7 +515,7 @@
         "unpushed": null,
         "branch": null,
         "last_commit": null,
-        "checked": "2026-05-27"
+        "checked": "2026-05-28"
       }
     },
     {
@@ -551,7 +551,7 @@
         "unpushed": null,
         "branch": null,
         "last_commit": null,
-        "checked": "2026-05-27"
+        "checked": "2026-05-28"
       }
     },
     {
@@ -587,7 +587,7 @@
         "unpushed": null,
         "branch": null,
         "last_commit": null,
-        "checked": "2026-05-27"
+        "checked": "2026-05-28"
       }
     },
     {
@@ -623,7 +623,7 @@
         "unpushed": null,
         "branch": null,
         "last_commit": null,
-        "checked": "2026-05-27"
+        "checked": "2026-05-28"
       }
     }
   ]

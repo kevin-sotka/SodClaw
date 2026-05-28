@@ -102,7 +102,7 @@ A project gets flagged on the dashboard's **"Needs your attention"** panel when 
 
 ### Subagent skills (the two-tier model)
 SodClaw orchestrates on Opus and delegates mechanical work to lightweight (Haiku) read-only subagents. Reusable subagent skills live in `skills/`:
-- **`portfolio-sweep`** — weekly heartbeat that refreshes the whole tracker + dashboard and reports what moved. Runs on demand and on a schedule (Sundays 6pm Pacific). See `workflows/portfolio_sweep.md`.
+- **`portfolio-sweep`** — weekly heartbeat that refreshes the whole tracker + dashboard and reports what moved. Runs on demand and on a schedule (Fridays 6pm Pacific, so Kevin opens the weekend knowing what to work on). Posts via Doc to `#sodclaw` in Slack. See `workflows/portfolio_sweep.md`.
 - **`asset-audit`** — finds referenced-but-missing assets in any project and writes a punch list. See `workflows/asset_audit.md`.
 
 Default autonomy for subagent work is **draft-and-approve**: do the work, surface judgment calls (scores, status changes, anything that ships) for Kevin to ratify. Only factual updates are written unattended.

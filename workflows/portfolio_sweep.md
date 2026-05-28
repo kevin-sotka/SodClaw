@@ -6,7 +6,7 @@ Packaged as an installable skill: `SodClaw/skills/portfolio-sweep/` (and `portfo
 
 ## How it runs
 - **On demand:** Kevin says "run the sweep" / "what moved this week" / invokes `/portfolio-sweep`.
-- **Scheduled:** auto-runs **Sundays at 6pm Pacific** (scheduled task `weekly-portfolio-sweep`, cron `0 18 * * 0`). Fires while the Claude app is open; if closed, runs at next launch.
+- **Scheduled:** auto-runs **Fridays at 6pm Pacific** (scheduled task `weekly-portfolio-sweep`, cron `0 18 * * 5`) — Kevin opens the weekend already knowing what to work on. Fires while the Claude app is open; if closed, runs at next launch. Once the Anthropic Routine equivalent is live, that becomes the always-on path and this Cowork task can be retired.
 
 ## Design principle: draft-and-approve
 The sweep writes only *factual* updates automatically — `last_touched` dates, `_meta.last_swept`, file existence. It never auto-changes scores, progress, or a project's life status. Stale projects, suggested progress bumps, and new untracked folders are surfaced as **proposals** in the summary for Kevin to ratify. SodClaw proposes; Kevin decides.

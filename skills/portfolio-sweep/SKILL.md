@@ -1,6 +1,6 @@
 ---
 name: portfolio-sweep
-description: Runs the SodClaw weekly portfolio sweep — crawls every Meatbag Labs project folder, detects what actually moved since the last sweep, refreshes each project's activity/last-touched data, applies Kevin's 60-day stale rule (proposing shelves, never auto-shelving), spots untracked new folders, re-syncs the tracker + dashboard, and reports "what moved this week." Use this skill whenever Kevin says "run the sweep", "portfolio sweep", "what moved this week", "what's changed across my projects", "refresh the tracker/dashboard", "is anything stale", or wants the whole portfolio re-checked and the command center brought up to date. Also the skill the scheduled Sunday-evening sweep runs. Keeps the command center honest so every other SodClaw decision rests on fresh data.
+description: Runs the SodClaw weekly portfolio sweep — crawls every Meatbag Labs project folder, detects what actually moved since the last sweep, refreshes each project's activity/last-touched data, applies Kevin's 60-day stale rule (proposing shelves, never auto-shelving), spots untracked new folders, re-syncs the tracker + dashboard, and reports "what moved this week." Use this skill whenever Kevin says "run the sweep", "portfolio sweep", "what moved this week", "what's changed across my projects", "refresh the tracker/dashboard", "is anything stale", or wants the whole portfolio re-checked and the command center brought up to date. Also the skill the scheduled Friday-evening sweep runs. Keeps the command center honest so every other SodClaw decision rests on fresh data.
 ---
 
 # Weekly Portfolio Sweep
@@ -94,5 +94,5 @@ Lead with movement and attention items. Keep proposals as questions — Kevin de
 
 ## Notes
 
-- This runs both on demand (Kevin invokes it) and as a scheduled Sunday-evening task. On the scheduled/unattended run, still make only the safe writes from Step 4 and leave the judgment calls in the report for when Kevin reads it — never shelve or re-score unattended.
+- This runs both on demand (Kevin invokes it) and as a scheduled Friday-evening task (6pm Pacific) so Kevin starts the weekend with a true picture. On the scheduled/unattended run, still make only the safe writes from Step 4 and leave the judgment calls in the report for when Kevin reads it — never shelve or re-score unattended.
 - Keep the crawl on the light model. The orchestration, reconciliation, and report are the Opus layer's job.
