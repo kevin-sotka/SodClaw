@@ -1,0 +1,17 @@
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# Editor / temp
+*.tmp
+*.swp
+*~
+.vscode/
+.idea/
+
+# Transient portfolio backups — git history is the real backup
+projects/portfolio.backup-*.json
+
+# Runtime sweep/workflow logs (keep the folder, not its contents)
+workflows/logs/*
+!workflows/logs/.gitkeep

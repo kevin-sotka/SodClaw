@@ -1,0 +1,630 @@
+{
+  "_meta": {
+    "description": "Single source of truth for the Meatbag Labs portfolio dashboard. SodClaw and the dashboard artifact both read this file. Update it whenever a project's status, progress, next action, or scores change.",
+    "last_updated": "2026-05-24",
+    "scoring": {
+      "value_metrics": [
+        "consumer_potential",
+        "personal_satisfaction",
+        "reach",
+        "profitability"
+      ],
+      "complexity_metrics": [
+        "engineering",
+        "review_frequency",
+        "integrations",
+        "manual_burden"
+      ],
+      "scale": "1-5 (1 = low, 5 = high)",
+      "value_composite": "mean of value_metrics",
+      "complexity_composite": "mean of complexity_metrics",
+      "note": "Scores proposed by SodClaw 2026-05-23, pending Kevin's ratification."
+    },
+    "tiers": [
+      "autonomous",
+      "active",
+      "exploratory"
+    ],
+    "statuses": [
+      "active",
+      "dormant",
+      "paused",
+      "shipped",
+      "unknown",
+      "shelved",
+      "launched-shelved"
+    ],
+    "doc_briefing": "Listen here, Partner. This week you did the hard thing — you quit pretendin'. Five dead claims got shelved and two more (the Roblox rails and the @sodtoshi wire) are tied to the post; that ain't quittin', that's runnin' a lean outfit, and what's left finally fits in your saddlebags. The work feedin' your soul — Riventide's new music, the novel — keep it close; that's the campfire that keeps a body goin'. But the richest vein on this whole map is the consulting claim: top value on the board and the straightest shot to payin' dirt, just sittin' out in the exploratory hills waitin' on your stake. My counsel? Drive that stake — name what you sell and who buys it first — and roll Riventide's wagon over the last ridge while the music's still flowin'. The rest can wait for the thaw.",
+    "doc_briefing_date": "2026-05-24",
+    "last_swept": "2026-05-24",
+    "sodclaw_git_state": {
+      "repo": false,
+      "state": "not_a_repo",
+      "remote": null,
+      "uncommitted": null,
+      "unpushed": null,
+      "branch": null,
+      "last_commit": null,
+      "checked": "2026-05-27"
+    },
+    "git_inventory_run": "2026-05-27"
+  },
+  "projects": [
+    {
+      "id": "train_lore",
+      "name": "Train Lore — PNW Railroad Blog",
+      "tier": "autonomous",
+      "status": "active",
+      "location": "/Users/kevinsotka/Meatbag_Labs/train_lore/",
+      "website": "meatbagmade.com",
+      "autonomy": "full-auto",
+      "progress": 40,
+      "value": {
+        "consumer_potential": 3,
+        "personal_satisfaction": 4,
+        "reach": 3,
+        "profitability": 2
+      },
+      "complexity": {
+        "engineering": 1,
+        "review_frequency": 2,
+        "integrations": 2,
+        "manual_burden": 2
+      },
+      "next_action": "Pick next topic from the 32-topic list, draft + publish post #6",
+      "decision": null,
+      "notes": "5 of ~32 topics published. Publishing system is built; content is the runway.",
+      "last_touched": "2026-03-03",
+      "git_state": {
+        "repo": true,
+        "state": "synced",
+        "remote": "https://github.com/kevin-sotka/train_lore.git",
+        "uncommitted": 0,
+        "unpushed": 0,
+        "branch": "main",
+        "last_commit": "2026-05-27",
+        "checked": "2026-05-27"
+      }
+    },
+    {
+      "id": "gridiron_gazette",
+      "name": "Gridiron Gazette — Fantasy Football Newsletter",
+      "tier": "autonomous",
+      "status": "dormant",
+      "location": "/Users/kevinsotka/Meatbag_Labs/thegridirongazette/",
+      "website": "thegridirongazette.com → meatbagmade.com/thegridirongazette/",
+      "autonomy": "full-auto",
+      "progress": 25,
+      "value": {
+        "consumer_potential": 3,
+        "personal_satisfaction": 3,
+        "reach": 3,
+        "profitability": 2
+      },
+      "complexity": {
+        "engineering": 2,
+        "review_frequency": 2,
+        "integrations": 3,
+        "manual_burden": 2
+      },
+      "next_action": "Define content format, build the first automated issue",
+      "decision": "Kevin will pick this up in earnest ~2026-06-07 (reminder set). Needs attention soon — hold until then.",
+      "notes": "Domain renewed 2026-05-24 ($18/yr) — points to meatbagmade.com/thegridirongazette/index.html (vanity domain over the main site, same pattern as HR Derby). Live newsletter page exists; no content engine yet. Kill-date check at season's end if no real issue ships.",
+      "last_touched": "2025-06-26",
+      "git_state": {
+        "repo": true,
+        "state": "synced",
+        "remote": "https://github.com/kevin-sotka/thegridirongazette.git",
+        "uncommitted": 0,
+        "unpushed": 0,
+        "branch": "main",
+        "last_commit": "2026-05-27",
+        "checked": "2026-05-27"
+      }
+    },
+    {
+      "id": "the_wall",
+      "name": "The Wall — Bitcoin + 3D Art",
+      "tier": "autonomous",
+      "status": "active",
+      "location": "/Users/kevinsotka/Meatbag_Labs/the_wall/",
+      "website": "TBD",
+      "autonomy": "draft-and-approve",
+      "progress": 45,
+      "value": {
+        "consumer_potential": 3,
+        "personal_satisfaction": 4,
+        "reach": 3,
+        "profitability": 4
+      },
+      "complexity": {
+        "engineering": 5,
+        "review_frequency": 4,
+        "integrations": 4,
+        "manual_burden": 2
+      },
+      "next_action": "Finish Phase 1 build — foundation + beautiful static wall",
+      "decision": null,
+      "notes": "PRD + build plan complete. Next.js app scaffolded, .next build exists. Highest engineering complexity in the portfolio.",
+      "last_touched": "2026-04-21",
+      "git_state": {
+        "repo": false,
+        "state": "not_a_repo",
+        "remote": null,
+        "uncommitted": null,
+        "unpushed": null,
+        "branch": null,
+        "last_commit": null,
+        "checked": "2026-05-27"
+      }
+    },
+    {
+      "id": "robloxrailways",
+      "name": "Roblox Railways",
+      "tier": "exploratory",
+      "status": "shelved",
+      "location": "/Users/kevinsotka/Meatbag_Labs/robloxrailways/",
+      "website": null,
+      "autonomy": "kevin-only",
+      "progress": 60,
+      "value": {
+        "consumer_potential": 3,
+        "personal_satisfaction": 5,
+        "reach": 3,
+        "profitability": 2
+      },
+      "complexity": {
+        "engineering": 3,
+        "review_frequency": 3,
+        "integrations": 2,
+        "manual_burden": 3
+      },
+      "next_action": "Shelved 2026-05-24 (moved to Exploratory). game-001 pipeline complete; revive for kid time.",
+      "decision": null,
+      "notes": "Co-build with his son. game-001 pipeline complete (gdd/scripts/vibe/QA). Moved to Exploratory + shelved 2026-05-24.",
+      "last_touched": "2026-03-16",
+      "git_state": {
+        "repo": false,
+        "state": "not_a_repo",
+        "remote": null,
+        "uncommitted": null,
+        "unpushed": null,
+        "branch": null,
+        "last_commit": null,
+        "checked": "2026-05-27"
+      }
+    },
+    {
+      "id": "hr_derby",
+      "name": "HR Derby — Fantasy Baseball",
+      "tier": "active",
+      "status": "active",
+      "location": "/Users/kevinsotka/Meatbag_Labs/hr-derby/",
+      "website": "meatbagmade.com/hr-derby/",
+      "autonomy": "kevin-only",
+      "progress": 70,
+      "value": {
+        "consumer_potential": 2,
+        "personal_satisfaction": 4,
+        "reach": 2,
+        "profitability": 1
+      },
+      "complexity": {
+        "engineering": 2,
+        "review_frequency": 2,
+        "integrations": 3,
+        "manual_burden": 4
+      },
+      "next_action": "Maintain standings; automate the daily MLB HR pull to cut manual burden",
+      "decision": null,
+      "notes": "2026 season live (~9 players). Daily updates are the manual-burden cost. Path was wrong in old registry (Desktop) — actually in Meatbag_Labs.",
+      "last_touched": "2026-05-23",
+      "git_state": {
+        "repo": false,
+        "state": "not_a_repo",
+        "remote": null,
+        "uncommitted": null,
+        "unpushed": null,
+        "branch": null,
+        "last_commit": null,
+        "checked": "2026-05-27"
+      }
+    },
+    {
+      "id": "mbmnovel",
+      "name": "Meatbag Made — Novel",
+      "tier": "active",
+      "status": "active",
+      "location": "/Users/kevinsotka/Meatbag_Labs/mbmnovel/",
+      "website": null,
+      "autonomy": "kevin-only",
+      "progress": 30,
+      "value": {
+        "consumer_potential": 3,
+        "personal_satisfaction": 5,
+        "reach": 3,
+        "profitability": 2
+      },
+      "complexity": {
+        "engineering": 1,
+        "review_frequency": 3,
+        "integrations": 1,
+        "manual_burden": 3
+      },
+      "next_action": "Draft chapter 7 (novel-writer skill)",
+      "decision": null,
+      "notes": "Series bible v5 + ~6 chapters drafted. Pure creative-energy project; recharges the rest.",
+      "last_touched": "2026-05-19",
+      "git_state": {
+        "repo": false,
+        "state": "not_a_repo",
+        "remote": null,
+        "uncommitted": null,
+        "unpushed": null,
+        "branch": null,
+        "last_commit": null,
+        "checked": "2026-05-27"
+      }
+    },
+    {
+      "id": "ghostwriter_sodtoshi",
+      "name": "Ghostwriter — @sodtoshi",
+      "tier": "exploratory",
+      "status": "launched-shelved",
+      "location": "/Users/kevinsotka/Meatbag_Labs/ghostwriter-sodtoshi/",
+      "website": "twitter.com/sodtoshi",
+      "autonomy": "draft-and-approve",
+      "progress": 55,
+      "value": {
+        "consumer_potential": 3,
+        "personal_satisfaction": 3,
+        "reach": 4,
+        "profitability": 3
+      },
+      "complexity": {
+        "engineering": 2,
+        "review_frequency": 4,
+        "integrations": 2,
+        "manual_burden": 3
+      },
+      "next_action": "Launched then shelved 2026-05-24. Voice system + skills intact; revive for a posting cadence.",
+      "decision": null,
+      "notes": "Distribution engine; was live, now shelved. Launch post for the dashboard tool drafted (outputs/2026-05-24-portfolio-command-center.md).",
+      "last_touched": "2026-05-24",
+      "git_state": {
+        "repo": false,
+        "state": "not_a_repo",
+        "remote": null,
+        "uncommitted": null,
+        "unpushed": null,
+        "branch": null,
+        "last_commit": null,
+        "checked": "2026-05-27"
+      }
+    },
+    {
+      "id": "consulting_quickening",
+      "name": "AI Enablement Startup — Consulting",
+      "tier": "exploratory",
+      "status": "active",
+      "location": "/Users/kevinsotka/Meatbag_Labs/consulting-quickening/",
+      "website": null,
+      "autonomy": "kevin-only",
+      "progress": 15,
+      "value": {
+        "consumer_potential": 4,
+        "personal_satisfaction": 4,
+        "reach": 3,
+        "profitability": 5
+      },
+      "complexity": {
+        "engineering": 1,
+        "review_frequency": 5,
+        "integrations": 1,
+        "manual_burden": 5
+      },
+      "next_action": "Kevin to define MVP offering + first target client",
+      "decision": "Top of the value board and Kevin's clearest revenue path — staying flagged. Kevin is figuring out next steps (MVP offering + first target client).",
+      "notes": "Only competitive briefs exist. Highest profitability score; all-manual / all-Kevin to run.",
+      "last_touched": "2026-03-08",
+      "git_state": {
+        "repo": false,
+        "state": "not_a_repo",
+        "remote": null,
+        "uncommitted": null,
+        "unpushed": null,
+        "branch": null,
+        "last_commit": null,
+        "checked": "2026-05-27"
+      }
+    },
+    {
+      "id": "riventide",
+      "name": "Riventide — Indie RPG (RT1)",
+      "tier": "active",
+      "status": "shipped",
+      "location": "/Users/kevinsotka/Meatbag_Labs/RT1/",
+      "website": "itch.io",
+      "autonomy": "paused",
+      "progress": 95,
+      "value": {
+        "consumer_potential": 2,
+        "personal_satisfaction": 4,
+        "reach": 2,
+        "profitability": 2
+      },
+      "complexity": {
+        "engineering": 4,
+        "review_frequency": 2,
+        "integrations": 2,
+        "manual_burden": 2
+      },
+      "next_action": "Shipped. Optional cleanup: prune dead scene/music references the convoluted code still calls (NOT real gaps — that content was cut from the game).",
+      "decision": null,
+      "notes": "Shipped v1 on itch.io. The 2026-05-23 'missing asset' audit was a false alarm — the code grew convoluted and still references scenes/music that were removed from the game. No real content gap; just dead references to prune. Kevin made new music along the way.",
+      "last_touched": "2026-05-24",
+      "git_state": {
+        "repo": true,
+        "state": "partially_synced",
+        "remote": "https://github.com/kevin-sotka/Riventide.git",
+        "uncommitted": 171,
+        "unpushed": 0,
+        "branch": "main",
+        "last_commit": "2026-02-19",
+        "checked": "2026-05-27"
+      }
+    },
+    {
+      "id": "ai_company_trail",
+      "name": "AI Company Trail",
+      "tier": "exploratory",
+      "status": "active",
+      "location": "/Users/kevinsotka/Meatbag_Labs/AI-company-trail/",
+      "website": null,
+      "autonomy": "kevin-only",
+      "progress": 35,
+      "value": {
+        "consumer_potential": 3,
+        "personal_satisfaction": 3,
+        "reach": 3,
+        "profitability": 3
+      },
+      "complexity": {
+        "engineering": 4,
+        "review_frequency": 3,
+        "integrations": 3,
+        "manual_burden": 2
+      },
+      "next_action": "Confirmed active by Kevin (2026-05-23) — define the next build milestone",
+      "decision": null,
+      "notes": "Confirmed very much alive by Kevin 2026-05-23. Next.js + Supabase app with its own CLAUDE.md + build spec. Candidate for promotion from Exploratory to Active tier.",
+      "last_touched": "2026-04-26",
+      "git_state": {
+        "repo": true,
+        "state": "partially_synced",
+        "remote": "https://github.com/kevin-sotka/AI-company-trail.git",
+        "uncommitted": 6,
+        "unpushed": 0,
+        "branch": "main",
+        "last_commit": "2026-04-26",
+        "checked": "2026-05-27"
+      }
+    },
+    {
+      "id": "gerlok",
+      "name": "Gerlok",
+      "tier": "exploratory",
+      "status": "shelved",
+      "location": "/Users/kevinsotka/Meatbag_Labs/Gerlok/",
+      "website": null,
+      "autonomy": "shelved",
+      "progress": 20,
+      "value": {
+        "consumer_potential": 2,
+        "personal_satisfaction": 2,
+        "reach": 2,
+        "profitability": 2
+      },
+      "complexity": {
+        "engineering": 3,
+        "review_frequency": 2,
+        "integrations": 2,
+        "manual_burden": 2
+      },
+      "next_action": "Shelved 2026-05-23 — revive only if Kevin reopens it",
+      "decision": null,
+      "notes": "Shelved 2026-05-23. Node app scaffold with launcher + API-key setup. Intent unknown.",
+      "last_touched": "2025-03-22",
+      "git_state": {
+        "repo": false,
+        "state": "not_a_repo",
+        "remote": null,
+        "uncommitted": null,
+        "unpushed": null,
+        "branch": null,
+        "last_commit": null,
+        "checked": "2026-05-27"
+      }
+    },
+    {
+      "id": "the_block_train",
+      "name": "The Block Train",
+      "tier": "active",
+      "status": "paused",
+      "location": "/Users/kevinsotka/Meatbag_Labs/the_block_train/",
+      "website": null,
+      "autonomy": "shelved",
+      "progress": 10,
+      "value": {
+        "consumer_potential": 2,
+        "personal_satisfaction": 3,
+        "reach": 2,
+        "profitability": 1
+      },
+      "complexity": {
+        "engineering": 1,
+        "review_frequency": 2,
+        "integrations": 1,
+        "manual_burden": 2
+      },
+      "next_action": "Hitched to a post 2026-05-24. One rhyming-story draft exists; resume if revived.",
+      "decision": null,
+      "notes": "Seed stage — a single rhyming story draft. Moved to Active + parked 2026-05-24.",
+      "last_touched": "2025-01-09",
+      "git_state": {
+        "repo": false,
+        "state": "not_a_repo",
+        "remote": null,
+        "uncommitted": null,
+        "unpushed": null,
+        "branch": null,
+        "last_commit": null,
+        "checked": "2026-05-27"
+      }
+    },
+    {
+      "id": "motif_cadence",
+      "name": "Motif of the Cadence Collective",
+      "tier": "exploratory",
+      "status": "shelved",
+      "location": "/Users/kevinsotka/Meatbag_Labs/motif-of-the-cadence-collective/",
+      "website": null,
+      "autonomy": "shelved",
+      "progress": 20,
+      "value": {
+        "consumer_potential": 2,
+        "personal_satisfaction": 3,
+        "reach": 2,
+        "profitability": 2
+      },
+      "complexity": {
+        "engineering": 4,
+        "review_frequency": 2,
+        "integrations": 1,
+        "manual_burden": 2
+      },
+      "next_action": "Shelved 2026-05-23 — revive only if Kevin reopens it",
+      "decision": null,
+      "notes": "Shelved 2026-05-23. Godot project scaffold. Intent unknown.",
+      "last_touched": "2025-04-26",
+      "git_state": {
+        "repo": false,
+        "state": "not_a_repo",
+        "remote": null,
+        "uncommitted": null,
+        "unpushed": null,
+        "branch": null,
+        "last_commit": null,
+        "checked": "2026-05-27"
+      }
+    },
+    {
+      "id": "swatch",
+      "name": "Swatch",
+      "tier": "exploratory",
+      "status": "launched-shelved",
+      "location": "/Users/kevinsotka/Meatbag_Labs/swatch/",
+      "website": null,
+      "autonomy": "shelved",
+      "progress": 60,
+      "value": {
+        "consumer_potential": 2,
+        "personal_satisfaction": 2,
+        "reach": 2,
+        "profitability": 1
+      },
+      "complexity": {
+        "engineering": 2,
+        "review_frequency": 1,
+        "integrations": 1,
+        "manual_burden": 1
+      },
+      "next_action": "Launched then shelved — early color-swatch web tool (~1 yr old). Revive only if reopened.",
+      "decision": null,
+      "notes": "Shelved 2026-05-23. Discovered during audit. Self-contained index.html app, looks largely functional.",
+      "last_touched": "2025-06-18",
+      "git_state": {
+        "repo": false,
+        "state": "not_a_repo",
+        "remote": null,
+        "uncommitted": null,
+        "unpushed": null,
+        "branch": null,
+        "last_commit": null,
+        "checked": "2026-05-27"
+      }
+    },
+    {
+      "id": "milk_and_butt",
+      "name": "Milk And Butt",
+      "tier": "exploratory",
+      "status": "launched-shelved",
+      "location": "/Users/kevinsotka/Meatbag_Labs/Milk And Butt/",
+      "website": null,
+      "autonomy": "shelved",
+      "progress": 70,
+      "value": {
+        "consumer_potential": 2,
+        "personal_satisfaction": 3,
+        "reach": 2,
+        "profitability": 1
+      },
+      "complexity": {
+        "engineering": 2,
+        "review_frequency": 1,
+        "integrations": 1,
+        "manual_burden": 1
+      },
+      "next_action": "Launched then shelved — early web app/game (~1 yr old). Revive only if reopened.",
+      "decision": null,
+      "notes": "Shelved 2026-05-23. Discovered during audit. Complete multi-page site with QR code — appears largely finished.",
+      "last_touched": "2025-06-16",
+      "git_state": {
+        "repo": false,
+        "state": "not_a_repo",
+        "remote": null,
+        "uncommitted": null,
+        "unpushed": null,
+        "branch": null,
+        "last_commit": null,
+        "checked": "2026-05-27"
+      }
+    },
+    {
+      "id": "oregon_fail",
+      "name": "Oregon Fail — Indie Game",
+      "tier": "exploratory",
+      "status": "launched-shelved",
+      "location": "/Users/kevinsotka/Meatbag_Labs/Oregon_Fail/",
+      "website": "itch.io",
+      "autonomy": "paused",
+      "progress": 100,
+      "value": {
+        "consumer_potential": 2,
+        "personal_satisfaction": 4,
+        "reach": 2,
+        "profitability": 1
+      },
+      "complexity": {
+        "engineering": 3,
+        "review_frequency": 2,
+        "integrations": 2,
+        "manual_burden": 1
+      },
+      "next_action": "Launched then shelved. Has index.html + playthrough video. Revive or mine for content if reopened.",
+      "decision": null,
+      "notes": "Discovered + added 2026-05-24. Launched indie game (web build + playthrough.mp4). Companion to Riventide.",
+      "last_touched": "2025-04-04",
+      "git_state": {
+        "repo": false,
+        "state": "not_a_repo",
+        "remote": null,
+        "uncommitted": null,
+        "unpushed": null,
+        "branch": null,
+        "last_commit": null,
+        "checked": "2026-05-27"
+      }
+    }
+  ]
+}
