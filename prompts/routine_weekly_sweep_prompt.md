@@ -71,11 +71,11 @@ Post the message via this curl call. **In the Git copy of this prompt the webhoo
 
 ```bash
 curl -X POST -H 'Content-Type: application/json' \
-  --data "$(jq -Rn --arg t "$DOC_REPORT" '{text:$t}')" \
+  --data "$(jq -n --arg t "$DOC_REPORT" '{text:$t, username:"Doc", icon_emoji:":cowboy_hat_face:"}')" \
   '<PASTE_DOC_WEBHOOK_URL_HERE>'
 ```
 
-(Where `$DOC_REPORT` is the assembled report text. Use `jq -Rn` to JSON-encode it safely — newlines and quotes in Doc's text would otherwise break the payload. Replace `<PASTE_DOC_WEBHOOK_URL_HERE>` with the actual Slack incoming-webhook URL when you paste this prompt into the Routine; leave the placeholder as-is in this Git file.)
+(Where `$DOC_REPORT` is the assembled report text. The `username` and `icon_emoji` overrides are required — without them Slack defaults the post to Kevin's identity instead of Doc's. The Doc Slack app already has the `chat:write.customize` scope, so these overrides are honored. Use `jq -n` to JSON-encode safely — newlines and quotes in Doc's text would otherwise break the payload. Replace `<PASTE_DOC_WEBHOOK_URL_HERE>` with the actual Slack incoming-webhook URL when you paste this prompt into the Routine; leave the placeholder as-is in this Git file.)
 
 A `200` response with body `ok` means success. Anything else: don't push the branch, leave portfolio.json untouched, and exit with a clear error so Kevin sees the run failed rather than silently drifting.
 
