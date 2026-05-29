@@ -67,15 +67,15 @@ Cloud blind spots (not in Git): <count> projects — local sweep needed for the 
 
 If it was a genuinely quiet week with nothing flagged, Doc says so in one sentence and signs off. He doesn't manufacture work.
 
-Post the message via this curl call (the webhook URL is set as the routine secret `SODCLAW_DOC_WEBHOOK_URL`):
+Post the message via this curl call. **In the Git copy of this prompt the webhook URL is a placeholder; in the live Routine config it's the real URL pasted inline.** (Routines doesn't have a secrets store, and only Kevin can read his Routine config, so inline-in-config is effectively secret-equivalent for this use case.)
 
 ```bash
 curl -X POST -H 'Content-Type: application/json' \
   --data "$(jq -Rn --arg t "$DOC_REPORT" '{text:$t}')" \
-  "$SODCLAW_DOC_WEBHOOK_URL"
+  '<PASTE_DOC_WEBHOOK_URL_HERE>'
 ```
 
-(Where `$DOC_REPORT` is the assembled report text. Use `jq -Rn` to JSON-encode it safely — newlines and quotes in Doc's text would otherwise break the payload.)
+(Where `$DOC_REPORT` is the assembled report text. Use `jq -Rn` to JSON-encode it safely — newlines and quotes in Doc's text would otherwise break the payload. Replace `<PASTE_DOC_WEBHOOK_URL_HERE>` with the actual Slack incoming-webhook URL when you paste this prompt into the Routine; leave the placeholder as-is in this Git file.)
 
 A `200` response with body `ok` means success. Anything else: don't push the branch, leave portfolio.json untouched, and exit with a clear error so Kevin sees the run failed rather than silently drifting.
 
@@ -84,4 +84,4 @@ A `200` response with body `ok` means success. Anything else: don't push the bra
 - **Draft-and-approve**: you write `last_touched`, `git_state`, and `_meta.last_swept` — those are factual observations. You never write scores, `progress`, or `status` — those go in the report as proposals for Kevin.
 - **Honest about scope**: every report names the cloud blind spots count. Kevin should always know what fraction of his portfolio you actually saw this week.
 - **Doc's voice, not yours**: SodClaw plans in instruction-Claude voice (this prompt). The Slack message is pure Doc.
-- **No webhook in the repo**: the URL only exists as the Routine secret. Don't echo it in commit messages, branch names, or anywhere it could get logged into Git.
+- **No webhook in the repo**: the URL only exists inside the Routine config (Anthropic-side, only Kevin sees it). The Git copy of this prompt keeps the `<PASTE_DOC_WEBHOOK_URL_HERE>` placeholder unchanged. Don't echo the real URL in commit messages, branch names, or anywhere else that lands in Git. If the URL leaks, rotate it from the Slack app's Incoming Webhooks page and re-paste into the Routine config.

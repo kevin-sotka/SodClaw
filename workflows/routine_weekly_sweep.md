@@ -25,7 +25,7 @@ When the Routine has run cleanly for a couple of weeks, the local Cowork `weekly
 | Schedule | Weekly, **Friday 18:00 America/Los_Angeles** |
 | Repositories | `kevin-sotka/SodClaw` (primary), plus `kevin-sotka/train_lore`, `kevin-sotka/thegridirongazette`, `kevin-sotka/Riventide`, `kevin-sotka/AI-company-trail` for git-state checks |
 | Branch policy | Default — push only to `claude/sweep-YYYY-MM-DD` branches (Routines enforces this) |
-| Secrets | `SODCLAW_DOC_WEBHOOK_URL` — the Doc incoming-webhook URL for `#sodclaw` |
+| Webhook URL | Pasted inline into the Routine's prompt body at `<PASTE_DOC_WEBHOOK_URL_HERE>`. Routines has no secrets store, so this lives in the Routine config (Anthropic-side, only Kevin's account sees it). The Git copy of the prompt keeps the placeholder. |
 | Connectors | None required for the post (we post via webhook + curl, not the Slack connector, so Doc's identity stays intact) |
 | Run cap impact | 1 run / week against Kevin's Pro budget of 5 runs / day. Negligible. |
 
@@ -38,13 +38,13 @@ Paste the contents of [`prompts/routine_weekly_sweep_prompt.md`](../prompts/rout
 1. Open Claude Code Routines and create a new routine named `sodclaw-friday-sweep`.
 2. Add the five repositories above. `kevin-sotka/SodClaw` is the primary; the others are read-only context.
 3. Schedule: **Weekly, Friday 18:00, America/Los_Angeles**.
-4. Add a secret named `SODCLAW_DOC_WEBHOOK_URL` and paste the webhook URL from the Slack app's Incoming Webhooks page (the one starting `https://hooks.slack.com/services/T...`). Don't put this URL anywhere in the repo.
-5. Paste the prompt from `prompts/routine_weekly_sweep_prompt.md`.
+4. Paste the prompt from `prompts/routine_weekly_sweep_prompt.md` into the Routine's prompt field.
+5. In the pasted prompt, find `<PASTE_DOC_WEBHOOK_URL_HERE>` and replace it with the real Doc incoming-webhook URL from the Slack app's Incoming Webhooks page. **Only edit the live Routine config — do not put the real URL into the Git file.**
 6. Save and enable. The first run will fire next Friday at 6pm Pacific — or trigger one manually now to confirm Doc speaks correctly end-to-end before Friday.
 
 ## What to watch for
 
 - **First-run sanity:** The first Friday post should look like a normal sweep summary in Doc's voice. If it looks off, check the branch the Routine pushed — that's the receipt for what it actually wrote.
 - **Double sweeps:** Once the Routine has run cleanly twice, disable the local Cowork `weekly-portfolio-sweep` task so Kevin doesn't get two pings.
-- **Webhook leak:** If the webhook URL is ever pasted into a commit, into the Routine prompt body, or anywhere else that lands in the repo, rotate it from the Slack app's Incoming Webhooks page immediately and update the Routine secret.
+- **Webhook leak:** If the real webhook URL ever lands in a commit, in the Git copy of the prompt, in a commit message, or anywhere else in the repo — rotate it immediately from the Slack app's Incoming Webhooks page and re-paste the new one into the Routine prompt. (Routines has no secrets store, so the URL lives in the Routine config; only Kevin's account can read it.)
 - **Cap math:** Pro tier is 5 runs/day. Friday weekly = 1. Even with occasional manual API triggers, well under cap.
