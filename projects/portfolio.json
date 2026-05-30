@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Single source of truth for the Meatbag Labs portfolio dashboard. SodClaw and the dashboard artifact both read this file. Update it whenever a project's status, progress, next action, or scores change.",
-    "last_updated": "2026-05-24",
+    "last_updated": "2026-05-30",
     "scoring": {
       "value_metrics": [
         "consumer_potential",
@@ -36,7 +36,7 @@
     ],
     "doc_briefing": "Listen here, Partner. This week you did the hard thing — you quit pretendin'. Five dead claims got shelved and two more (the Roblox rails and the @sodtoshi wire) are tied to the post; that ain't quittin', that's runnin' a lean outfit, and what's left finally fits in your saddlebags. The work feedin' your soul — Riventide's new music, the novel — keep it close; that's the campfire that keeps a body goin'. But the richest vein on this whole map is the consulting claim: top value on the board and the straightest shot to payin' dirt, just sittin' out in the exploratory hills waitin' on your stake. My counsel? Drive that stake — name what you sell and who buys it first — and roll Riventide's wagon over the last ridge while the music's still flowin'. The rest can wait for the thaw.",
     "doc_briefing_date": "2026-05-24",
-    "last_swept": "2026-05-24",
+    "last_swept": "2026-05-30",
     "sodclaw_git_state": {
       "repo": true,
       "state": "synced",
@@ -44,10 +44,10 @@
       "uncommitted": 0,
       "unpushed": 0,
       "branch": "main",
-      "last_commit": "2026-05-28",
-      "checked": "2026-05-28"
+      "last_commit": "2026-05-29",
+      "checked": "2026-05-30"
     },
-    "git_inventory_run": "2026-05-28"
+    "git_inventory_run": "2026-05-30"
   },
   "projects": [
     {
@@ -83,7 +83,7 @@
         "unpushed": 0,
         "branch": "main",
         "last_commit": "2026-05-27",
-        "checked": "2026-05-28"
+        "checked": "2026-05-30"
       }
     },
     {
@@ -119,7 +119,7 @@
         "unpushed": 0,
         "branch": "main",
         "last_commit": "2026-05-27",
-        "checked": "2026-05-28"
+        "checked": "2026-05-30"
       }
     },
     {
