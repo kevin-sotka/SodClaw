@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Single source of truth for the Meatbag Labs portfolio dashboard. SodClaw and the dashboard artifact both read this file. Update it whenever a project's status, progress, next action, or scores change.",
-    "last_updated": "2026-05-30",
+    "last_updated": "2026-06-13",
     "scoring": {
       "value_metrics": [
         "consumer_potential",
@@ -34,9 +34,9 @@
       "shelved",
       "launched-shelved"
     ],
-    "doc_briefing": "Listen here, Partner. This week you did the hard thing — you quit pretendin'. Five dead claims got shelved and two more (the Roblox rails and the @sodtoshi wire) are tied to the post; that ain't quittin', that's runnin' a lean outfit, and what's left finally fits in your saddlebags. The work feedin' your soul — Riventide's new music, the novel — keep it close; that's the campfire that keeps a body goin'. But the richest vein on this whole map is the consulting claim: top value on the board and the straightest shot to payin' dirt, just sittin' out in the exploratory hills waitin' on your stake. My counsel? Drive that stake — name what you sell and who buys it first — and roll Riventide's wagon over the last ridge while the music's still flowin'. The rest can wait for the thaw.",
-    "doc_briefing_date": "2026-05-24",
-    "last_swept": "2026-05-30",
+    "doc_briefing": "Big news on the board, Partner: the Gridiron wire woke up. What was a dead claim a month back is now pumpin' out a fresh daily dispatch — near two weeks of 'em stacked up on a side trail, just waitin' on yer nod to roll 'em onto the main road. That's the loudest thing movin' out here. Meanwhile two of yer best veins have gone quiet in the dust — the train blog's been still better'n three months, and the consultin' claim, still the richest dirt on the whole map, ain't been worked since March. Riventide's wagon's parked over the ridge, shipped and restin'. My counsel: merge the wire so the work shows, then pick ONE quiet vein — I'd ride for the consultin' gold, 'cause that's where the payin' dirt sits — and put an hour to it 'fore the trail goes cold. The rest can wait for the thaw.",
+    "doc_briefing_date": "2026-06-13",
+    "last_swept": "2026-06-13",
     "sodclaw_git_state": {
       "repo": true,
       "state": "synced",
@@ -45,9 +45,9 @@
       "unpushed": 0,
       "branch": "main",
       "last_commit": "2026-05-29",
-      "checked": "2026-05-30"
+      "checked": "2026-06-13"
     },
-    "git_inventory_run": "2026-05-30"
+    "git_inventory_run": "2026-06-13"
   },
   "projects": [
     {
@@ -83,7 +83,7 @@
         "unpushed": 0,
         "branch": "main",
         "last_commit": "2026-05-27",
-        "checked": "2026-05-30"
+        "checked": "2026-06-13"
       }
     },
     {
@@ -110,7 +110,7 @@
       "next_action": "Define content format, build the first automated issue",
       "decision": "Kevin will pick this up in earnest ~2026-06-07 (reminder set). Needs attention soon — hold until then.",
       "notes": "Domain renewed 2026-05-24 ($18/yr) — points to meatbagmade.com/thegridirongazette/index.html (vanity domain over the main site, same pattern as HR Derby). Live newsletter page exists; no content engine yet. Kill-date check at season's end if no real issue ships.",
-      "last_touched": "2025-06-26",
+      "last_touched": "2026-06-12",
       "git_state": {
         "repo": true,
         "state": "synced",
@@ -118,8 +118,8 @@
         "uncommitted": 0,
         "unpushed": 0,
         "branch": "main",
-        "last_commit": "2026-05-27",
-        "checked": "2026-05-30"
+        "last_commit": "2026-06-12",
+        "checked": "2026-06-13"
       }
     },
     {
@@ -365,13 +365,14 @@
       "last_touched": "2026-05-24",
       "git_state": {
         "repo": true,
-        "state": "partially_synced",
-        "remote": "https://github.com/kevin-sotka/Riventide.git",
-        "uncommitted": 171,
+        "state": "synced",
+        "remote": "https://github.com/kevin-sotka/riventide.git",
+        "uncommitted": 0,
         "unpushed": 0,
         "branch": "main",
         "last_commit": "2026-02-19",
-        "checked": "2026-05-28"
+        "checked": "2026-06-13",
+        "note": "Cloud clone is clean; prior local sweep saw 171 uncommitted on Kevin's machine — not visible from cloud. Local sweep needed to confirm/clear."
       }
     },
     {
@@ -401,13 +402,14 @@
       "last_touched": "2026-04-26",
       "git_state": {
         "repo": true,
-        "state": "partially_synced",
+        "state": "synced",
         "remote": "https://github.com/kevin-sotka/AI-company-trail.git",
-        "uncommitted": 6,
+        "uncommitted": 0,
         "unpushed": 0,
         "branch": "main",
         "last_commit": "2026-04-26",
-        "checked": "2026-05-28"
+        "checked": "2026-06-13",
+        "note": "Cloud clone is clean; prior local sweep saw 6 uncommitted on Kevin's machine — not visible from cloud. Local sweep needed to confirm/clear."
       }
     },
     {
