@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Single source of truth for the Meatbag Labs portfolio dashboard. SodClaw and the dashboard artifact both read this file. Update it whenever a project's status, progress, next action, or scores change.",
-    "last_updated": "2026-05-30",
+    "last_updated": "2026-08-29",
     "scoring": {
       "value_metrics": [
         "consumer_potential",
@@ -34,9 +34,9 @@
       "shelved",
       "launched-shelved"
     ],
-    "doc_briefing": "Listen here, Partner. This week you did the hard thing — you quit pretendin'. Five dead claims got shelved and two more (the Roblox rails and the @sodtoshi wire) are tied to the post; that ain't quittin', that's runnin' a lean outfit, and what's left finally fits in your saddlebags. The work feedin' your soul — Riventide's new music, the novel — keep it close; that's the campfire that keeps a body goin'. But the richest vein on this whole map is the consulting claim: top value on the board and the straightest shot to payin' dirt, just sittin' out in the exploratory hills waitin' on your stake. My counsel? Drive that stake — name what you sell and who buys it first — and roll Riventide's wagon over the last ridge while the music's still flowin'. The rest can wait for the thaw.",
-    "doc_briefing_date": "2026-05-24",
-    "last_swept": "2026-05-30",
+    "doc_briefing": "Been a long spell since I rode this fence line, Partner — near three months — and I'll tell ya, the outfit's been busy while I was gone. The Gridiron Gazette went from a dead campfire to a daily wire, crankin' out injury reports right through August; that claim's alive and payin' attention. Train Lore laid fresh track too — a new tale and a spruced-up homestead. And Riventide? She shipped, then you rode right back in and gave her a whole new browser build and real branchin' choices. Here's the rub, though: a good chunk of that Gazette and Riventide gold is sittin' in saddlebags on side-trails, never hauled back to the main camp — needs yer hand to merge it home. The richest vein's still the consulting claim, top of the value board and quiet as a graveyard since March. My counsel: merge what's strayin', then decide if the consulting stake and the AI Company Trail wagon are still worth the powder — one's been idle four months, the other's your surest shot at payin' dirt. Cloud view only tonight; eleven claims are past my spyglass.",
+    "doc_briefing_date": "2026-08-29",
+    "last_swept": "2026-08-29",
     "sodclaw_git_state": {
       "repo": true,
       "state": "synced",
@@ -45,9 +45,9 @@
       "unpushed": 0,
       "branch": "main",
       "last_commit": "2026-05-29",
-      "checked": "2026-05-30"
+      "checked": "2026-08-29"
     },
-    "git_inventory_run": "2026-05-30"
+    "git_inventory_run": "2026-08-29"
   },
   "projects": [
     {
@@ -74,7 +74,7 @@
       "next_action": "Pick next topic from the 32-topic list, draft + publish post #6",
       "decision": null,
       "notes": "5 of ~32 topics published. Publishing system is built; content is the runway.",
-      "last_touched": "2026-03-03",
+      "last_touched": "2026-07-27",
       "git_state": {
         "repo": true,
         "state": "synced",
@@ -82,8 +82,8 @@
         "uncommitted": 0,
         "unpushed": 0,
         "branch": "main",
-        "last_commit": "2026-05-27",
-        "checked": "2026-05-30"
+        "last_commit": "2026-07-27",
+        "checked": "2026-08-29"
       }
     },
     {
@@ -110,16 +110,16 @@
       "next_action": "Define content format, build the first automated issue",
       "decision": "Kevin will pick this up in earnest ~2026-06-07 (reminder set). Needs attention soon — hold until then.",
       "notes": "Domain renewed 2026-05-24 ($18/yr) — points to meatbagmade.com/thegridirongazette/index.html (vanity domain over the main site, same pattern as HR Derby). Live newsletter page exists; no content engine yet. Kill-date check at season's end if no real issue ships.",
-      "last_touched": "2025-06-26",
+      "last_touched": "2026-08-28",
       "git_state": {
         "repo": true,
-        "state": "synced",
+        "state": "partially_synced",
         "remote": "https://github.com/kevin-sotka/thegridirongazette.git",
         "uncommitted": 0,
         "unpushed": 0,
         "branch": "main",
-        "last_commit": "2026-05-27",
-        "checked": "2026-05-30"
+        "last_commit": "2026-08-28",
+        "checked": "2026-08-29"
       }
     },
     {
@@ -362,16 +362,16 @@
       "next_action": "Shipped. Optional cleanup: prune dead scene/music references the convoluted code still calls (NOT real gaps — that content was cut from the game).",
       "decision": null,
       "notes": "Shipped v1 on itch.io. The 2026-05-23 'missing asset' audit was a false alarm — the code grew convoluted and still references scenes/music that were removed from the game. No real content gap; just dead references to prune. Kevin made new music along the way.",
-      "last_touched": "2026-05-24",
+      "last_touched": "2026-08-27",
       "git_state": {
         "repo": true,
         "state": "partially_synced",
-        "remote": "https://github.com/kevin-sotka/Riventide.git",
-        "uncommitted": 171,
+        "remote": "https://github.com/kevin-sotka/riventide.git",
+        "uncommitted": 0,
         "unpushed": 0,
         "branch": "main",
-        "last_commit": "2026-02-19",
-        "checked": "2026-05-28"
+        "last_commit": "2026-08-27",
+        "checked": "2026-08-29"
       }
     },
     {
@@ -401,13 +401,13 @@
       "last_touched": "2026-04-26",
       "git_state": {
         "repo": true,
-        "state": "partially_synced",
+        "state": "synced",
         "remote": "https://github.com/kevin-sotka/AI-company-trail.git",
-        "uncommitted": 6,
+        "uncommitted": 0,
         "unpushed": 0,
         "branch": "main",
         "last_commit": "2026-04-26",
-        "checked": "2026-05-28"
+        "checked": "2026-08-29"
       }
     },
     {
