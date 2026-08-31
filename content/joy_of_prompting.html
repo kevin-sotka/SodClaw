@@ -1,0 +1,1458 @@
+<title>The Joy of Prompting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&amp;family=Courier+Prime:ital,wght@0,400;0,700;1,400&amp;family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..600&amp;display=swap">
+<style>
+/* ============================================================
+   THE JOY OF PROMPTING — season one bible
+   Single visual world on purpose: the black studio seamless of
+   a 1980s public-television painting show. Episodes are canvases
+   sitting on it. Every color is painted explicitly so the page
+   holds on any host ground.
+   ============================================================ */
+:root{
+  color-scheme: dark;
+  --studio:#14110C; --studio-2:#1F1B14; --studio-3:#302921;
+  --canvas:#F3EEE3; --canvas-2:#E8E1D1; --canvas-3:#DDD4C0;
+  --ink:#241F17; --ink-2:#5A5041; --ink-3:#8A7F6C;
+  --on-dark:#E9E2D3; --faint-dark:#998F7E;
+  --cadmium:#E0A536; --cadmium-d:#87610F;
+  --alizarin:#C4483A; --alizarin-d:#8E2A20;
+  --phthalo:#3E93A6; --phthalo-d:#1C5A69;
+  --sap:#7E9E55; --sap-d:#455F29;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"Newsreader",Georgia,"Times New Roman",serif;
+  --mono:"Courier Prime","Courier New",monospace;
+  --wrap:1040px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--studio); color:var(--on-dark);
+  font-family:var(--body); font-size:17px; line-height:1.6;
+  font-optical-sizing:auto;
+}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 22px}
+h1,h2,h3,h4{font-family:var(--display);text-wrap:balance;margin:0}
+a{color:var(--cadmium)}
+:focus-visible{outline:2px solid var(--cadmium);outline-offset:3px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- shared label ---------- */
+.eyebrow{
+  font-family:var(--display);font-size:11px;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--cadmium);
+  margin:0 0 14px;
+}
+.eyebrow.q{color:var(--faint-dark)}
+
+/* ---------- hero: the studio ---------- */
+.hero{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(760px 420px at 50% 8%, rgba(224,165,54,.13), rgba(20,17,12,0) 72%),
+    var(--studio);
+  border-bottom:1px solid var(--studio-3);
+  padding:74px 0 62px;
+}
+.hero .wrap{position:relative;z-index:2}
+.showname{
+  font-size:clamp(44px,9.2vw,104px);font-weight:800;
+  font-stretch:118%;line-height:.92;letter-spacing:-.015em;
+  color:var(--canvas);margin:0 0 20px;
+}
+.showname em{font-style:normal;color:var(--cadmium)}
+.host{
+  font-family:var(--display);font-size:12px;font-weight:600;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--faint-dark);
+  margin:0 0 26px;
+}
+.thesis{
+  font-size:22px;line-height:1.5;max-width:34ch;color:var(--on-dark);
+  margin:0 0 8px;font-weight:300;
+}
+.thesis b{font-weight:600;color:var(--canvas)}
+.tag{
+  font-family:var(--mono);font-size:14px;color:var(--cadmium);
+  margin:0 0 34px;
+}
+.hero-grid{display:grid;grid-template-columns:1.25fr .95fr;gap:44px;align-items:end}
+@media(max-width:820px){.hero-grid{grid-template-columns:1fr;gap:34px;align-items:start}}
+
+/* ---------- the 98% meter (the brand) ---------- */
+.meter{
+  border:1px solid var(--studio-3);background:var(--studio-2);
+  padding:20px 20px 18px;
+}
+.meter h2{
+  font-size:10.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--faint-dark);margin:0 0 16px;
+}
+.mrow{display:grid;grid-template-columns:78px 1fr 52px;gap:12px;align-items:center;margin-bottom:11px}
+.mrow:last-of-type{margin-bottom:0}
+.mlab{font-family:var(--display);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--on-dark)}
+.mbar{height:12px;background:var(--studio-3);overflow:hidden}
+.mbar i{display:block;height:100%;width:0;transition:width 1.5s cubic-bezier(.2,.7,.2,1)}
+.mbar i.p{background:var(--faint-dark)}
+.mbar i.c{background:var(--cadmium)}
+.mval{font-family:var(--display);font-size:17px;font-weight:800;text-align:right;font-variant-numeric:tabular-nums;color:var(--canvas)}
+.mnote{font-size:13.5px;color:var(--faint-dark);margin:16px 0 0;line-height:1.5;font-style:italic}
+@media(prefers-reduced-motion:reduce){.mbar i{transition:none}}
+
+.stats{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--studio-3);margin-top:48px}
+.stat{flex:1 1 150px;padding:18px 20px 16px;border-right:1px solid var(--studio-3)}
+.stat:last-child{border-right:0}
+.stat b{display:block;font-family:var(--display);font-size:27px;font-weight:800;color:var(--cadmium);line-height:1;font-variant-numeric:tabular-nums}
+.stat span{display:block;font-family:var(--display);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint-dark);margin-top:7px}
+
+/* ---------- dark sections ---------- */
+.sec{padding:62px 0}
+.sec + .sec{border-top:1px solid var(--studio-3)}
+.sec h2.big{
+  font-size:clamp(26px,4vw,38px);font-weight:800;font-stretch:108%;
+  color:var(--canvas);line-height:1.08;margin:0 0 16px;letter-spacing:-.01em;
+}
+.lede{font-size:18.5px;color:var(--on-dark);max-width:62ch;margin:0 0 30px;font-weight:300}
+.lede b{font-weight:600;color:var(--canvas)}
+
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--studio-3);border:1px solid var(--studio-3)}
+@media(max-width:800px){.cols3{grid-template-columns:1fr}}
+.cell{background:var(--studio);padding:24px 22px}
+.cell h3{font-size:15px;font-weight:700;letter-spacing:.02em;color:var(--cadmium);margin:0 0 9px}
+.cell p{margin:0;font-size:15.5px;color:var(--on-dark);line-height:1.58}
+.cell p + p{margin-top:10px}
+
+.devices{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:1px;background:var(--studio-3);border:1px solid var(--studio-3)}
+.dev{background:var(--studio);padding:22px 21px}
+.dev .n{font-family:var(--mono);font-size:12px;color:var(--cadmium);display:block;margin-bottom:8px}
+.dev h3{font-size:16px;font-weight:700;color:var(--canvas);margin:0 0 7px}
+.dev p{margin:0;font-size:15px;color:var(--faint-dark);line-height:1.55}
+.dev p b{color:var(--on-dark);font-weight:600}
+
+/* ---------- runtime map ---------- */
+.rtbar{display:flex;border:1px solid var(--studio-3);margin:6px 0 20px;overflow:hidden}
+.rt{padding:15px 13px;border-right:1px solid var(--studio-3);background:var(--studio-2);min-width:0}
+.rt:last-child{border-right:0}
+.rt .t{font-family:var(--mono);font-size:11.5px;color:var(--cadmium);display:block;margin-bottom:5px;white-space:nowrap}
+.rt .n{font-family:var(--display);font-size:12.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--canvas);line-height:1.25}
+.rt .d{font-size:13.5px;color:var(--faint-dark);margin-top:6px;line-height:1.45}
+.rt.turn{background:#23180F}
+.rt.turn .t{color:var(--alizarin)}
+@media(max-width:860px){.rtbar{flex-direction:column}.rt{border-right:0;border-bottom:1px solid var(--studio-3)}.rt:last-child{border-bottom:0}}
+
+/* ---------- season arc ---------- */
+.arc{display:grid;grid-template-columns:4fr 1.4fr 4fr 1.4fr;gap:1px;background:var(--studio-3);border:1px solid var(--studio-3);margin-top:8px}
+@media(max-width:760px){.arc{grid-template-columns:1fr}}
+.ph{background:var(--studio-2);padding:18px 18px 20px;border-top:4px solid var(--studio-3)}
+.ph.magic{border-top-color:var(--cadmium)}
+.ph.turn{border-top-color:var(--alizarin)}
+.ph.open{border-top-color:var(--phthalo)}
+.ph.hand{border-top-color:var(--sap)}
+.ph .eps{font-family:var(--mono);font-size:11.5px;color:var(--faint-dark);display:block;margin-bottom:7px}
+.ph h3{font-size:15px;font-weight:800;letter-spacing:.03em;color:var(--canvas);margin:0 0 7px}
+.ph p{margin:0;font-size:14px;line-height:1.5;color:var(--faint-dark)}
+
+/* ---------- episodes: canvases on the studio ---------- */
+.eps-sec{padding:62px 0 34px;border-top:1px solid var(--studio-3)}
+.eplist{display:flex;flex-direction:column;gap:34px;margin-top:34px}
+.ep{background:var(--canvas);color:var(--ink);box-shadow:0 20px 44px rgba(0,0,0,.44)}
+.ep-stripe{height:6px;background:var(--cadmium)}
+.ep-stripe.turn{background:var(--alizarin)}
+.ep-stripe.open{background:var(--phthalo)}
+.ep-stripe.hand{background:var(--sap)}
+.ep-head{display:grid;grid-template-columns:auto 1fr;gap:24px;padding:28px 32px 22px;align-items:start}
+@media(max-width:640px){.ep-head{grid-template-columns:1fr;gap:8px;padding:22px 20px 18px}}
+.ep-num{
+  font-family:var(--display);font-size:62px;font-weight:800;font-stretch:70%;
+  line-height:.82;color:var(--canvas-3);font-variant-numeric:tabular-nums;
+}
+.ep-eyebrow{font-family:var(--display);font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--cadmium-d);margin-bottom:8px}
+.ep-eyebrow.turn{color:var(--alizarin-d)}
+.ep-eyebrow.open{color:var(--phthalo-d)}
+.ep-eyebrow.hand{color:var(--sap-d)}
+.ep h3{font-size:clamp(24px,3.6vw,33px);font-weight:800;font-stretch:104%;line-height:1.05;color:var(--ink);letter-spacing:-.012em;margin:0 0 10px}
+.ep-log{margin:0;font-size:17px;color:var(--ink-2);max-width:60ch;line-height:1.5}
+
+.prompt-block{margin:0 32px 26px;background:var(--studio);padding:19px 22px 20px}
+@media(max-width:640px){.prompt-block{margin:0 20px 22px;padding:16px 17px}}
+.pb-label{display:block;font-family:var(--display);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--cadmium);margin-bottom:11px}
+.prompt-block p{margin:0;font-family:var(--mono);font-size:16.5px;line-height:1.5;color:var(--canvas)}
+.prompt-block p::before{content:"> ";color:var(--cadmium)}
+.prompt-block .pb-sub{font-family:var(--body);font-size:13.5px;color:var(--faint-dark);margin-top:11px;font-style:italic}
+.prompt-block .pb-sub::before{content:none}
+
+.ep-body{padding:0 32px 30px;display:flex;flex-direction:column;gap:26px}
+@media(max-width:640px){.ep-body{padding:0 20px 24px;gap:22px}}
+.ep-body h4{
+  font-family:var(--display);font-size:10.5px;font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ink-3);margin:0 0 12px;
+  padding-bottom:7px;border-bottom:1px solid var(--canvas-3);
+}
+.blk p{margin:0;font-size:16px;line-height:1.62;color:var(--ink);max-width:66ch}
+.blk p + p{margin-top:9px}
+
+ol.steps{margin:0;padding:0;list-style:none;counter-reset:s}
+ol.steps li{
+  counter-increment:s;position:relative;padding-left:34px;margin-bottom:9px;
+  font-size:16px;line-height:1.55;color:var(--ink);max-width:66ch;
+}
+ol.steps li:last-child{margin-bottom:0}
+ol.steps li::before{
+  content:counter(s);position:absolute;left:0;top:1px;
+  font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--cadmium-d);
+  border:1px solid var(--canvas-3);width:22px;height:22px;
+  display:flex;align-items:center;justify-content:center;
+}
+ol.steps li b{font-weight:600}
+
+dl.scenes{margin:0;display:grid;grid-template-columns:66px 1fr;gap:8px 16px}
+@media(max-width:520px){dl.scenes{grid-template-columns:56px 1fr;gap:6px 11px}}
+dl.scenes dt{font-family:var(--mono);font-size:13px;color:var(--phthalo-d);font-variant-numeric:tabular-nums;padding-top:2px}
+dl.scenes dd{margin:0;font-size:15.5px;line-height:1.52;color:var(--ink)}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+@media(max-width:720px){.two{grid-template-columns:1fr;gap:22px}}
+
+.script-page{background:var(--studio-2);padding:22px 24px;overflow-x:auto}
+@media(max-width:640px){.script-page{padding:18px 17px}}
+.script-page .sd{
+  font-family:var(--display);font-size:10px;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--cadmium);margin:0 0 7px;
+}
+.script-page .sd + .ln{margin-top:0}
+.script-page .ln{
+  font-family:var(--mono);font-size:15px;line-height:1.62;color:var(--canvas);
+  margin:0 0 18px;max-width:58ch;
+}
+.script-page .ln:last-child{margin-bottom:0}
+.script-page .who{color:var(--cadmium);font-weight:700}
+.script-page .pa{color:var(--faint-dark);font-style:italic}
+
+.reveal{background:var(--canvas-2);padding:20px 22px}
+.reveal h4{color:var(--alizarin-d);border-bottom-color:rgba(142,42,32,.28)}
+.reveal p{margin:0;font-size:16px;line-height:1.6;color:var(--ink)}
+.reveal p b{color:var(--alizarin-d);font-weight:600}
+
+ul.byp{margin:0;padding:0;list-style:none}
+ul.byp li{font-size:15.5px;line-height:1.5;color:var(--ink);padding-left:19px;position:relative;margin-bottom:8px}
+ul.byp li:last-child{margin-bottom:0}
+ul.byp li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;background:var(--sap-d)}
+ul.byp li b{font-weight:600}
+
+.mug{
+  margin:0;font-family:var(--mono);font-size:13px;color:var(--ink-3);
+  border-top:1px solid var(--canvas-3);padding-top:14px;
+}
+.mug b{color:var(--cadmium-d);font-weight:700}
+
+/* ---------- bench ---------- */
+.bench{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:var(--studio-3);border:1px solid var(--studio-3);margin-top:26px}
+.bx{background:var(--studio);padding:21px 20px}
+.bx h3{font-size:16.5px;font-weight:700;color:var(--canvas);margin:0 0 9px;line-height:1.25}
+.bx .bp{font-family:var(--mono);font-size:13.5px;color:var(--cadmium);line-height:1.5;margin:0 0 9px}
+.bx .bp::before{content:"> "}
+.bx p.bw{margin:0;font-size:14.5px;line-height:1.5;color:var(--faint-dark)}
+.bx p.bw b{color:var(--on-dark);font-weight:600}
+
+/* ---------- playbook ---------- */
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1px;background:var(--studio-3);border:1px solid var(--studio-3);margin-top:24px}
+.rule{background:var(--studio);padding:22px 21px}
+.rule h3{font-size:15.5px;font-weight:700;color:var(--cadmium);margin:0 0 8px;letter-spacing:.01em}
+.rule p{margin:0;font-size:15px;line-height:1.55;color:var(--on-dark)}
+.rule p + p{margin-top:9px;color:var(--faint-dark)}
+
+.note{
+  border:1px solid var(--alizarin-d);background:#20140F;padding:26px 26px 24px;margin-top:34px;
+}
+.note .eyebrow{color:var(--alizarin)}
+.note h3{font-size:20px;font-weight:800;color:var(--canvas);margin:0 0 12px}
+.note p{margin:0 0 12px;font-size:16px;line-height:1.6;color:var(--on-dark);max-width:68ch}
+.note p:last-child{margin-bottom:0}
+.note b{color:var(--canvas);font-weight:600}
+
+footer{border-top:1px solid var(--studio-3);padding:34px 0 54px;margin-top:20px}
+footer p{margin:0;font-size:14px;color:var(--faint-dark);font-style:italic}
+footer p + p{margin-top:8px;font-style:normal;font-family:var(--mono);font-size:12.5px;color:var(--studio-3);color:#6E6656}
+</style>
+
+<div class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Series bible &middot; Season one &middot; Ten episodes</p>
+    <div class="hero-grid">
+      <div>
+        <h1 class="showname">The Joy of<br><em>Prompting</em></h1>
+        <p class="host">With Sod &middot; Meatbag Labs</p>
+        <p class="thesis">There is a whole genre of video where a guy proves AI is stupid. <b>This is the other channel.</b> Nothing goes wrong here that a little more information can't fix.</p>
+        <p class="tag">"There are no bad prompts. Only prompts that showed up empty-handed."</p>
+      </div>
+      <div class="meter" id="meter">
+        <h2>What actually did the work</h2>
+        <div class="mrow">
+          <span class="mlab">Prompt</span>
+          <span class="mbar"><i class="p" data-w="2"></i></span>
+          <span class="mval">2%</span>
+        </div>
+        <div class="mrow">
+          <span class="mlab">Context</span>
+          <span class="mbar"><i class="c" data-w="98"></i></span>
+          <span class="mval">98%</span>
+        </div>
+        <p class="mnote">This sits in the corner of every episode. It is never explained until number five. People will ask about it in the comments. That is the point.</p>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>10</b><span>Episodes</span></div>
+      <div class="stat"><b>5&ndash;10</b><span>Minutes each</span></div>
+      <div class="stat"><b>1</b><span>Sentence per build</span></div>
+      <div class="stat"><b>0</b><span>Dunks on anybody</span></div>
+    </div>
+  </div>
+</div>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">The argument</p>
+    <h2 class="big">Calm is the counter-argument.</h2>
+    <p class="lede">The fail-video guy needs you to watch a model get something wrong. That's his whole act, and it works, because being right is a good feeling and he's selling it cheap. <b>You can't beat that by arguing with him.</b> You beat it by sitting down, saying one short sentence, and having a nice afternoon on camera while a thing gets built.</p>
+    <div class="cols3">
+      <div class="cell">
+        <h3>Never name the foil</h3>
+        <p>Bob Ross never mentioned another painter. Not once, in eleven years. Naming the other guy makes you the reply guy and makes him the subject.</p>
+        <p>The rebuttal is the finished thing on the desk.</p>
+      </div>
+      <div class="cell">
+        <h3>Show the failures anyway</h3>
+        <p>Every episode includes at least one thing going wrong, uncut. Hiding them would make the whole show a lie, and viewers can smell it.</p>
+        <p>The move isn't that it never breaks. It's that breaking costs ninety seconds.</p>
+      </div>
+      <div class="cell">
+        <h3>Hide the trick, then give it away</h3>
+        <p>Episodes one through four look like magic. Something is always sitting on the desk that nobody comments on.</p>
+        <p>Episode five puts it into words. From then on the trick runs in the open, which somehow plays better.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">The set</p>
+    <h2 class="big">Six things that repeat every week.</h2>
+    <p class="lede">A show is a set of promises you keep. These are the six. They cost nothing, they're all shootable on a kitchen table, and together they are the entire brand.</p>
+    <div class="devices">
+      <div class="dev">
+        <span class="n">01</span>
+        <h3>The Palette</h3>
+        <p>Before every build, a hand sets one physical object beside the keyboard. Index cards. A printed spreadsheet. A crayon drawing. <b>Never explained in episodes 1&ndash;4.</b> It is the 98%, shown instead of said.</p>
+      </div>
+      <div class="dev">
+        <span class="n">02</span>
+        <h3>The Meter</h3>
+        <p>A small corner overlay all season: <b>PROMPT 2% / CONTEXT 98%.</b> It's on the thumbnails too. It is the show's logo and its thesis and its spoiler, all at once.</p>
+      </div>
+      <div class="dev">
+        <span class="n">03</span>
+        <h3>The Mug</h3>
+        <p>Different every episode, never acknowledged. Ranges from <b>"WORLD'S OKAYEST PROMPT ENGINEER"</b> to a wobbly kid-painted one. Free running gag; people screenshot these.</p>
+      </div>
+      <div class="dev">
+        <span class="n">04</span>
+        <h3>The Happy Accident count</h3>
+        <p>When something goes wrong, a small tally ticks up in the corner. No sting, no zoom, no record scratch. <b>Failure gets treated like weather.</b></p>
+      </div>
+      <div class="dev">
+        <span class="n">05</span>
+        <h3>The last ten seconds</h3>
+        <p>Music drops out. Room tone. Sod looks at the finished thing, not the camera. <b>Silence is the flex</b> in a format built on noise.</p>
+      </div>
+      <div class="dev">
+        <span class="n">06</span>
+        <h3>"Muy relaxando"</h3>
+        <p>Once per episode, dropped without comment, usually right after something breaks. It's already how Sod talks. Don't over-use it and don't explain it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">Format</p>
+    <h2 class="big">The shape of seven minutes.</h2>
+    <p class="lede">Same skeleton every week, so the surprise can live in the content instead of the structure. Runtimes flex from 5:00 to 9:00; the proportions hold.</p>
+    <div class="rtbar">
+      <div class="rt" style="flex:5">
+        <span class="t">0:00&ndash;0:30</span>
+        <span class="n">Cold open</span>
+        <p class="d">Black screen. One sentence types itself. Enter. No greeting, no explanation, no "hey guys."</p>
+      </div>
+      <div class="rt" style="flex:5">
+        <span class="t">0:30&ndash;1:00</span>
+        <span class="n">Title</span>
+        <p class="d">Card, then: "today we're making&hellip;" Fifteen words about the thing, not about AI.</p>
+      </div>
+      <div class="rt" style="flex:7">
+        <span class="t">1:00&ndash;1:45</span>
+        <span class="n">The Palette</span>
+        <p class="d">Overhead. A hand sets something on the desk. Beat. Moves on without a word.</p>
+      </div>
+      <div class="rt" style="flex:30">
+        <span class="t">1:45&ndash;5:15</span>
+        <span class="n">The Build</span>
+        <p class="d">One take, near real time. The waiting is not cut out. Talking over the wait is the show.</p>
+      </div>
+      <div class="rt turn" style="flex:8">
+        <span class="t">5:15&ndash;6:00</span>
+        <span class="n">Happy accident</span>
+        <p class="d">Something is wrong. He never argues with it. He tells it what it didn't know.</p>
+      </div>
+      <div class="rt" style="flex:10">
+        <span class="t">6:00&ndash;7:00</span>
+        <span class="n">Payoff &amp; out</span>
+        <p class="d">The thing gets used for real, once. Then: "everything I put on the desk is in the description."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">Season arc</p>
+    <h2 class="big">Magic, then the turn, then the open secret.</h2>
+    <p class="lede">Ten episodes is a season, not a lifestyle. It has a shape: build trust with four unexplained wins, spend it all in one six-minute reveal, then do the same trick with the curtain up. The stripe on each episode below is its phase.</p>
+    <div class="arc">
+      <div class="ph magic">
+        <span class="eps">Episodes 01&ndash;04</span>
+        <h3>Pure magic</h3>
+        <p>One sentence in, a real thing out. Nobody explains the objects on the desk. Comments start asking about the corner meter around episode three.</p>
+      </div>
+      <div class="ph turn">
+        <span class="eps">Episode 05</span>
+        <h3>The turn</h3>
+        <p>Shortest episode. No build. He tells you what he's been doing and hands you the template.</p>
+      </div>
+      <div class="ph open">
+        <span class="eps">Episodes 06&ndash;09</span>
+        <h3>Open secret</h3>
+        <p>Same trick, narrated out loud now. The builds get more personal and more ambitious because the audience can finally follow the reasoning.</p>
+      </div>
+      <div class="ph hand">
+        <span class="eps">Episode 10</span>
+        <h3>Handoff</h3>
+        <p>He builds with a stranger's materials, gives away the whole kit, and tries to make himself unnecessary.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="eps-sec">
+  <div class="wrap">
+    <p class="eyebrow">The ten</p>
+    <h2 class="big">Season one.</h2>
+    <p class="lede">Every episode carries the same eight things: the prompt, the steps, the scenes, the feel, the music, the script, what actually did the work, and what it throws off as content. <b>The prompt is always one sentence.</b> That's not a gimmick, it's the format's contract.</p>
+
+    <div class="eplist">
+
+      <!-- ===================== 01 ===================== -->
+      <article class="ep" id="ep01">
+        <div class="ep-stripe"></div>
+        <div class="ep-head">
+          <div class="ep-num">01</div>
+          <div>
+            <p class="ep-eyebrow">Phase I &middot; Pure magic &middot; 6:30</p>
+            <h3>One Page, Your Whole Life</h3>
+            <p class="ep-log">A single page that shows everything you're supposed to be keeping track of. Built before the coffee goes cold.</p>
+          </div>
+        </div>
+        <div class="prompt-block">
+          <span class="pb-label">The whole prompt</span>
+          <p>Make me a one-page dashboard for my life. I'll tell you what's on it.</p>
+          <p class="pb-sub">Seventeen words. Typed on camera. The second half of that sentence is doing all the work and nobody notices for four episodes.</p>
+        </div>
+        <div class="ep-body">
+          <section class="blk">
+            <h4>Steps</h4>
+            <ol class="steps">
+              <li>Say the sentence. Hit enter. <b>Don't add anything.</b> Let the silence sit.</li>
+              <li>It asks six questions back. Answer them out loud, like a person, not like a form.</li>
+              <li>Read the six index cards into the chat, one at a time. <b>This is the whole episode</b> and it looks like nothing.</li>
+              <li>Open the file. It's ugly. Say so out loud &mdash; "that's ugly" &mdash; because pretending otherwise costs trust.</li>
+              <li>One more line: "make it look like something I'd actually open on my phone."</li>
+              <li>Save to the home screen. Hold the phone up to the lens. Done.</li>
+            </ol>
+          </section>
+          <section class="blk">
+            <h4>Scenes</h4>
+            <dl class="scenes">
+              <dt>0:00</dt><dd>Black. A cursor blinking. One sentence types itself, character by character. Enter key, close-miked.</dd>
+              <dt>0:14</dt><dd>Cut to Sod in the chair. Window light, plant, mug, a keyboard that has clearly been used.</dd>
+              <dt>0:35</dt><dd>Title card on black: <em>THE JOY OF PROMPTING &middot; No. 1</em>. Four seconds. No motion graphics.</dd>
+              <dt>1:05</dt><dd>Overhead, locked off. A hand sets six handwritten index cards on the desk. Beat. Hand leaves. No comment, no music cue.</dd>
+              <dt>1:45</dt><dd>Screen share, one continuous take. Sod's voice over the waiting.</dd>
+              <dt>5:20</dt><dd>The dashboard on the actual phone, held in an actual hand, in the actual room.</dd>
+              <dt>6:15</dt><dd>Outro. The corner meter is the last thing on screen before black.</dd>
+            </dl>
+          </section>
+          <div class="two">
+            <section class="blk">
+              <h4>Feel</h4>
+              <p>Sunday morning. Nothing at stake, nobody's boss is watching. The pace of a man who has already decided this will work and isn't in a hurry to prove it.</p>
+              <p>Zero urgency in the voice. If a shot feels slow in the edit, keep it.</p>
+            </section>
+            <section class="blk">
+              <h4>Music</h4>
+              <p>Nylon-string guitar, fingerpicked, no click track &mdash; one chord change every four bars. A Rhodes pad slides underneath when the file first opens.</p>
+              <p>Everything drops out for the last ten seconds. Room tone only.</p>
+            </section>
+          </div>
+          <section class="blk">
+            <h4>Script</h4>
+            <div class="script-page">
+              <p class="sd">Cold open</p>
+              <p class="ln">Okay. That's it. That's the whole prompt.<br><span class="pa">(pause, hand off the keyboard)</span><br>Let's see what it does.</p>
+              <p class="sd">At the cards &mdash; 1:05</p>
+              <p class="ln">I wrote some stuff down this morning. Nothing fancy. Just the things I keep forgetting.<br><span class="pa">(sets them down, moves on immediately)</span></p>
+              <p class="sd">Happy accident &mdash; 4:40</p>
+              <p class="ln">Oh &mdash; it thinks "gym" is a project.<br><span class="pa">(genuinely considering it)</span><br>Which, honestly, fair.<br><span class="pa">(types)</span><br>Gym isn't a project, it's a habit. Habits get their own row.<br>&hellip;There we go.</p>
+              <p class="sd">Outro &mdash; 6:15</p>
+              <p class="ln">That's your page. Put it on your home screen so you actually look at it.<br>Everything I set on the desk today is in the description, in case you want to be boring and read it.<br>Muy relaxando.</p>
+            </div>
+          </section>
+          <div class="two">
+            <section class="reveal">
+              <h4>What actually did the work</h4>
+              <p><b>Six index cards, handwritten, thirty seconds of effort.</b> The model brought the HTML &mdash; it has written ten million dashboards. It had never heard of The Wall, or the novel, or the fact that Tuesdays are useless. That came off the cards.</p>
+            </section>
+            <section class="blk">
+              <h4>Content it throws off</h4>
+              <ul class="byp">
+                <li><b>Vertical, 45s:</b> the phone reveal, nothing else.</li>
+                <li><b>Blog:</b> "I put my whole life on one page and now I have to look at it."</li>
+                <li><b>Post:</b> photo of the six index cards. No caption. Let them ask.</li>
+              </ul>
+            </section>
+          </div>
+          <p class="mug"><b>Mug:</b> WORLD'S OKAYEST PROMPT ENGINEER</p>
+        </div>
+      </article>
+
+      <!-- ===================== 02 ===================== -->
+      <article class="ep" id="ep02">
+        <div class="ep-stripe"></div>
+        <div class="ep-head">
+          <div class="ep-num">02</div>
+          <div>
+            <p class="ep-eyebrow">Phase I &middot; Pure magic &middot; 8:00</p>
+            <h3>The Newsletter That Writes Itself</h3>
+            <p class="ep-log">A weekly newsletter for a fantasy league that has beef, history, and one guy who deserves it.</p>
+          </div>
+        </div>
+        <div class="prompt-block">
+          <span class="pb-label">The whole prompt</span>
+          <p>Write my fantasy football league a weekly newsletter. Be mean to the guy in last place.</p>
+          <p class="pb-sub">The comedy engine of the episode is that this prompt produces something genuinely terrible the first time, and it airs.</p>
+        </div>
+        <div class="ep-body">
+          <section class="blk">
+            <h4>Steps</h4>
+            <ol class="steps">
+              <li>The prompt. Enter. Wait.</li>
+              <li>Read the first draft out loud, flatly, all the way through. <b>It is generic mush. Do not hide it.</b></li>
+              <li>Hand it the league export. One CSV, dragged into the window on camera.</li>
+              <li>Same prompt, same model, second draft. It now has names, grudges, and a fourteen-point blowout in it.</li>
+              <li>Add three sentences about who these people actually are &mdash; who's smug, who's new, who cheated in 2021.</li>
+              <li>Wire it to send itself Tuesdays at 9am and never touch it again.</li>
+            </ol>
+          </section>
+          <section class="blk">
+            <h4>Scenes</h4>
+            <dl class="scenes">
+              <dt>0:00</dt><dd>The prompt typing itself on black. The word "mean" lands and the cursor pauses on it for a beat.</dd>
+              <dt>0:50</dt><dd>The bad draft, full screen. Sod reading it deadpan. No music. This is the funniest 40 seconds of the season.</dd>
+              <dt>2:10</dt><dd>Overhead: a printed CSV, folded in fourths, coffee ring on it, unfolded under a desk lamp.</dd>
+              <dt>2:35</dt><dd>The drag-and-drop. Held for the full upload. Don't cut it.</dd>
+              <dt>3:40</dt><dd>Second draft. Sod stops reading mid-sentence because he's actually laughing.</dd>
+              <dt>6:30</dt><dd>Phone: the sent email. Then the group chat lighting up, names blurred, thumb scrolling.</dd>
+              <dt>7:30</dt><dd>Outro on the empty desk, laptop closed.</dd>
+            </dl>
+          </section>
+          <div class="two">
+            <section class="blk">
+              <h4>Feel</h4>
+              <p>A bit that turns into a real thing. Starts as a comedy episode about a bad draft and ends with a piece of software that will genuinely run for eighteen weeks.</p>
+              <p>The turn from "this is junk" to "oh no, it's good" happens on camera, unedited. That turn <em>is</em> the episode.</p>
+            </section>
+            <section class="blk">
+              <h4>Music</h4>
+              <p>Brushed drums, upright bass, a lazy walking line. A single organ stab on the roast line.</p>
+              <p>Music cuts out completely for the bad draft &mdash; comedy needs silence &mdash; and comes back mid-phrase when the CSV lands.</p>
+            </section>
+          </div>
+          <section class="blk">
+            <h4>Script</h4>
+            <div class="script-page">
+              <p class="sd">The bad draft &mdash; 0:50</p>
+              <p class="ln">"The competition was fierce this week."<br><span class="pa">(long pause, looking at camera)</span><br>Was it, though.</p>
+              <p class="sd">The CSV &mdash; 2:35</p>
+              <p class="ln">Same model. Same prompt. I just gave it the actual league.</p>
+              <p class="sd">Second draft &mdash; 3:40</p>
+              <p class="ln">"Brandon has now started a player on a bye week three times this season, which is impressive, because there have only been four byes."<br><span class="pa">(laughs, sits back)</span><br>Okay. Okay, that's&hellip; yeah. That's going out.</p>
+              <p class="sd">Outro &mdash; 7:30</p>
+              <p class="ln">Tuesdays at nine. I don't write it.<br><span class="pa">(closes laptop)</span><br>I just get blamed for it.</p>
+            </div>
+          </section>
+          <div class="two">
+            <section class="reveal">
+              <h4>What actually did the work</h4>
+              <p><b>One CSV export. Fourteen kilobytes.</b> That is the entire difference between a press release and a roast. Draft one had no facts, so it wrote a horoscope. Draft two had a season, so it wrote comedy.</p>
+            </section>
+            <section class="blk">
+              <h4>Content it throws off</h4>
+              <ul class="byp">
+                <li><b>Post:</b> the Brandon line, standalone, no setup.</li>
+                <li><b>Ship:</b> Gridiron Gazette issue #1 goes out for real, same day.</li>
+                <li><b>Short:</b> split screen, bad draft vs. good draft, no narration.</li>
+              </ul>
+            </section>
+          </div>
+          <p class="mug"><b>Mug:</b> LEAGUE CHAMPION 2019 &mdash; the year is written over something scratched out</p>
+        </div>
+      </article>
+
+      <!-- ===================== 03 ===================== -->
+      <article class="ep" id="ep03">
+        <div class="ep-stripe"></div>
+        <div class="ep-head">
+          <div class="ep-num">03</div>
+          <div>
+            <p class="ep-eyebrow">Phase I &middot; Pure magic &middot; 7:30</p>
+            <h3>Too Many Projects</h3>
+            <p class="ep-log">A tracker for the person who starts everything and finishes eighty percent of it. Ends by telling him to quit two.</p>
+          </div>
+        </div>
+        <div class="prompt-block">
+          <span class="pb-label">The whole prompt</span>
+          <p>I have too many projects and I don't know which one to work on. Fix it.</p>
+          <p class="pb-sub">The only prompt in the season that admits to a problem instead of requesting a thing. It gets the most comments.</p>
+        </div>
+        <div class="ep-body">
+          <section class="blk">
+            <h4>Steps</h4>
+            <ol class="steps">
+              <li>Prompt. Enter. Let it ask its questions instead of pre-answering them.</li>
+              <li>Dump the shoebox of sticky notes on the desk. <b>Read every single one out loud,</b> including the embarrassing ones.</li>
+              <li>Ask it to score each project two ways: how much you'd care if it shipped, and how hard it actually is.</li>
+              <li>Argue with three of the scores on camera. Change them. <b>You are the taste. It is the typing.</b></li>
+              <li>Ask for one page that tells you what to do today. One sentence at the top.</li>
+              <li>Ask the question you've been avoiding: "which of these should I kill?"</li>
+            </ol>
+          </section>
+          <section class="blk">
+            <h4>Scenes</h4>
+            <dl class="scenes">
+              <dt>0:00</dt><dd>The prompt on black. "Fix it." holds an extra beat.</dd>
+              <dt>1:10</dt><dd>The sticky dump, overhead, in slow motion. <em>The only slow motion in the season</em> &mdash; spend it here.</dd>
+              <dt>1:30</dt><dd>Reading them out. Cut on the funny ones. One just says "trains?"</dd>
+              <dt>3:15</dt><dd>Scoring on screen, two columns filling in.</dd>
+              <dt>4:20</dt><dd>Sod pushing back at the screen, out loud, mid-sip.</dd>
+              <dt>5:40</dt><dd>A scatter chart. Eleven dots. Two of them way off in the corner nobody wants to be in.</dd>
+              <dt>6:30</dt><dd>The final page. One sentence. Sod reads it silently, then just nods. Hold on his face for three full seconds.</dd>
+            </dl>
+          </section>
+          <div class="two">
+            <section class="blk">
+              <h4>Feel</h4>
+              <p>The one with a lump in the throat. A person with too many ideas gets told, kindly and with evidence, to pick one.</p>
+              <p>Do not play the ending as triumphant. The ending is <em>relief</em>. Those are different and the audience knows the difference.</p>
+            </section>
+            <section class="blk">
+              <h4>Music</h4>
+              <p>Solo Rhodes, no drums, one repeated four-note figure that never resolves. Guitar enters only for the last screen.</p>
+              <p>Nothing swells. If it swells, it's a productivity video, and productivity videos are the enemy of this show.</p>
+            </section>
+          </div>
+          <section class="blk">
+            <h4>Script</h4>
+            <div class="script-page">
+              <p class="sd">The dump &mdash; 1:30</p>
+              <p class="ln">Some of these are from 2023.<br><span class="pa">(holds one up to the lens)</span><br>This one just says "trains?" With a question mark. I don't know what past me wanted.</p>
+              <p class="sd">Arguing with a score &mdash; 4:20</p>
+              <p class="ln">No. That one's a four, not a two.<br><span class="pa">(typing)</span><br>It's hard because I keep not doing it, not because it's actually hard. That's a real difference and you should know it.<br><span class="pa">(to camera)</span><br>It'll take that. It's not precious about it.</p>
+              <p class="sd">The kill &mdash; 6:30</p>
+              <p class="ln">It says shelve two of them.<br><span class="pa">(pause)</span><br>&hellip;It's right. Which is annoying.</p>
+              <p class="sd">Outro &mdash; 7:10</p>
+              <p class="ln">The tracker isn't the point. The point is that on Sunday night, one sentence tells you what Monday is.</p>
+            </div>
+          </section>
+          <div class="two">
+            <section class="reveal">
+              <h4>What actually did the work</h4>
+              <p><b>Forty sticky notes and eleven arguments.</b> The model never decided anything &mdash; every score that mattered got overruled on camera. What it did was make deciding fast enough to actually finish, which is a different and better trick.</p>
+            </section>
+            <section class="blk">
+              <h4>Content it throws off</h4>
+              <ul class="byp">
+                <li><b>Post:</b> the overhead sticky-dump photo, unedited.</li>
+                <li><b>Blog:</b> "I let an AI tell me to quit two projects."</li>
+                <li><b>Download:</b> the two-axis scoring sheet, free, no email.</li>
+              </ul>
+            </section>
+          </div>
+          <p class="mug"><b>Mug:</b> TRAINS? &mdash; hand-lettered, matching one of the stickies</p>
+        </div>
+      </article>
+
+      <!-- ===================== 04 ===================== -->
+      <article class="ep" id="ep04">
+        <div class="ep-stripe"></div>
+        <div class="ep-head">
+          <div class="ep-num">04</div>
+          <div>
+            <p class="ep-eyebrow">Phase I &middot; Pure magic &middot; 9:00</p>
+            <h3>A Game With a Leaderboard, Before Bedtime</h3>
+            <p class="ep-log">A six-year-old writes the design document out loud. Forty minutes later Grandma is on the leaderboard.</p>
+          </div>
+        </div>
+        <div class="prompt-block">
+          <span class="pb-label">The whole prompt</span>
+          <p>Make a game my kid would actually play. He likes trains and he likes winning.</p>
+          <p class="pb-sub">Longest episode of the season, and the only one where the co-host is under four feet tall.</p>
+        </div>
+        <div class="ep-body">
+          <section class="blk">
+            <h4>Steps</h4>
+            <ol class="steps">
+              <li>The kid says the idea. Camera on the kid's hands and the drawing, not the screen.</li>
+              <li>Type what the kid said. <b>Word for word. Do not improve it.</b> "There's lava" is a real specification.</li>
+              <li>First playable in one prompt. Play it immediately. It's bad and the kid says why.</li>
+              <li>Say what the kid said. Again, word for word. He is the product manager and everyone on camera knows it.</li>
+              <li>"Add a leaderboard so he can beat me." One line, and it's a real leaderboard with real persistence.</li>
+              <li>Send the link to Grandma. She plays it. She is now in third place.</li>
+            </ol>
+          </section>
+          <section class="blk">
+            <h4>Scenes</h4>
+            <dl class="scenes">
+              <dt>0:00</dt><dd>Black. A kid's voice, unaccompanied, describing the game. No visual at all for eleven seconds.</dd>
+              <dt>0:40</dt><dd>A crayon drawing being taped to the monitor bezel. It stays there for the whole episode.</dd>
+              <dt>1:30</dt><dd>Two heads at one screen, one of them bouncing.</dd>
+              <dt>3:20</dt><dd>First playtest. The kid's face is not on camera; his verdict absolutely is.</dd>
+              <dt>5:50</dt><dd>The fix, then the second playtest, and the difference is instantly visible.</dd>
+              <dt>7:20</dt><dd>The leaderboard. Three names. Dad is second.</dd>
+              <dt>8:20</dt><dd>The kid's reaction to being number one. Wide shot. Do not cut it short.</dd>
+            </dl>
+          </section>
+          <div class="two">
+            <section class="blk">
+              <h4>Feel</h4>
+              <p>The warmest thing in the season and the easiest to over-produce. Resist. Dad energy, one camera, a kitchen table.</p>
+              <p>Never let the adult be the smart one. Every good idea in the episode came from the six-year-old and the edit should make that obvious.</p>
+            </section>
+            <section class="blk">
+              <h4>Music</h4>
+              <p>Toy piano and ukulele, deliberately slightly out of tune. Real drums enter only when the kid takes first place.</p>
+              <p>Then it stops dead on the high score. Hard cut to room tone and a kid yelling.</p>
+            </section>
+          </div>
+          <section class="blk">
+            <h4>Script</h4>
+            <div class="script-page">
+              <p class="sd">Cold open &mdash; kid, over black</p>
+              <p class="ln"><span class="who">KID:</span> It's a train, and you have to get to the station, but there's lava.</p>
+              <p class="sd">Typing it &mdash; 1:30</p>
+              <p class="ln">I'm not going to make that sound smarter than it is. "There's lava" <em>is</em> the design document.</p>
+              <p class="sd">Playtest &mdash; 3:20</p>
+              <p class="ln"><span class="who">KID:</span> It's too easy.<br><span class="who">SOD:</span> Say that again, but tell me why.<br><span class="who">KID:</span> Because the lava doesn't move.<br><span class="who">SOD:</span> <span class="pa">(already typing)</span> The lava doesn't move. Copy that.</p>
+              <p class="sd">Outro &mdash; 8:20</p>
+              <p class="ln"><span class="who">KID:</span> I'm number one.<br><span class="who">SOD:</span> You are number one.<br><span class="pa">(to camera)</span><br>Forty minutes. He'll play it for a year.</p>
+            </div>
+          </section>
+          <div class="two">
+            <section class="reveal">
+              <h4>What actually did the work</h4>
+              <p><b>A six-year-old and a crayon drawing.</b> "The lava doesn't move" is a better bug report than most bug reports, and "he likes trains and he likes winning" is a better brief than most briefs. The spec was excellent. It just wasn't typed.</p>
+            </section>
+            <section class="blk">
+              <h4>Content it throws off</h4>
+              <ul class="byp">
+                <li><b>Post:</b> "Because the lava doesn't move." &mdash; best product feedback I've ever gotten.</li>
+                <li><b>Vertical:</b> the high-score moment. Needs no context and travels furthest.</li>
+                <li><b>Devlog:</b> Roblox Railways post, with the crayon drawing as the header image.</li>
+              </ul>
+            </section>
+          </div>
+          <p class="mug"><b>Mug:</b> #1 DAD &mdash; wobbly, kiln-fired, clearly made by the co-host</p>
+        </div>
+      </article>
+
+      <!-- ===================== 05 ===================== -->
+      <article class="ep" id="ep05">
+        <div class="ep-stripe turn"></div>
+        <div class="ep-head">
+          <div class="ep-num">05</div>
+          <div>
+            <p class="ep-eyebrow turn">Phase II &middot; The turn &middot; 6:00</p>
+            <h3>The Happy Little Context File</h3>
+            <p class="ep-log">No build. The shortest episode of the season, and the only one that matters. He tells you what's been on the desk.</p>
+          </div>
+        </div>
+        <div class="prompt-block">
+          <span class="pb-label">The whole prompt</span>
+          <p>Write a paragraph about me.</p>
+          <p class="pb-sub">Five words. The smallest prompt of the season sets up the biggest point in it.</p>
+        </div>
+        <div class="ep-body">
+          <section class="blk">
+            <h4>Steps</h4>
+            <ol class="steps">
+              <li>Ask it to write about you cold. Read the result out loud. It is a horoscope.</li>
+              <li>Write four hundred words about yourself in a plain text file. Ugly, honest, twenty minutes. <b>Film all twenty.</b> Cut to four.</li>
+              <li>Same prompt, same model, file attached. Read the result. It's you, and it's a little unsettling.</li>
+              <li>Point at the corner meter. Say the number out loud for the first time in five weeks.</li>
+              <li>Place every object from episodes 1&ndash;4 on the desk, in order, in silence.</li>
+              <li>Tell them the trick isn't a trick, and give away the template.</li>
+            </ol>
+          </section>
+          <section class="blk">
+            <h4>Scenes</h4>
+            <dl class="scenes">
+              <dt>0:00</dt><dd>The desk, wide, <em>completely empty</em> for the first time all season. No palette object. Long hold. Regular viewers will feel it before they can name it.</dd>
+              <dt>0:45</dt><dd>The cold paragraph on screen. Read flatly, all of it.</dd>
+              <dt>1:30</dt><dd>A plain text file being typed, real time, no music, no keyboard sound design. Just typing.</dd>
+              <dt>3:20</dt><dd>Two paragraphs side by side. Read the second one. Stop halfway. Start again.</dd>
+              <dt>4:05</dt><dd><em>First direct address of the season.</em> Sod looks straight into the lens. Everything before this was over-the-shoulder.</dd>
+              <dt>4:40</dt><dd>All four palette objects placed on the desk, one at a time, no narration, no music.</dd>
+              <dt>5:30</dt><dd>The corner meter fills to 98% and stays up through the outro.</dd>
+            </dl>
+          </section>
+          <div class="two">
+            <section class="blk">
+              <h4>Feel</h4>
+              <p>The magician putting the cards down on the table. Not smug, not a reveal-sting &mdash; <em>relieved</em>. He's been wanting to tell you since episode one.</p>
+              <p>If this episode feels like a lecture, it has failed. It should feel like a confession that turns out to be good news.</p>
+            </section>
+            <section class="blk">
+              <h4>Music</h4>
+              <p><b>Nothing until 3:40.</b> Three minutes and forty seconds of no music in a season otherwise scored end to end.</p>
+              <p>Then one sustained guitar chord that refuses to resolve until the last line of the outro. The absence is the loudest choice in the season.</p>
+            </section>
+          </div>
+          <section class="blk">
+            <h4>Script</h4>
+            <div class="script-page">
+              <p class="sd">Cold open &mdash; 0:45</p>
+              <p class="ln">"Write a paragraph about me."<br><span class="pa">(reads)</span><br>"Kevin is a passionate creator who loves building things and exploring new ideas."<br><span class="pa">(pause)</span><br>That's a horoscope. That's not a person.</p>
+              <p class="sd">The file &mdash; 1:30</p>
+              <p class="ln">I'm going to write about myself for twenty minutes. It's going to be extremely boring to watch and it is the most important thing in this entire show.</p>
+              <p class="sd">The turn &mdash; 4:05 &mdash; first direct address</p>
+              <p class="ln">You've probably noticed the little bar in the corner.<br><span class="pa">(beat)</span><br>Yeah. The prompt was never doing the work. The prompt is two percent. Everything I've been putting on that desk &mdash; that's the other ninety-eight.<br><span class="pa">(places the index cards, the CSV, the stickies, the crayon drawing)</span><br>That's the whole show. That's it. There's no part two.</p>
+              <p class="sd">Outro &mdash; 5:30</p>
+              <p class="ln">Nobody's failing at this because they wrote a bad sentence. They're failing because they showed up empty-handed.<br>Bring something. Anything. A spreadsheet. A crayon drawing. Six index cards.<br><span class="pa">(pause)</span><br>Muy relaxando.</p>
+            </div>
+          </section>
+          <div class="two">
+            <section class="reveal">
+              <h4>What actually did the work</h4>
+              <p><b>The reveal is the episode.</b> Four hundred words, written badly, in a file with no formatting. Everything before this was setup and everything after is the same trick performed with the curtain up &mdash; which, weirdly, plays better.</p>
+            </section>
+            <section class="blk">
+              <h4>Content it throws off</h4>
+              <ul class="byp">
+                <li><b>The list-builder:</b> the 400-word template, free, this is the one gated thing all season.</li>
+                <li><b>Blog:</b> "The prompt was never the point."</li>
+                <li><b>Poster / thumbnail asset:</b> the 2% / 98% bar as a standalone graphic.</li>
+              </ul>
+            </section>
+          </div>
+          <p class="mug"><b>Mug:</b> none &mdash; the desk is empty, that's the shot</p>
+        </div>
+      </article>
+
+      <!-- ===================== 06 ===================== -->
+      <article class="ep" id="ep06">
+        <div class="ep-stripe open"></div>
+        <div class="ep-head">
+          <div class="ep-num">06</div>
+          <div>
+            <p class="ep-eyebrow open">Phase III &middot; Open secret &middot; 9:00</p>
+            <h3>Great-Great-Grandma's Paper Trail</h3>
+            <p class="ep-log">A name, a town, and a decade. By the end there's a one-page family sheet in a relative's hands.</p>
+          </div>
+        </div>
+        <div class="prompt-block">
+          <span class="pb-label">The whole prompt</span>
+          <p>Help me find out who my great-grandmother actually was.</p>
+          <p class="pb-sub">First episode where the palette gets narrated out loud instead of just placed. The curtain is up now.</p>
+        </div>
+        <div class="ep-body">
+          <section class="blk">
+            <h4>Steps</h4>
+            <ol class="steps">
+              <li>Say the name, the town, the decade. That's all you've got and that's fine.</li>
+              <li>Show it the photograph &mdash; both sides. Ask what it can read on the back.</li>
+              <li>Hand it the census page and ask it to <b>explain the columns like you're a person.</b> This is the unlock; census forms are unreadable by design.</li>
+              <li>Ask for a timeline, and then ask it what's <em>missing</em> from the timeline.</li>
+              <li>Ask what it is <b>not sure about.</b> Keep that list separately. This is the ethics beat and it is not optional.</li>
+              <li>Verify one claim yourself, on camera, at the actual archive. Show the checking.</li>
+            </ol>
+          </section>
+          <section class="blk">
+            <h4>Scenes</h4>
+            <dl class="scenes">
+              <dt>0:00</dt><dd>Macro on a photograph. Pencil handwriting on the back, out of focus, then sharp.</dd>
+              <dt>1:15</dt><dd>The palette, narrated: three documents laid down one at a time, each one named out loud.</dd>
+              <dt>2:40</dt><dd>The census scan, full screen, genuinely illegible. Then annotated, column by column.</dd>
+              <dt>4:30</dt><dd>A timeline assembling itself. Gaps highlighted in a different color.</dd>
+              <dt>6:00</dt><dd><em>Hard cut</em> to a real archive website in a browser. Sod checking a date himself, no AI on screen at all.</dd>
+              <dt>7:20</dt><dd>The moment it confirms. Sod, quiet, hand over his mouth.</dd>
+              <dt>8:20</dt><dd>The printed family sheet handed across a kitchen table to an older relative. No dialogue. Just their hands.</dd>
+            </dl>
+          </section>
+          <div class="two">
+            <section class="blk">
+              <h4>Feel</h4>
+              <p>Detective work with grandma stakes. The most genuinely moving payoff of the season and also the most careful one.</p>
+              <p>This is where "go verify it" gets said out loud and <em>meant</em>. An episode about somebody's real ancestor that plays fast and loose would poison the whole show.</p>
+            </section>
+            <section class="blk">
+              <h4>Music</h4>
+              <p>Solo piano, sparse, slightly out of time &mdash; a music box somebody forgot to wind. A field recording of paper being handled sits underneath.</p>
+              <p>No drums anywhere in this episode. Nothing enters at the confirmation; let the silence do it.</p>
+            </section>
+          </div>
+          <section class="blk">
+            <h4>Script</h4>
+            <div class="script-page">
+              <p class="sd">Cold open</p>
+              <p class="ln">I know her name, and I know she got here somehow.<br><span class="pa">(turns the photo over)</span><br>That's about it. That's what I'm working with.</p>
+              <p class="sd">The census &mdash; 2:40</p>
+              <p class="ln">This is a census page. You cannot read it. Nobody can read it. That's not a you problem, that's a 1910 problem.<br><span class="pa">(uploads)</span><br>Explain this to me like I've never seen one, because I never have.</p>
+              <p class="sd">The ethics beat &mdash; 5:20</p>
+              <p class="ln">Now give me a second list. Everything you're guessing at.<br><span class="pa">(beat)</span><br>I'm going to go check those myself, because this is somebody's actual grandmother and I'd like to get it right.</p>
+              <p class="sd">Verification &mdash; 7:20</p>
+              <p class="ln"><span class="pa">(at the archive, scrolling)</span><br>&hellip;1913.<br><span class="pa">(pause)</span><br>It's real. That's actually her.</p>
+              <p class="sd">Outro &mdash; 8:20</p>
+              <p class="ln">Print it. Give it to somebody older than you.<br>Then just watch what happens to their face.</p>
+            </div>
+          </section>
+          <div class="two">
+            <section class="reveal">
+              <h4>What actually did the work</h4>
+              <p><b>Three pieces of paper that were sitting in a drawer.</b> The model has never met your family and never will. What it's extraordinary at is reading terrible handwriting and explaining a bureaucratic form from 1910. You brought the drawer.</p>
+            </section>
+            <section class="blk">
+              <h4>Content it throws off</h4>
+              <ul class="byp">
+                <li><b>Shareable card:</b> the "tell me what you're not sure about" prompt.</li>
+                <li><b>Blog:</b> "I found my great-grandmother in a form I couldn't read."</li>
+                <li><b>Clip:</b> the confirmation moment. This is the one that leaves the algorithm and gets texted to people.</li>
+              </ul>
+            </section>
+          </div>
+          <p class="mug"><b>Mug:</b> plain white, chipped rim &mdash; it was hers</p>
+        </div>
+      </article>
+
+      <!-- ===================== 07 ===================== -->
+      <article class="ep" id="ep07">
+        <div class="ep-stripe open"></div>
+        <div class="ep-head">
+          <div class="ep-num">07</div>
+          <div>
+            <p class="ep-eyebrow open">Phase III &middot; Open secret &middot; 7:00</p>
+            <h3>Happy Accidents</h3>
+            <p class="ep-log">Four things go wrong on purpose, uncut, on camera. Total elapsed time: eleven minutes. There is still a plant tracker at the end.</p>
+          </div>
+        </div>
+        <div class="prompt-block">
+          <span class="pb-label">The whole prompt</span>
+          <p>Build me something that keeps my houseplants alive.</p>
+          <p class="pb-sub">The stakes are deliberately trivial, because the episode is not about plants. It's the season's only answer to the fail-video genre and it's delivered in one sentence at 5:40.</p>
+        </div>
+        <div class="ep-body">
+          <section class="blk">
+            <h4>Steps</h4>
+            <ol class="steps">
+              <li>Prompt. Get something wrong. React with roughly the energy of noticing it's raining.</li>
+              <li><b>Don't argue. Add information.</b> Put the rule on screen as a title card and leave it there.</li>
+              <li>Get it wrong again. Add information again. Do not speed this up in the edit.</li>
+              <li>The fourth one is real and cannot be talked out of. <b>Show that too.</b> Solve it a different way &mdash; by hand.</li>
+              <li>Put the numbers on screen: four failures, eleven minutes, one working thing.</li>
+              <li>Say the thing about failure. Once. Without naming anybody.</li>
+            </ol>
+          </section>
+          <section class="blk">
+            <h4>Scenes</h4>
+            <dl class="scenes">
+              <dt>0:00</dt><dd>The prompt. Then, immediately, a wrong answer. No build-up at all.</dd>
+              <dt>0:30</dt><dd>Corner counter appears: <em>HAPPY ACCIDENTS: 1</em>. It will tick to 4.</dd>
+              <dt>1:10</dt><dd>Title card, plain: "I never tell it it's wrong. I tell it what it didn't know."</dd>
+              <dt>3:40</dt><dd>Failure three. Same reaction as failure one. The <em>sameness</em> is the joke.</dd>
+              <dt>4:50</dt><dd>Failure four. Sod stops, thinks, and opens a text editor to do it manually.</dd>
+              <dt>5:40</dt><dd>Split screen: elapsed clock at 11:04, failure counter at 4, finished tracker on the right.</dd>
+              <dt>6:30</dt><dd>Watering an actual plant, with the tracker open on the phone on the windowsill.</dd>
+            </dl>
+          </section>
+          <div class="two">
+            <section class="blk">
+              <h4>Feel</h4>
+              <p>Deliberately anticlimactic. The stakes never rise. Nothing escalates. That flatness <em>is</em> the argument, and it only works if you have the nerve to leave it flat.</p>
+              <p>No sting sounds, no zoom-ins on errors, no "uh oh." Failure is weather.</p>
+            </section>
+            <section class="blk">
+              <h4>Music</h4>
+              <p>One eight-bar loop that restarts from the top on every failure and never changes key, tempo, or intensity.</p>
+              <p>By the fourth restart it's funny, and the joke is entirely that the music refuses to escalate along with the situation.</p>
+            </section>
+          </div>
+          <section class="blk">
+            <h4>Script</h4>
+            <div class="script-page">
+              <p class="sd">Failure one &mdash; 0:30</p>
+              <p class="ln">Yep. That's wrong.<br><span class="pa">(types, unbothered)</span><br>It doesn't know what a pothos is. Neither did I in 2019.</p>
+              <p class="sd">Failure four &mdash; 4:50</p>
+              <p class="ln">This one I can't talk my way out of.<br><span class="pa">(opens an editor)</span><br>So I'm going to do it the boring way and type it myself. That's allowed. That is still by a mile the fastest version of this afternoon.</p>
+              <p class="sd">The one mention &mdash; 5:40</p>
+              <p class="ln">There's a whole genre of video where somebody gets a wrong answer and then puts their hands up like the case is closed.<br><span class="pa">(no edge, genuinely relaxed)</span><br>I got four wrong answers today. It took eleven minutes and I have a plant tracker.<br><span class="pa">(beat)</span><br>That's the whole rebuttal. I'm not going to make a bigger one than that.</p>
+              <p class="sd">Outro &mdash; 6:40</p>
+              <p class="ln"><span class="pa">(watering the plant)</span><br>We don't make mistakes around here. We just haven't told it enough yet.</p>
+            </div>
+          </section>
+          <div class="two">
+            <section class="reveal">
+              <h4>What actually did the work</h4>
+              <p><b>The failures were the content.</b> Four of them, uncut, and the thing still shipped in eleven minutes. Nothing was hidden and nothing needed to be &mdash; which is the single strongest thing this show can demonstrate.</p>
+            </section>
+            <section class="blk">
+              <h4>Content it throws off</h4>
+              <ul class="byp">
+                <li><b>The clip:</b> "four wrong answers, eleven minutes, one plant tracker." Vertical, no context needed. Pin it.</li>
+                <li><b>Blog:</b> "In defense of being wrong four times."</li>
+                <li><b>Post:</b> the title card &mdash; "I never tell it it's wrong. I tell it what it didn't know."</li>
+              </ul>
+            </section>
+          </div>
+          <p class="mug"><b>Mug:</b> I SURVIVED FOUR HAPPY ACCIDENTS &mdash; obviously made after the fact, never mentioned</p>
+        </div>
+      </article>
+
+      <!-- ===================== 08 ===================== -->
+      <article class="ep" id="ep08">
+        <div class="ep-stripe open"></div>
+        <div class="ep-head">
+          <div class="ep-num">08</div>
+          <div>
+            <p class="ep-eyebrow open">Phase III &middot; Open secret &middot; 8:30</p>
+            <h3>The Shoebox</h3>
+            <p class="ep-log">Six years of paper on a shelf becomes a thing you can search in two seconds. The box goes in the recycling on camera.</p>
+          </div>
+        </div>
+        <div class="prompt-block">
+          <span class="pb-label">The whole prompt</span>
+          <p>I have a box of paper and I don't want a box of paper.</p>
+          <p class="pb-sub">The most useful episode of the season for a normal human, and it knows it. Zero software purchased.</p>
+        </div>
+        <div class="ep-body">
+          <section class="blk">
+            <h4>Steps</h4>
+            <ol class="steps">
+              <li>Photograph everything. Phone, kitchen table, half an hour. <b>No scanner, no app, no subscription.</b></li>
+              <li>Ask it to sort the pile <em>without telling it your categories.</em> See what it thinks your paper is.</li>
+              <li>Fix its categories. Yours are better, because you live here.</li>
+              <li>Ask for one searchable file. Not eleven files. One.</li>
+              <li>Ask the question you could never answer before: "when does the dishwasher warranty end?"</li>
+              <li>Recycle the box. On camera. It's cathartic and it's the shot.</li>
+            </ol>
+          </section>
+          <section class="blk">
+            <h4>Scenes</h4>
+            <dl class="scenes">
+              <dt>0:00</dt><dd>A shoebox pulled off a high shelf. Dust visible in window light. Dumped.</dd>
+              <dt>0:50</dt><dd>Photographing on a kitchen table, mildly sped up. Sixty-two photos. The tedium is acknowledged, not hidden.</dd>
+              <dt>3:10</dt><dd>The sort happening on screen, categories appearing.</dd>
+              <dt>4:20</dt><dd>Sod correcting a category, mildly annoyed, entirely at home.</dd>
+              <dt>6:10</dt><dd>The search bar. A question typed. Two seconds. An answer.</dd>
+              <dt>7:30</dt><dd>The box, empty, going into the recycling bin. Lid closes.</dd>
+              <dt>8:05</dt><dd>Last shot: the empty shelf. Hold it for six seconds. Nothing happens. That's the payoff.</dd>
+            </dl>
+          </section>
+          <div class="two">
+            <section class="blk">
+              <h4>Feel</h4>
+              <p>Domestic and unglamorous on purpose. No part of this looks like technology. It looks like a Saturday chore that finally got finished.</p>
+              <p>This is the episode people send to their parents, so keep every step doable by somebody who owns exactly one device.</p>
+            </section>
+            <section class="blk">
+              <h4>Music</h4>
+              <p>A metronomic, faintly ridiculous marimba pattern for the photographing montage &mdash; the sound of a boring job going fast.</p>
+              <p>Total silence for the search. One warm sustained chord for the empty shelf, and out.</p>
+            </section>
+          </div>
+          <section class="blk">
+            <h4>Script</h4>
+            <div class="script-page">
+              <p class="sd">Cold open</p>
+              <p class="ln">This box has been on that shelf for six years.<br><span class="pa">(sets it down)</span><br>Today it goes in the recycling.</p>
+              <p class="sd">No categories &mdash; 3:10</p>
+              <p class="ln">I'm not going to tell it how to sort this. I genuinely want to see what it thinks a pile of my paper is.</p>
+              <p class="sd">Fixing it &mdash; 4:20</p>
+              <p class="ln">It made a category called "Documents."<br><span class="pa">(long pause)</span><br>Buddy. They're all documents.</p>
+              <p class="sd">The search &mdash; 6:10</p>
+              <p class="ln"><span class="pa">(types)</span> "When does the dishwasher warranty end?"<br><span class="pa">(two seconds)</span><br>March. It's March.<br><span class="pa">(looks at camera)</span><br>I have never once known that.</p>
+              <p class="sd">Outro &mdash; 7:30</p>
+              <p class="ln"><span class="pa">(recycling lid closes)</span><br>Muy relaxando.</p>
+            </div>
+          </section>
+          <div class="two">
+            <section class="reveal">
+              <h4>What actually did the work</h4>
+              <p><b>Sixty-two phone photos, taken on a kitchen table.</b> No scanner, no app, no monthly fee. Every one of those photos is context, and the pile was always the whole point &mdash; the model just needed to be handed it.</p>
+            </section>
+            <section class="blk">
+              <h4>Content it throws off</h4>
+              <ul class="byp">
+                <li><b>Post:</b> full shelf / empty shelf, two photos, no words.</li>
+                <li><b>Blog:</b> "I killed the paper box."</li>
+                <li><b>Clip:</b> the warranty search. Two seconds of screen and one look at the camera.</li>
+              </ul>
+            </section>
+          </div>
+          <p class="mug"><b>Mug:</b> one found inside the shoebox, still in bubble wrap, from a wedding in 2016</p>
+        </div>
+      </article>
+
+      <!-- ===================== 09 ===================== -->
+      <article class="ep" id="ep09">
+        <div class="ep-stripe open"></div>
+        <div class="ep-head">
+          <div class="ep-num">09</div>
+          <div>
+            <p class="ep-eyebrow open">Phase III &middot; Open secret &middot; 6:30</p>
+            <h3>The Bedtime Story Machine</h3>
+            <p class="ep-log">A raccoon, a gas station, and a lost hat. Ends with a printed book and a lamp going off.</p>
+          </div>
+        </div>
+        <div class="prompt-block">
+          <span class="pb-label">The whole prompt</span>
+          <p>Tell my kid a story. He'll tell you what it's about.</p>
+          <p class="pb-sub">The palette here is the one that surprises people: three book titles and a sentence about why each one matters. Taste, said out loud, is a data format.</p>
+        </div>
+        <div class="ep-body">
+          <section class="blk">
+            <h4>Steps</h4>
+            <ol class="steps">
+              <li>The kid gives three ingredients: a character, a place, a problem. Nothing more.</li>
+              <li>Pull the three books he actually makes you read. Read the titles in &mdash; <b>plus one sentence each on what he loves about them.</b></li>
+              <li>Get a story. Read it out loud on the couch. He will interrupt. Good.</li>
+              <li>Change it live, mid-story, on his note. Do not defend the draft.</li>
+              <li>Make it a real printed book with his drawing on the cover.</li>
+              <li>Read it at actual bedtime. End the episode on the lamp.</li>
+            </ol>
+          </section>
+          <section class="blk">
+            <h4>Scenes</h4>
+            <dl class="scenes">
+              <dt>0:00</dt><dd>A kid counting ingredients on three fingers. Only the hand in frame.</dd>
+              <dt>0:50</dt><dd>Three books pulled off a shelf. Spines visible, well-worn, obviously read a hundred times.</dd>
+              <dt>2:20</dt><dd>Sod reading aloud on a couch. A small hand enters frame to point at the screen.</dd>
+              <dt>3:40</dt><dd>The interruption. Live edit. Ten seconds later the raccoon talks less.</dd>
+              <dt>5:00</dt><dd>A home printer doing its slow thing. Pages coming out warm.</dd>
+              <dt>5:50</dt><dd>Bedtime. Real bedtime. The book being read for real, half-lit.</dd>
+              <dt>6:20</dt><dd>A hand turns off the lamp. Black. That's the episode.</dd>
+            </dl>
+          </section>
+          <div class="two">
+            <section class="blk">
+              <h4>Feel</h4>
+              <p>The one you send to your mom. Softest thing in the season, sitting right before the handoff so the finale lands on warmth instead of tech.</p>
+              <p>Do not make it precious. It's a Tuesday. The story is a little dumb. That's why it works.</p>
+            </section>
+            <section class="blk">
+              <h4>Music</h4>
+              <p>One acoustic guitar, recorded badly on purpose, in a room with a kid in it. You can hear the room and occasionally the kid.</p>
+              <p>No production, no reverb, no second take. If a string buzzes, keep it.</p>
+            </section>
+          </div>
+          <section class="blk">
+            <h4>Script</h4>
+            <div class="script-page">
+              <p class="sd">Ingredients &mdash; 0:00</p>
+              <p class="ln"><span class="who">KID:</span> A raccoon. A gas station. And he lost his hat.</p>
+              <p class="sd">The books &mdash; 0:50</p>
+              <p class="ln">These are the three he makes me read. Not because they're good books &mdash; because of one specific thing in each one.<br><span class="pa">(pulls them down)</span><br>I'm going to tell it what that thing is. That part takes about a minute and it's the whole story.</p>
+              <p class="sd">The interruption &mdash; 3:40</p>
+              <p class="ln"><span class="who">KID:</span> The raccoon wouldn't say that.<br><span class="who">SOD:</span> <span class="pa">(to camera)</span> He's right. He's the expert here.<br><span class="pa">(types)</span> The raccoon talks less.</p>
+              <p class="sd">Outro &mdash; 6:20</p>
+              <p class="ln">Print it. Nobody has ever printed a story he made up before.<br><span class="pa">(lamp off, black)</span><br>Goodnight.</p>
+            </div>
+          </section>
+          <div class="two">
+            <section class="reveal">
+              <h4>What actually did the work</h4>
+              <p><b>Three book titles and one sentence each about why they matter to a six-year-old.</b> Not the text of the books &mdash; the taste behind them. Taste, described out loud in plain words, is the highest-value context there is, and almost nobody thinks to hand it over.</p>
+            </section>
+            <section class="blk">
+              <h4>Content it throws off</h4>
+              <ul class="byp">
+                <li><b>Post:</b> "The raccoon wouldn't say that." Whole tweet. No explanation.</li>
+                <li><b>Photo:</b> the printed book on the nightstand.</li>
+                <li><b>Blog:</b> "Taste is a data format."</li>
+              </ul>
+            </section>
+          </div>
+          <p class="mug"><b>Mug:</b> hand-painted, glazed, unidentifiable animal &mdash; a gift, obviously</p>
+        </div>
+      </article>
+
+      <!-- ===================== 10 ===================== -->
+      <article class="ep" id="ep10">
+        <div class="ep-stripe hand"></div>
+        <div class="ep-head">
+          <div class="ep-num">10</div>
+          <div>
+            <p class="ep-eyebrow hand">Phase IV &middot; Handoff &middot; 8:00</p>
+            <h3>Your Turn</h3>
+            <p class="ep-log">He builds with a stranger's materials, on a prompt he didn't write, and gives away the entire kit.</p>
+          </div>
+        </div>
+        <div class="prompt-block">
+          <span class="pb-label">The whole prompt</span>
+          <p>&#91; whatever the viewer wrote &#93;</p>
+          <p class="pb-sub">Chosen live from the comments, unrehearsed, and it's the only episode where he can genuinely fail. Shoot it last and don't over-prepare it.</p>
+        </div>
+        <div class="ep-body">
+          <section class="blk">
+            <h4>Steps</h4>
+            <ol class="steps">
+              <li>Read three viewer prompts on camera. Pick one badly &mdash; a coin, a kid, a dart.</li>
+              <li>Ask the viewer the show's own question back: <b>"okay, what do you have?"</b></li>
+              <li>Build with <em>their</em> materials. His context files are useless here and he says so.</li>
+              <li>Struggle a little. Leave it in. This is the most valuable ninety seconds of the season.</li>
+              <li>Ship it and send it to them while the camera's running.</li>
+              <li>Hand over the whole kit: the template, the palette list, and every prompt from all ten episodes.</li>
+            </ol>
+          </section>
+          <section class="blk">
+            <h4>Scenes</h4>
+            <dl class="scenes">
+              <dt>0:00</dt><dd>Comments scrolling. Not the host's words on screen for the first time in the season.</dd>
+              <dt>1:10</dt><dd>A stranger's spreadsheet open on his monitor. Someone else's column names. Someone else's mess.</dd>
+              <dt>3:00</dt><dd>A genuinely uncertain moment. He sits back. Long pause. Keep every second of it.</dd>
+              <dt>5:30</dt><dd>The send. A real email to a real person.</dd>
+              <dt>6:20</dt><dd>All ten palette objects laid out on the desk in a row. Season portrait. Slow push in.</dd>
+              <dt>7:10</dt><dd>The kit on screen: one template, one list, ten sentences.</dd>
+              <dt>7:45</dt><dd>The desk, cleared. Corner meter still reading 98%. Fade.</dd>
+            </dl>
+          </section>
+          <div class="two">
+            <section class="blk">
+              <h4>Feel</h4>
+              <p>Graduation. He is openly trying to make himself unnecessary and saying so out loud, which is the most credible thing an AI-education channel can possibly do.</p>
+              <p>Slight nerves are an asset here. He doesn't know if this one works, and the audience can tell, and that's why they'll believe episodes one through nine.</p>
+            </section>
+            <section class="blk">
+              <h4>Music</h4>
+              <p>The nylon-string theme from episode one, but the <b>full arrangement for the first time</b> &mdash; guitar, Rhodes, brushes, toy piano, marimba, the badly-recorded acoustic. Every instrument the season added, playing at once.</p>
+              <p>Ends on the same single unaccompanied chord it opened on in episode one.</p>
+            </section>
+          </div>
+          <section class="blk">
+            <h4>Script</h4>
+            <div class="script-page">
+              <p class="sd">Cold open</p>
+              <p class="ln">I'm not picking today's prompt.<br><span class="pa">(beat)</span><br>You did.</p>
+              <p class="sd">Struggling &mdash; 3:00</p>
+              <p class="ln">I don't have anything for this. This is somebody else's life and I know nothing about it.<br><span class="pa">(sits back, actually thinking)</span><br>So I'm going to do the thing I've been telling you to do for nine weeks and just&hellip; ask them for more.</p>
+              <p class="sd">The handoff &mdash; 7:10</p>
+              <p class="ln">Here's everything. The template from episode five. A list of every single object I put on that desk this season.<br>And ten sentences. Ten episodes, ten sentences &mdash; that's every prompt there was.</p>
+              <p class="sd">Outro &mdash; 7:45</p>
+              <p class="ln">You don't need me. You need a folder.<br><span class="pa">(long pause on the cleared desk)</span><br>Bring something. Anything.<br>See you next season.</p>
+            </div>
+          </section>
+          <div class="two">
+            <section class="reveal">
+              <h4>What actually did the work</h4>
+              <p><b>Ten sentences and one stranger's spreadsheet.</b> Across the whole season: roughly forty pieces of paper, one CSV, sixty-two phone photos, a crayon drawing, three book titles, and four hundred words about himself. That inventory <em>is</em> the curriculum.</p>
+            </section>
+            <section class="blk">
+              <h4>Content it throws off</h4>
+              <ul class="byp">
+                <li><b>The season's best asset:</b> "Ten episodes. Ten sentences." as one graphic.</li>
+                <li><b>The kit:</b> free download, the list-builder that pays for season two.</li>
+                <li><b>Recap short:</b> all ten palette objects, three seconds each.</li>
+              </ul>
+            </section>
+          </div>
+          <p class="mug"><b>Mug:</b> FUNYUNS</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">The bench</p>
+    <h2 class="big">Fourteen more, for when season one works.</h2>
+    <p class="lede">Same format, same one-sentence contract, same object on the desk. These are ordered roughly by how confident I am they'd land &mdash; the first four are the ones I'd shoot without thinking about it. <b>Do not start any of these until episode ten is published.</b></p>
+    <div class="bench">
+      <div class="bx">
+        <h3>The Recipe Box</h3>
+        <p class="bp">Turn my grandmother's recipe cards into a cookbook.</p>
+        <p class="bw"><b>Palette:</b> her actual index cards, in her handwriting. Rhymes with episode one and detonates emotionally. The handwriting-reading is the magic trick and the smell of the box is the story.</p>
+      </div>
+      <div class="bx">
+        <h3>Read the Lease</h3>
+        <p class="bp">Explain what I signed and tell me what I should be scared of.</p>
+        <p class="bw"><b>Palette:</b> a PDF and a handwritten list of your actual worries. Enormous reach &mdash; everyone has signed something they didn't read. Needs a clear "this isn't legal advice" beat, played straight.</p>
+      </div>
+      <div class="bx">
+        <h3>Sunday Money</h3>
+        <p class="bp">Tell me where my money actually goes. Don't be nice about it.</p>
+        <p class="bw"><b>Palette:</b> twelve months of bank exports. The budget you'll actually open, because you didn't build it &mdash; and the roast format from episode two, pointed inward.</p>
+      </div>
+      <div class="bx">
+        <h3>Translate Grandpa</h3>
+        <p class="bp">There's a tape of my grandfather and I don't speak the language.</p>
+        <p class="bw"><b>Palette:</b> one audio file. Transcript, translation, and then the part nobody expects &mdash; asking what the idioms actually meant. Highest emotional ceiling on the whole bench.</p>
+      </div>
+      <div class="bx">
+        <h3>The Garage</h3>
+        <p class="bp">Tell me what's in my garage and what it's worth.</p>
+        <p class="bw"><b>Palette:</b> eighty phone photos, same technique as the shoebox. Ends with an actual listing posted and an actual thing sold.</p>
+      </div>
+      <div class="bx">
+        <h3>Coach's Clipboard</h3>
+        <p class="bp">I volunteered to coach and I have no idea what I'm doing.</p>
+        <p class="bw"><b>Palette:</b> a roster and the parents' constraint texts. Every rec league in America needs this and the parent-volunteer audience is enormous and underserved.</p>
+      </div>
+      <div class="bx">
+        <h3>Your Town in 1950</h3>
+        <p class="bp">What was on this corner before it was a Chipotle?</p>
+        <p class="bw"><b>Palette:</b> a library archive login and one street address. Feeds Train Lore directly and it's endlessly repeatable in any town.</p>
+      </div>
+      <div class="bx">
+        <h3>The Group Chat Yearbook</h3>
+        <p class="bp">Make a book out of a year of this group chat.</p>
+        <p class="bw"><b>Palette:</b> one export, and a paragraph on who these people are to you. The privacy conversation is part of the episode, not an asterisk.</p>
+      </div>
+      <div class="bx">
+        <h3>The Job Application</h3>
+        <p class="bp">Help me apply for this without lying.</p>
+        <p class="bw"><b>Palette:</b> a real posting and an honest list of what you've actually done. Massive practical reach; "without lying" is the whole positioning and it should stay in the title.</p>
+      </div>
+      <div class="bx">
+        <h3>The Doctor Folder</h3>
+        <p class="bp">Organize my mom's medical paperwork so I can find things.</p>
+        <p class="bw"><b>Palette:</b> a folder of after-visit summaries. Extremely high value, needs the most careful handling of anything on this list &mdash; organize and explain, never advise. Say that on camera.</p>
+      </div>
+      <div class="bx">
+        <h3>Nobody Reads the Newsletter</h3>
+        <p class="bp">Look at my numbers and tell me what to stop doing.</p>
+        <p class="bw"><b>Palette:</b> your own analytics export, warts included. The honest-metrics episode. Publishing your real bad numbers buys more credibility than any win.</p>
+      </div>
+      <div class="bx">
+        <h3>The Second Brain That Isn't</h3>
+        <p class="bp">I have four hundred notes and I've never opened one twice.</p>
+        <p class="bw"><b>Palette:</b> the note export, and the delete key. The contrarian episode: the tool was never the problem. Ends with deleting the system on camera.</p>
+      </div>
+      <div class="bx">
+        <h3>The Band Rider</h3>
+        <p class="bp">Make my weird hobby look like a real thing.</p>
+        <p class="bw"><b>Palette:</b> a set list, three gig photos, one paragraph about what you sound like. Hobby-to-small-business, and Sod can actually play, which makes it real.</p>
+      </div>
+      <div class="bx">
+        <h3>The Reunion</h3>
+        <p class="bp">Forty people, one weekend, and I'm the one who said yes.</p>
+        <p class="bw"><b>Palette:</b> screenshots of the group text where everyone has a different opinion. Comedy from the source material, and the payoff is a real invite that goes out.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">Making it &amp; getting it seen</p>
+    <h2 class="big">The rules that keep this cheap and consistent.</h2>
+    <p class="lede">Ten episodes on nights and weekends only survives if the format decides most things in advance. These are the decisions made once, so they never get made again at 9pm on a Tuesday.</p>
+    <div class="rules">
+      <div class="rule">
+        <h3>Never say "how to" in a title</h3>
+        <p>Not once, all season. "One Page, Your Whole Life," not "How to Build a Dashboard With AI."</p>
+        <p>Tutorial titles get tutorial viewers, who leave. Story titles get an audience.</p>
+      </div>
+      <div class="rule">
+        <h3>The thumbnail is the palette object</h3>
+        <p>Photographed on black, with the prompt in Courier underneath and the 2%/98% bar in the corner. That's the template, forever.</p>
+        <p>No face, no arrows, no open mouth, no red circles. The restraint is itself the counter-positioning &mdash; it looks like nothing else in the category.</p>
+      </div>
+      <div class="rule">
+        <h3>The description is the deliverable</h3>
+        <p>Every episode's description contains the actual files. The index cards, the CSV headers, the template, the prompt verbatim.</p>
+        <p>Free and ungated all season, with exactly one exception: the episode five template. Give away the method, keep the list.</p>
+      </div>
+      <div class="rule">
+        <h3>Answer comments with a prompt</h3>
+        <p>Someone asks how to adapt it &mdash; reply with the sentence they should type and the thing they should put on their desk. Two lines, no explanation.</p>
+        <p>Consistent, fast, and every reply is itself a demonstration of the thesis.</p>
+      </div>
+      <div class="rule">
+        <h3>The vertical cut is always the reveal</h3>
+        <p>Never the build. Nobody wants three minutes of waiting on a phone.</p>
+        <p>Clip the moment the thing works, the moment the kid wins, the moment the date confirms. One per episode, cut the day you shoot.</p>
+      </div>
+      <div class="rule">
+        <h3>Under two hundred dollars of gear</h3>
+        <p>One camera, one lavalier, natural light, and a phone on a cheap overhead arm for the desk shots.</p>
+        <p>If the show looks expensive, the argument gets weaker. Kitchen-table production <em>is</em> the credibility.</p>
+      </div>
+      <div class="rule">
+        <h3>Two episodes per Saturday</h3>
+        <p>Five Saturday mornings, batch-shot, same shirt, same light. Edit on weeknights an hour at a time.</p>
+        <p>The season is done before the first one publishes. Then it releases weekly for ten weeks while you do nothing.</p>
+      </div>
+      <div class="rule">
+        <h3>Ten and stop</h3>
+        <p>Season one is a season, not a subscription. Publish ten, then go quiet and read the numbers.</p>
+        <p>A finished ten-episode season is a body of work. Twenty-two episodes that trail off is a graveyard, and everybody can see it in the upload dates.</p>
+      </div>
+    </div>
+
+    <div class="note">
+      <p class="eyebrow">Note from SodClaw</p>
+      <h3>The batch-shoot isn't a production preference. It's the 80% guard.</h3>
+      <p>Your pattern is well documented and it will absolutely come for this: episodes one through five will be a joy, episode six will be fine, and episodes seven through ten are exactly where a project like this normally dies &mdash; half-shot, in a folder, permanently "almost ready."</p>
+      <p><b>So the release schedule can't depend on future you.</b> Shoot all ten before publishing any. Five Saturdays, two per morning, one shirt. If the whole season is in the can before episode one goes out, the last 20% is just editing &mdash; and editing on a deadline you've already announced is the one kind of finishing work you reliably do.</p>
+      <p>The other guard is scope: the fourteen bench ideas above are <b>logged, not started.</b> None of them gets a folder, a file, or a Saturday until episode ten is published. If you find yourself excited about "Translate Grandpa" in week three, that's the 80% wall arriving early wearing a costume.</p>
+      <p>I haven't added this to <b>portfolio.json</b> yet &mdash; a new project entry is yours to ratify, not mine to create. Say the word and it goes in at the Active tier with the shoot schedule as its next action.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>"There are no bad prompts. Only prompts that showed up empty-handed."</p>
+    <p>The Joy of Prompting &middot; season one bible &middot; Meatbag Labs</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var m = document.getElementById('meter');
+  if(!m) return;
+  var bars = m.querySelectorAll('.mbar i');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function fill(){
+    bars.forEach(function(b){ b.style.width = b.getAttribute('data-w') + '%'; });
+  }
+  if(reduce){ fill(); return; }
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ fill(); io.disconnect(); } });
+    }, {threshold:0.4});
+    io.observe(m);
+  } else {
+    setTimeout(fill, 260);
+  }
+})();
+</script>

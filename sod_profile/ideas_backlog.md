@@ -20,4 +20,5 @@ When an idea is promoted to a real project, move it out of here and into `projec
 
 ## Captured Ideas
 
-_(none yet — SodClaw will add ideas here as they come up. Tell SodClaw "log an idea: ..." and it lands here instead of becoming another half-built folder.)_
+- [ ] **The Joy of Prompting** — Bob Ross-style video series for non-technical AI ("calm is the counter-argument" to the AI-fail-video genre). Season-one bible drafted at `content/joy_of_prompting.html`; **not** in portfolio.json until Kevin ratifies it. (logged 2026-08-31)
+- [ ] Season-two bench for the above — 14 episode concepts live inside the bible. Do NOT promote any of them until episode 10 publishes. (logged 2026-08-31)
