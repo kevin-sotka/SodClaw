@@ -239,11 +239,43 @@ ul.byp li:last-child{margin-bottom:0}
 ul.byp li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;background:var(--sap-d)}
 ul.byp li b{font-weight:600}
 
-.mug{
-  margin:0;font-family:var(--mono);font-size:13px;color:var(--ink-3);
-  border-top:1px solid var(--canvas-3);padding-top:14px;
-}
+.epfoot{border-top:1px solid var(--canvas-3);padding-top:14px;display:flex;flex-direction:column;gap:9px}
+.skl{margin:0;font-size:16px;line-height:1.5;color:var(--ink)}
+.skl b{font-family:var(--display);font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--alizarin-d);display:block;margin-bottom:5px}
+.skl strong{font-weight:700;color:var(--ink)}
+.skl span{color:var(--ink-2)}
+.mug{margin:0;font-family:var(--mono);font-size:13px;color:var(--ink-3)}
 .mug b{color:var(--cadmium-d);font-weight:700}
+
+/* curriculum table */
+.curric{width:100%;border-collapse:collapse;margin-top:22px;border:1px solid var(--studio-3)}
+.curric th{
+  font-family:var(--display);font-size:10.5px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--faint-dark);text-align:left;
+  padding:13px 16px;border-bottom:1px solid var(--studio-3);background:var(--studio-2);
+}
+.curric td{padding:15px 16px;border-bottom:1px solid var(--studio-3);vertical-align:top;font-size:15.5px;line-height:1.5}
+.curric tr:last-child td{border-bottom:0}
+.curric td.n{font-family:var(--mono);font-size:13px;color:var(--faint-dark);width:44px;font-variant-numeric:tabular-nums}
+.curric td.s{font-family:var(--display);font-weight:700;font-size:15px;color:var(--cadmium);width:27%;letter-spacing:.01em}
+.curric td.w{color:var(--on-dark)}
+.curric td.w b{color:var(--canvas);font-weight:600}
+.tablewrap{overflow-x:auto}
+@media(max-width:680px){
+  .curric td.s{width:auto}
+  .curric, .curric tbody, .curric tr, .curric td{display:block;width:auto}
+  .curric thead{display:none}
+  .curric tr{border-bottom:1px solid var(--studio-3);padding:14px 16px}
+  .curric tr:last-child{border-bottom:0}
+  .curric td{border-bottom:0;padding:0 0 6px}
+  .curric td.n{display:inline;margin-right:8px}
+  .curric td.s{display:inline}
+}
+.kicker{
+  font-family:var(--display);font-size:clamp(19px,3vw,26px);font-weight:800;
+  color:var(--canvas);line-height:1.25;margin:26px 0 0;max-width:24ch;
+}
+.kicker em{font-style:normal;color:var(--cadmium)}
 
 /* ---------- bench ---------- */
 .bench{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:var(--studio-3);border:1px solid var(--studio-3);margin-top:26px}
@@ -343,7 +375,8 @@ footer p + p{margin-top:8px;font-style:normal;font-family:var(--mono);font-size:
       <div class="dev">
         <span class="n">01</span>
         <h3>The Palette</h3>
-        <p>Before every build, a hand sets one physical object beside the keyboard. Index cards. A printed spreadsheet. A crayon drawing. <b>Never explained in episodes 1&ndash;4.</b> It is the 98%, shown instead of said.</p>
+        <p>A hand sets one physical object beside the keyboard, and Sod <b>names it out loud like Ross named his paints</b> &mdash; "today's supplies: six index cards and a cup of coffee." Ten seconds, no explanation of why it's there.</p>
+        <p>The ingredient is always visible. Only the <em>ratio</em> stays hidden until episode five.</p>
       </div>
       <div class="dev">
         <span class="n">02</span>
@@ -444,6 +477,34 @@ footer p + p{margin-top:8px;font-style:normal;font-family:var(--mono);font-size:
   </div>
 </section>
 
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">The curriculum</p>
+    <h2 class="big">What somebody actually learns.</h2>
+    <p class="lede">Ten builds is a portfolio. Ten named skills is a curriculum &mdash; and a curriculum is what turns a viewer into somebody who hires you. So <b>every episode says its skill out loud in the last fifteen seconds</b> and puts it on screen as plain text. One line, no framework, no acronym.</p>
+    <div class="tablewrap">
+      <table class="curric">
+        <thead>
+          <tr><th>Ep</th><th>Skill</th><th>What it actually is</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="n">01</td><td class="s">Bring your own nouns</td><td class="w">The model has every verb and none of <b>your</b> nouns. Recognizing that your own private knowledge is the scarce input, not the phrasing.</td></tr>
+          <tr><td class="n">02</td><td class="s">Hand over the file</td><td class="w">One CSV beats five hundred words describing it. Knowing the moment to stop typing and start attaching &mdash; the highest-leverage habit an ops person can pick up.</td></tr>
+          <tr><td class="n">03</td><td class="s">Overrule it on purpose</td><td class="w">Using it to accelerate a decision while keeping authority over the decision. The anti-slop skill.</td></tr>
+          <tr><td class="n">04</td><td class="s">Transcribe, don't improve</td><td class="w">Passing along a stakeholder's actual words instead of your polished version. This is requirements gathering, and it is taught by a six-year-old.</td></tr>
+          <tr><td class="n">05</td><td class="s">Write the context file</td><td class="w">The keystone. The only skill here that compounds &mdash; twenty ugly minutes that keep paying out for years.</td></tr>
+          <tr><td class="n">06</td><td class="s">Ask what it's unsure about</td><td class="w">Provenance and verification. The most important AI-literacy skill there is, and almost nobody teaches it in a form anyone enjoys watching.</td></tr>
+          <tr><td class="n">07</td><td class="s">Add information, don't argue</td><td class="w">Treating a wrong answer as missing context rather than a verdict. The <b>emotional</b> skill that decides whether someone is still using this in week three.</td></tr>
+          <tr><td class="n">08</td><td class="s">Capture before you organize</td><td class="w">Getting analog reality into a form a model can touch. No scanner, no app, no subscription &mdash; just a phone and a kitchen table.</td></tr>
+          <tr><td class="n">09</td><td class="s">Say the taste out loud</td><td class="w">Converting preference into specification. The entire distance between generic output and output that sounds like a person.</td></tr>
+          <tr><td class="n">10</td><td class="s">Run the method on someone else's mess</td><td class="w">Generalization. The proof that what got learned was a method and not a recipe you happened to memorize.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="kicker">Ten episodes about AI. <em>Not one of them is about prompting.</em></p>
+  </div>
+</section>
+
 <section class="eps-sec">
   <div class="wrap">
     <p class="eyebrow">The ten</p>
@@ -531,7 +592,10 @@ footer p + p{margin-top:8px;font-style:normal;font-family:var(--mono);font-size:
               </ul>
             </section>
           </div>
-          <p class="mug"><b>Mug:</b> WORLD'S OKAYEST PROMPT ENGINEER</p>
+          <div class="epfoot">
+            <p class="skl"><b>Today's skill</b><strong>Bring your own nouns</strong> &mdash; <span>The model has every verb and none of your nouns. The first skill is noticing that what you already know is the scarce part.</span></p>
+  <p class="mug"><b>Mug:</b> WORLD'S OKAYEST PROMPT ENGINEER</p>
+          </div>
         </div>
       </article>
 
@@ -614,7 +678,10 @@ footer p + p{margin-top:8px;font-style:normal;font-family:var(--mono);font-size:
               </ul>
             </section>
           </div>
-          <p class="mug"><b>Mug:</b> LEAGUE CHAMPION 2019 &mdash; the year is written over something scratched out</p>
+          <div class="epfoot">
+            <p class="skl"><b>Today's skill</b><strong>Hand over the file</strong> &mdash; <span>One export beats five hundred words describing the export. Knowing the moment to stop typing and start attaching.</span></p>
+  <p class="mug"><b>Mug:</b> LEAGUE CHAMPION 2019 &mdash; the year is written over something scratched out</p>
+          </div>
         </div>
       </article>
 
@@ -697,7 +764,10 @@ footer p + p{margin-top:8px;font-style:normal;font-family:var(--mono);font-size:
               </ul>
             </section>
           </div>
-          <p class="mug"><b>Mug:</b> TRAINS? &mdash; hand-lettered, matching one of the stickies</p>
+          <div class="epfoot">
+            <p class="skl"><b>Today's skill</b><strong>Overrule it on purpose</strong> &mdash; <span>Let it accelerate the decision; keep the decision. Every score that mattered got overruled on camera.</span></p>
+  <p class="mug"><b>Mug:</b> TRAINS? &mdash; hand-lettered, matching one of the stickies</p>
+          </div>
         </div>
       </article>
 
@@ -780,7 +850,10 @@ footer p + p{margin-top:8px;font-style:normal;font-family:var(--mono);font-size:
               </ul>
             </section>
           </div>
-          <p class="mug"><b>Mug:</b> #1 DAD &mdash; wobbly, kiln-fired, clearly made by the co-host</p>
+          <div class="epfoot">
+            <p class="skl"><b>Today's skill</b><strong>Transcribe, don't improve</strong> &mdash; <span>“The lava doesn't move” is a better bug report than your tidied-up version of it. This is requirements gathering, taught by a six-year-old.</span></p>
+  <p class="mug"><b>Mug:</b> #1 DAD &mdash; wobbly, kiln-fired, clearly made by the co-host</p>
+          </div>
         </div>
       </article>
 
@@ -863,7 +936,10 @@ footer p + p{margin-top:8px;font-style:normal;font-family:var(--mono);font-size:
               </ul>
             </section>
           </div>
-          <p class="mug"><b>Mug:</b> none &mdash; the desk is empty, that's the shot</p>
+          <div class="epfoot">
+            <p class="skl"><b>Today's skill</b><strong>Write the context file</strong> &mdash; <span>The keystone, and the only skill in the season that compounds. Write it once badly; it works for years.</span></p>
+  <p class="mug"><b>Mug:</b> none &mdash; the desk is empty, that's the shot</p>
+          </div>
         </div>
       </article>
 
@@ -948,7 +1024,10 @@ footer p + p{margin-top:8px;font-style:normal;font-family:var(--mono);font-size:
               </ul>
             </section>
           </div>
-          <p class="mug"><b>Mug:</b> plain white, chipped rim &mdash; it was hers</p>
+          <div class="epfoot">
+            <p class="skl"><b>Today's skill</b><strong>Ask what it's unsure about</strong> &mdash; <span>Provenance. Getting a second list of everything it guessed at, and then actually going to check it.</span></p>
+  <p class="mug"><b>Mug:</b> plain white, chipped rim &mdash; it was hers</p>
+          </div>
         </div>
       </article>
 
@@ -1031,7 +1110,10 @@ footer p + p{margin-top:8px;font-style:normal;font-family:var(--mono);font-size:
               </ul>
             </section>
           </div>
-          <p class="mug"><b>Mug:</b> I SURVIVED FOUR HAPPY ACCIDENTS &mdash; obviously made after the fact, never mentioned</p>
+          <div class="epfoot">
+            <p class="skl"><b>Today's skill</b><strong>Add information, don't argue</strong> &mdash; <span>Failure is missing context, not a verdict. This is the emotional skill that decides whether a normal person is still using this in week three.</span></p>
+  <p class="mug"><b>Mug:</b> I SURVIVED FOUR HAPPY ACCIDENTS &mdash; obviously made after the fact, never mentioned</p>
+          </div>
         </div>
       </article>
 
@@ -1116,7 +1198,10 @@ footer p + p{margin-top:8px;font-style:normal;font-family:var(--mono);font-size:
               </ul>
             </section>
           </div>
-          <p class="mug"><b>Mug:</b> one found inside the shoebox, still in bubble wrap, from a wedding in 2016</p>
+          <div class="epfoot">
+            <p class="skl"><b>Today's skill</b><strong>Capture before you organize</strong> &mdash; <span>Getting analog reality into a form a model can touch. Sixty-two phone photos and no software.</span></p>
+  <p class="mug"><b>Mug:</b> one found inside the shoebox, still in bubble wrap, from a wedding in 2016</p>
+          </div>
         </div>
       </article>
 
@@ -1199,7 +1284,10 @@ footer p + p{margin-top:8px;font-style:normal;font-family:var(--mono);font-size:
               </ul>
             </section>
           </div>
-          <p class="mug"><b>Mug:</b> hand-painted, glazed, unidentifiable animal &mdash; a gift, obviously</p>
+          <div class="epfoot">
+            <p class="skl"><b>Today's skill</b><strong>Say the taste out loud</strong> &mdash; <span>Turning preference into specification. The whole distance between generic output and output that sounds like you.</span></p>
+  <p class="mug"><b>Mug:</b> hand-painted, glazed, unidentifiable animal &mdash; a gift, obviously</p>
+          </div>
         </div>
       </article>
 
@@ -1282,7 +1370,10 @@ footer p + p{margin-top:8px;font-style:normal;font-family:var(--mono);font-size:
               </ul>
             </section>
           </div>
-          <p class="mug"><b>Mug:</b> FUNYUNS</p>
+          <div class="epfoot">
+            <p class="skl"><b>Today's skill</b><strong>Run the method on someone else's mess</strong> &mdash; <span>Generalization &mdash; the proof that what you learned was a method and not a recipe.</span></p>
+  <p class="mug"><b>Mug:</b> FUNYUNS</p>
+          </div>
         </div>
       </article>
 
