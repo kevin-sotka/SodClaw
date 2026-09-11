@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Single source of truth for the Meatbag Labs portfolio dashboard. SodClaw and the dashboard artifact both read this file. Update it whenever a project's status, progress, next action, or scores change.",
-    "last_updated": "2026-09-04",
+    "last_updated": "2026-09-11",
     "scoring": {
       "value_metrics": [
         "consumer_potential",
@@ -52,7 +52,10 @@
       "description": "Config for the public portfolio page at meatbagmade.com/projects. Built by build_public_page.py from projects with a 'public' field (live + active only; shelved/paused stay private). Blurbs are Doc voice per prompts/doc_voice.md — no progress %, scores, or decisions on the public surface.",
       "doc_intro": "Well howdy, stranger. Name's Doc. I ride shotgun on this here wagon train of claims — games by the dozen, a gazette, a novel, and a whole land you can walk into. Some have struck the vein and you can stroll right in the door. Others are still gettin' hammered on, and I'll tell ya which is which straight. Go on, have a look around the territory.",
       "last_generated": "2026-09-04"
-    }
+    },
+    "ignored_folders": [
+      "kevin-sotka.github.io"
+    ]
   },
   "projects": [
     {
@@ -64,7 +67,7 @@
       "location": "/Users/kevinsotka/Meatbag_Labs/train_lore/",
       "website": "meatbagmade.com",
       "autonomy": "full-auto",
-      "progress": 45,
+      "progress": 55,
       "value": {
         "consumer_potential": 3,
         "personal_satisfaction": 4,
@@ -77,9 +80,9 @@
         "integrations": 2,
         "manual_burden": 2
       },
-      "next_action": "Pick next topic from the 32-topic list, draft + publish post #6",
+      "next_action": "Pick next topic from the 32-topic list, draft + publish post #14",
       "decision": null,
-      "notes": "5 of ~32 topics published. Publishing system is built; content is the runway.",
+      "notes": "13 of ~32 topics published (stories.json, updated 8/09). Publishing system is built; content is the runway.",
       "updates": [
         {
           "text": "Publishing system is shipped — 5 of ~32 topics live",
@@ -401,7 +404,7 @@
       "location": "/Users/kevinsotka/Meatbag_Labs/mbmnovel/",
       "website": null,
       "autonomy": "kevin-only",
-      "progress": 36,
+      "progress": 40,
       "value": {
         "consumer_potential": 3,
         "personal_satisfaction": 5,
@@ -414,9 +417,9 @@
         "integrations": 1,
         "manual_burden": 3
       },
-      "next_action": "Draft chapter 12 (novel-writer skill)",
+      "next_action": "Draft chapter 14 (novel-writer skill)",
       "decision": null,
-      "notes": "Series bible v5 + 11 chapters drafted (chapter_11_ella.md, confirmed 2026-06-23). Progress ~33% by Kevin's own read of the arc. Pure creative-energy project; recharges the rest.",
+      "notes": "Series bible v5 + 13 chapters drafted (chapter_13_marcus.md, confirmed 2026-08-01), plus the master arc + personhood taxonomy bible docs (landed 2026-08-09). Pure creative-energy project; recharges the rest.",
       "updates": [
         {
           "text": "Chapter 11 drafted (chapter_11_ella.md) — confirmed 2026-06-23",
@@ -559,7 +562,7 @@
       "location": "/Users/kevinsotka/Meatbag_Labs/hitfactory.games/RT1/",
       "website": "https://sodzilla.itch.io/riventide",
       "autonomy": "paused",
-      "progress": 95,
+      "progress": 100,
       "value": {
         "consumer_potential": 2,
         "personal_satisfaction": 4,
@@ -572,9 +575,9 @@
         "integrations": 2,
         "manual_burden": 2
       },
-      "next_action": "Shipped. Optional cleanup: prune dead scene/music references the convoluted code still calls (NOT real gaps — that content was cut from the game).",
+      "next_action": "Shipped and current. Optional: keep an eye out for new content/expansion ideas.",
       "decision": null,
-      "notes": "Shipped v1 on itch.io. The 2026-05-23 'missing asset' audit was a false alarm — the code grew convoluted and still references scenes/music that were removed from the game. No real content gap; just dead references to prune. Kevin made new music along the way.",
+      "notes": "Shipped v1 on itch.io, then rebuilt 2026-09-02: vanilla-JS browser build replacing pygbag, fixed the loading hang and silent music, docs/ points at the new build (first commits since February). No known gaps left.",
       "updates": [
         {
           "text": "Shipped v1 on itch.io",
@@ -913,7 +916,7 @@
       },
       "next_action": "Launched (web build + playthrough). Mine for content if a story calls for it.",
       "decision": null,
-      "notes": "Discovered + added 2026-05-24. Launched indie game (web build + playthrough.mp4). Companion to Riventide.",
+      "notes": "Discovered + added 2026-05-24. Launched indie game (web build + playthrough.mp4). Companion to Riventide. Enhanced 2026-08-12 with a Snack Dash mini-game inside the existing game (snack-dash-v1.js/css) — an addition to Oregon Fail, not a separate title. Still shipped/100%.",
       "last_touched": "2026-09-02",
       "git_state": {
         "repo": false,
@@ -1074,9 +1077,9 @@
         "integrations": null,
         "manual_burden": null
       },
-      "next_action": "Confirm scope: prompt-to-playable game pipeline; run/playtest next Foundry build",
+      "next_action": "Keep games.json current as games move through the pipeline; portfolio.json doesn't need a per-game row here.",
       "decision": null,
-      "notes": "Tracked 2026-06-13 (was untracked). Game Foundry pipeline working folder — design→build→polish→test→deploy from a one-line prompt. First line-off output: Runo (Kalevala), shipped 2026-06-12.",
+      "notes": "Tracked 2026-06-13 (was untracked). Game Foundry pipeline working folder — design to build to polish to test to deploy from a one-line prompt. Kevin wants each individual game tracked (2026-09-11): that already exists in hitfactory.games/games.json, which is the source of truth per-game. As of 2026-09-11, games.json shows 26 Foundry-pipeline games: 8 shipped, 2 polished, 1 iterated, 10 designed, 5 draft. This portfolio.json entry tracks the Foundry pipeline itself (the working folder/harness), not each game — don't duplicate games.json here.",
       "last_touched": "2026-09-03",
       "git_state": {
         "repo": false,
@@ -1346,8 +1349,8 @@
     {
       "id": "claim_wrangler",
       "name": "Claim Wrangler",
-      "tier": "exploratory",
-      "status": "active",
+      "tier": "shelved",
+      "status": "shelved",
       "location": "/Users/kevinsotka/Meatbag_Labs/Claim_Wrangler/",
       "website": null,
       "autonomy": "draft-and-approve",
@@ -1364,8 +1367,8 @@
         "integrations": null,
         "manual_burden": null
       },
-      "next_action": "Use as claims come in: prep + track each superbill; watch the 12-month filing clock.",
-      "decision": null,
+      "next_action": "Shelved. Revisit if/when a new superbill actually arrives.",
+      "decision": "Kevin shelved it 2026-09-11 (72 days idle). Unlike HR Derby, which only touches the folder on its own cadence, this one wasn't judged to be quietly-fine-as-is.",
       "notes": "Family tool for getting out-of-network superbills reimbursed by Aetna. Three jobs: PREP (parse superbill, validate Aetna's required fields, auto-fill the member claim form), TRACK (claims.json ledger from submitted→paid with the 12-month deadline clock), and assisted SUBMIT (Claude drives the portal up to the button; Kevin reviews and clicks). Has its own CLAUDE.md, superbill-prep skill, claims.json ledger, and dashboard.html. Hard guardrails: human clicks submit (fraud attestation), 12-month filing deadline per claim, and it's explicitly NOT a product — one family, no other PHI; if it ever serves others, stop (HIPAA conversation, not a rename). Tracked 2026-06-23 per Kevin.",
       "last_touched": "2026-06-24",
       "git_state": {
@@ -1577,8 +1580,8 @@
         "integrations": null,
         "manual_burden": null
       },
-      "next_action": "None. Shelved 2026-09-04. If it ever restarts, the order is in runs/aphelion/run_notes.md: light transport first (one fix, leverage across all nine scenarios), then the orbit black-planet defect, then anti-aliasing, then the sky tiling.",
-      "decision": "Kevin shelved it after the first critic round returned 3 of 3 losses and named a rendering-architecture fix as the price of continuing. Stopped by decision, which is how the gauntlet method is meant to end.",
+      "next_action": "None. Cut 2026-09-11, reconfirmed. Not expected to restart.",
+      "decision": "Kevin shelved it after the first critic round returned 3 of 3 losses and named a rendering-architecture fix as the price of continuing. Stopped by decision, which is how the gauntlet method is meant to end. Reconfirmed as a cut 2026-09-11 (not a maybe-later shelve) — not expected to restart.",
       "notes": "First giga-foundry gauntlet run. Bar: No Man's Sky as the floor everywhere; Elite Dangerous for cockpit/HUD, KSP + Space Engineers for the ship builder, Outer Wilds for system scale. 40 curated reference images on disk in runs/aphelion/bar/. Actuals go to runs/aphelion/run_notes.md, NEVER to foundry's calibration_log.jsonl.",
       "part_of": "giga-foundry",
       "last_touched": "2026-09-04",
@@ -1642,8 +1645,8 @@
       ],
       "risks_issues": [
         {
-          "text": "Two sources of truth (games.json vs portfolio.json) can drift",
-          "tone": "med"
+          "text": "Resolved 2026-09-11: games.json is the single source of truth for individual games; portfolio.json only tracks the studio umbrella and giga-foundry gauntlet outputs (e.g. aphelion).",
+          "tone": "good"
         }
       ],
       "last_touched": "2026-09-03",
@@ -1862,6 +1865,43 @@
         "checked": "2026-09-04"
       },
       "file_count": 68
+    },
+    {
+      "id": "hit_factory",
+      "name": "Hit Factory — Business & AI Experimentation",
+      "tier": "exploratory",
+      "status": "active",
+      "location": "/Users/kevinsotka/Meatbag_Labs/hit-factory/",
+      "website": null,
+      "autonomy": "kevin-only",
+      "progress": null,
+      "value": {
+        "consumer_potential": null,
+        "personal_satisfaction": null,
+        "reach": null,
+        "profitability": null
+      },
+      "complexity": {
+        "engineering": null,
+        "review_frequency": null,
+        "integrations": null,
+        "manual_burden": null
+      },
+      "next_action": "Kevin to size progress/scores when ready.",
+      "decision": null,
+      "notes": "Onboarded 2026-09-11 per Kevin: tracks his and his business partner's shared business idea plus AI experimentation work together. Not to be confused with hitfactory.games (the separate game studio) despite the near-identical name — Kevin knows about the naming collision and is keeping both names as-is for now.",
+      "last_touched": "2026-08-25",
+      "git_state": {
+        "repo": true,
+        "state": "synced",
+        "remote": "https://github.com/kevin-sotka/hit-factory.git",
+        "branch": "main",
+        "uncommitted": 0,
+        "unpushed": 0,
+        "last_commit": "2026-08-25",
+        "checked": "2026-09-11"
+      },
+      "file_count": 23
     }
   ]
 }
