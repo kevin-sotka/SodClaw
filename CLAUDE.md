@@ -38,7 +38,10 @@ Everything Kevin builds should produce content. A coding session produces a blog
 There are now three layers, and they must stay in sync:
 
 1. **`projects/portfolio.json`** — the **single source of truth**. Machine-readable. Holds every project's status, progress %, next action, decision flag, and the 8 scoring sub-metrics. Update this FIRST whenever anything changes.
-2. **`dashboard.html`** (also published as the **"Portfolio Command Center"** Cowork artifact) — the visual decision surface, wild-west / "AI Company Trail" themed with Doc's portrait + briefing on top. It is **generated, never hand-edited**: run `python3 SodClaw/build_dashboard.py` to rebuild it from `portfolio.json` (the builder embeds `assets/doc.png` and `_meta.doc_briefing`). After regenerating, re-publish the artifact. Doc's top briefing lives in `_meta.doc_briefing` — refresh it in Doc's voice when the portfolio shifts.
+2. **The dashboard** — the visual decision surface, wild-west / "AI Company Trail" themed with Doc's portrait + briefing on top. It now exists in two forms:
+   - **`index.html` — the LIVE artifact** (served by GitHub Pages at `https://kevin-sotka.github.io/SodClaw/`, bookmarked on Kevin's phone). It fetches `projects/portfolio.json` and `assets/doc.png` at runtime, so it **always reflects whatever `portfolio.json` is committed to `main`** — no rebuild step. The Friday sweep just needs to commit the JSON; on merge, Pages redeploys and the phone shows the new state on next refresh. `index.html` is the source template, edited by hand.
+   - **`dashboard.html` — the self-contained snapshot** (the **"Portfolio Command Center"** Cowork artifact). It is **generated, never hand-edited**: run `python3 SodClaw/build_dashboard.py` to rebuild it from `portfolio.json` (the builder inlines `assets/doc.png` + the data so it works offline / in the Cowork sandbox). After regenerating, re-publish the artifact.
+   - **Keep the two renderers visually in sync** — they share the same CSS + render JS. If you change one, mirror the change in the other. Doc's top briefing lives in `_meta.doc_briefing` — refresh it in Doc's voice when the portfolio shifts.
 3. **`projects/registry.md`** — the human-readable narrative with richer context per project. Reconcile after the other two.
 
 Every project carries:
@@ -154,7 +157,9 @@ When creating content or communications on Kevin's behalf:
 SodClaw/
 ├── CLAUDE.md                    ← You are here (orchestrator brain)
 ├── README.md                    ← What is this repo
-├── dashboard.html               ← Visual portfolio dashboard (also a Cowork artifact)
+├── index.html                   ← LIVE dashboard (GitHub Pages; fetches portfolio.json at runtime)
+├── .nojekyll                    ← Tells Pages to serve files as-is (no Jekyll)
+├── dashboard.html               ← Self-contained snapshot (Cowork artifact; built by build_dashboard.py)
 ├── sod_profile/                 ← The "digital Kevin"
 │   ├── about_me.md              ← DISC profile, background, values, ikigai
 │   ├── voice_and_taste.md       ← Voice DNA, quality bar, aesthetic preferences
