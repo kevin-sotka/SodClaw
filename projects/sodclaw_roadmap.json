@@ -1,0 +1,136 @@
+{
+  "_meta": {
+    "description": "Source of truth for SodClaw's own improvement list. The dashboard reads this; ROADMAP.md is the narrative companion. Mirrors the portfolio.json + registry.md pattern.",
+    "last_updated": "2026-05-29",
+    "scoring": {
+      "value": "1-5 — how much shipping this moves Meatbag Labs work forward (NOT how clever it is)",
+      "complexity": "1-5 — engineering effort to build it (1 = an hour, 5 = a week)",
+      "ratio": "value / complexity — sort by this to find the sweet-spot wins"
+    },
+    "stages": ["now", "30d", "quarter", "queued"],
+    "statuses": ["proposed", "in_progress", "shipped", "parked"],
+    "rule": "Items move down the stack only when started, never when 'considered.' New requests land in queued first."
+  },
+  "items": [
+    {
+      "id": "portfolio_sweep_loop",
+      "title": "Portfolio sweep — loop edition (verifier + budget guard + in-app gate)",
+      "summary": "Turn the weekly sweep from a cron job into a trustable loop: a Haiku verifier grades the report against the real diff, a budget guard tiers models under a per-run cap, and held state-changes (shelves, re-scores, onboards) wait for in-app approval in the Claude sweep thread (NOT Slack). Lowest-blast-radius place to prove maker-checker before templating onto content agents. Spec: workflows/portfolio_sweep_loop.md. BUILT 2026-06-29: skills/sweep-verifier, skills/sweep-gate, skills/sweep-budget — all three wired into portfolio-sweep/SKILL.md and unit-tested. Remaining: first live full-portfolio Friday run to prove end-to-end.",
+      "stage": "now",
+      "status": "in_progress",
+      "value": 4,
+      "complexity": 3,
+      "logged": "2026-06-28"
+    },
+    {
+      "id": "self_improvement_gated",
+      "title": "Gated self-improvement (outcome logs → proposed edits → in-app gate)",
+      "summary": "Agents read their own outcome logs, propose ONE evidence-backed edit to their prompt/skill/rubric, Kevin ratifies through the existing gate before it takes effect. Agents propose, never self-apply. Substrate (per-agent outcome log) is the real first build and rides on the sweep loop's ratify/reject signal. Prove on the sweep, aim at the content agents. Depends on portfolio_sweep_loop. Strategy: workflows/self_improvement_strategy.md.",
+      "stage": "quarter",
+      "status": "proposed",
+      "value": 4,
+      "complexity": 4,
+      "logged": "2026-06-28"
+    },
+    {
+      "id": "idea_board",
+      "title": "Idea Board on the dashboard",
+      "summary": "Holding pen for new project ideas, scored on value/feasibility/desire/learning. Slows the rate at which new projects begin.",
+      "stage": "now",
+      "status": "shipped",
+      "value": 4,
+      "complexity": 2,
+      "logged": "2026-05-29",
+      "shipped": "2026-05-29"
+    },
+    {
+      "id": "roadmap_surface",
+      "title": "Surface SodClaw's roadmap on the dashboard",
+      "summary": "This panel. Mirror of sodclaw_roadmap.json, value × complexity scored, traps listed separately.",
+      "stage": "now",
+      "status": "shipped",
+      "value": 3,
+      "complexity": 1,
+      "logged": "2026-05-29",
+      "shipped": "2026-05-29"
+    },
+    {
+      "id": "external_signal_ff",
+      "title": "External-signal ingestion — fantasy football only",
+      "summary": "Weekly Haiku subagent scans 3–5 specific sources, drops the top 1–3 finds into the Idea Board tagged source:external. One domain. Five sources. One digest/week. Kevin ratifies.",
+      "stage": "30d",
+      "status": "proposed",
+      "value": 3,
+      "complexity": 3,
+      "logged": "2026-05-29"
+    },
+    {
+      "id": "github_deep_links",
+      "title": "GitHub deep-link buttons on project cards",
+      "summary": "'Work on this' opens the project's repo or PR queue in the browser instead of just sending a prompt. Falls back to sendPrompt if no remote on file.",
+      "stage": "quarter",
+      "status": "proposed",
+      "value": 3,
+      "complexity": 1,
+      "logged": "2026-05-29"
+    },
+    {
+      "id": "event_triggered_routines",
+      "title": "Event-triggered routines (file-change → action)",
+      "summary": "Routines fire on git commits or file changes instead of cron. e.g., train_lore commits → auto-draft a @sodtoshi promo. Useful once enough routines exist to chain.",
+      "stage": "queued",
+      "status": "proposed",
+      "value": 3,
+      "complexity": 4,
+      "logged": "2026-05-29"
+    },
+    {
+      "id": "self_reviewing_blogs",
+      "title": "Self-reviewing blog drafts",
+      "summary": "Posts pass through a critique subagent before Kevin sees them. Only useful once content cadence is steady — today the bottleneck is writing, not reviewing.",
+      "stage": "queued",
+      "status": "proposed",
+      "value": 2,
+      "complexity": 3,
+      "logged": "2026-05-29"
+    },
+    {
+      "id": "lighter_subagents",
+      "title": "Lighter subagent architectures",
+      "summary": "More patterns for Haiku-tier delegation. portfolio-sweep and asset-audit already use it; let practice teach what's worth generalizing.",
+      "stage": "queued",
+      "status": "proposed",
+      "value": 2,
+      "complexity": 4,
+      "logged": "2026-05-29"
+    },
+    {
+      "id": "cross_project_synthesis",
+      "title": "Cross-project idea synthesis",
+      "summary": "Subagent notices when two projects share a theme and proposes a connection. Needs a real corpus of ideas before it has anything to chew on.",
+      "stage": "queued",
+      "status": "proposed",
+      "value": 2,
+      "complexity": 4,
+      "logged": "2026-05-29"
+    }
+  ],
+  "traps": [
+    {
+      "title": "Generic agentic framework",
+      "why": "Day-job energy, not Meatbag Labs energy. Channel curiosity into one specific routine, not platform."
+    },
+    {
+      "title": "'Ideas from every space I'm involved with'",
+      "why": "Cross-domain crawlers eat unbounded time and produce diluted signal. The 30-day ingestion item is narrow on purpose."
+    },
+    {
+      "title": "Full web-interaction automation",
+      "why": "Multi-day engineering for ergonomic gain that deep links give you cheaply."
+    },
+    {
+      "title": "SodClaw becoming the work",
+      "why": "The orchestrator is a tool. Tools earn their keep by getting out of the way. New SodClaw capability must point at portfolio shipment, not at SodClaw itself."
+    }
+  ]
+}

@@ -18,10 +18,35 @@ import os, io, json, base64
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
 pf = json.load(open(os.path.join(ROOT, "projects", "portfolio.json")))
-keys = ["id","name","tier","status","autonomy","progress","value","complexity","next_action","decision","git_state"]
+keys = ["id","name","philosophy","tier","status","autonomy","progress","value","complexity","next_action","decision","git_state","updates","next_steps","risks_issues"]
 projects = [{k: p.get(k) for k in keys} for p in pf["projects"]]
+
+# Idea Board — separate source of truth so the holding pen has its own schema
+# and the dashboard pipeline doesn't drag it around.
+ideas_path = os.path.join(ROOT, "projects", "ideas.json")
+ideas = []
+if os.path.exists(ideas_path):
+    try:
+        ideas = json.load(open(ideas_path)).get("ideas", [])
+    except Exception:
+        ideas = []
+
+# SodClaw's own roadmap — items and traps, scored value × complexity.
+roadmap_path = os.path.join(ROOT, "projects", "sodclaw_roadmap.json")
+roadmap_items, roadmap_traps = [], []
+if os.path.exists(roadmap_path):
+    try:
+        rm = json.load(open(roadmap_path))
+        roadmap_items = rm.get("items", [])
+        roadmap_traps = rm.get("traps", [])
+    except Exception:
+        pass
+
 data = {"last_updated": pf["_meta"].get("last_updated"), "projects": projects,
         "sodclaw_git_state": pf["_meta"].get("sodclaw_git_state"),
+        "ideas": ideas,
+        "roadmap_items": roadmap_items,
+        "roadmap_traps": roadmap_traps,
         # Projects that need to be reachable from mobile (Claude Code) — SodClaw
         # (the orchestrator entry point) is handled separately via sodclaw_git_state.
         "git_priority": ["train_lore", "the_wall", "gridiron_gazette"]}
@@ -38,27 +63,109 @@ def _esc(s):
 def build_scatter(projs):
     W, H = 660, 320
     PX0, PX1, PY0, PY1 = 46, 644, 14, 284  # plot box
-    def sx(c): return PX0 + (c - 0.5) / 5.0 * (PX1 - PX0)
-    def sy(v): return PY1 - (v - 0.5) / 5.0 * (PY1 - PY0)
-    parts = ['<svg viewBox="0 0 %d %d" width="100%%" height="100%%" preserveAspectRatio="xMidYMid meet" '
-             'xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Value versus complexity scatter of all projects.">' % (W, H)]
     ink, faint, gridc = "#3a2d18", "#6b5a3c", "rgba(74,58,36,.20)"
-    # gridlines + ticks 1..5
-    for n in range(1, 6):
-        x = sx(n); y = sy(n)
-        parts.append('<line x1="%.1f" y1="%d" x2="%.1f" y2="%d" stroke="%s" stroke-width="1"/>' % (x, PY0, x, PY1, gridc))
-        parts.append('<line x1="%d" y1="%.1f" x2="%d" y2="%.1f" stroke="%s" stroke-width="1"/>' % (PX0, y, PX1, y, gridc))
-        parts.append('<text x="%.1f" y="%d" font-size="10" fill="%s" text-anchor="middle">%d</text>' % (x, PY1 + 15, faint, n))
-        parts.append('<text x="%d" y="%.1f" font-size="10" fill="%s" text-anchor="end">%d</text>' % (PX0 - 6, y + 3, faint, n))
-    # axis titles
+
+    # --- Autoscale: zoom each axis to the actual data range (everything is
+    # clumped 2-4 in practice). Pad so the extremes don't kiss the edges. ---
+    # Unscored projects (None anywhere in value/complexity — e.g. fresh Foundry
+    # output awaiting Kevin's ratings) can't be plotted; leave them off the scatter.
+    projs = [p for p in projs
+             if None not in p["value"].values() and None not in p["complexity"].values()]
+    Vs = [sum(p["value"].values()) / 4.0 for p in projs]
+    Cs = [sum(p["complexity"].values()) / 4.0 for p in projs]
+    PAD = 0.35
+    vmin, vmax = min(Vs) - PAD, max(Vs) + PAD
+    cmin, cmax = min(Cs) - PAD, max(Cs) + PAD
+
+    # Power-stretch around the midpoint (p<1 pushes clumped middle points
+    # outward without re-ordering them). Combined with autoscale, the visible
+    # 2-4 band roughly triples in apparent spread.
+    POW = 0.72
+    def stretch(x, lo, hi):
+        mid = (lo + hi) / 2.0; half = (hi - lo) / 2.0
+        if half == 0: return 0.5
+        d = (x - mid) / half
+        d = (1 if d >= 0 else -1) * (abs(d) ** POW)
+        return (d + 1) / 2.0
+
+    def sx(c):
+        n = max(0.015, min(0.985, stretch(c, cmin, cmax)))
+        return PX0 + n * (PX1 - PX0)
+    def sy(v):
+        n = max(0.015, min(0.985, stretch(v, vmin, vmax)))
+        return PY1 - n * (PY1 - PY0)
+
+    parts = ['<svg viewBox="0 0 %d %d" width="100%%" height="100%%" preserveAspectRatio="xMidYMid meet" '
+             'xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Value versus complexity scatter of all projects, auto-zoomed to the data range.">' % (W, H)]
+
+    # Ticks at every half-step inside the visible window. Integers are bold,
+    # half-steps are faint. (Skip values that fall outside the zoom window so
+    # we don't paint empty 1's or 5's the data never touches.)
+    tick_vals = [n / 2.0 for n in range(2, 11)]  # 1.0, 1.5, ..., 5.0
+    for n in tick_vals:
+        if cmin <= n <= cmax:
+            x = sx(n)
+            parts.append('<line x1="%.1f" y1="%d" x2="%.1f" y2="%d" stroke="%s" stroke-width="1"/>' % (x, PY0, x, PY1, gridc))
+            is_int = (n == int(n))
+            label = "%d" % int(n) if is_int else "%.1f" % n
+            parts.append('<text x="%.1f" y="%d" font-size="%d" fill="%s" text-anchor="middle" font-weight="%s">%s</text>'
+                         % (x, PY1 + 15, 10 if is_int else 8, faint, "700" if is_int else "400", label))
+        if vmin <= n <= vmax:
+            y = sy(n)
+            parts.append('<line x1="%d" y1="%.1f" x2="%d" y2="%.1f" stroke="%s" stroke-width="1"/>' % (PX0, y, PX1, y, gridc))
+            is_int = (n == int(n))
+            label = "%d" % int(n) if is_int else "%.1f" % n
+            parts.append('<text x="%d" y="%.1f" font-size="%d" fill="%s" text-anchor="end" font-weight="%s">%s</text>'
+                         % (PX0 - 6, y + 3, 10 if is_int else 8, faint, "700" if is_int else "400", label))
+
+    # axis titles + a tiny note that the chart auto-zooms
     parts.append('<text x="%d" y="%d" font-size="11" fill="%s" text-anchor="middle">complexity &#8594;</text>' % ((PX0 + PX1) // 2, H - 2, ink))
     parts.append('<text transform="translate(11,%d) rotate(-90)" font-size="11" fill="%s" text-anchor="middle">value &#8594;</text>' % ((PY0 + PY1) // 2, ink))
-    # bubbles (draw larger first so small ones stay clickable on top)
-    pts = sorted(projs, key=lambda p: -(6 + p["progress"] / 8.0))
-    for p in pts:
+    parts.append('<text x="%d" y="%d" font-size="9" fill="%s" text-anchor="end" font-style="italic">zoom: V %.1f–%.1f, C %.1f–%.1f</text>'
+                 % (PX1, PY0 + 11, faint, vmin, vmax, cmin, cmax))
+
+    # Place bubbles, then run a small force-directed pass so overlaps get
+    # pushed apart along the line between centers. Deterministic, no randomness.
+    placed = []
+    for p in projs:
         V = sum(p["value"].values()) / 4.0
         C = sum(p["complexity"].values()) / 4.0
-        cx, cy, r = sx(C), sy(V), 6 + p["progress"] / 8.0
+        placed.append({"p": p, "V": V, "C": C,
+                       "x": sx(C), "y": sy(V),
+                       "r": 6 + p["progress"] / 8.0})
+
+    MARGIN = 2.0  # extra pixels between bubble edges
+    import math
+    for _ in range(80):
+        moved = 0.0
+        for i in range(len(placed)):
+            for j in range(i + 1, len(placed)):
+                a, b = placed[i], placed[j]
+                dx = b["x"] - a["x"]; dy = b["y"] - a["y"]
+                d = math.hypot(dx, dy) or 0.0001
+                need = a["r"] + b["r"] + MARGIN
+                if d < need:
+                    push = (need - d) / 2.0
+                    ux, uy = dx / d, dy / d
+                    # If exactly coincident, pick a stable direction from ids
+                    if d < 0.01:
+                        h = sum(ord(c) for c in (a["p"]["id"] + b["p"]["id"]))
+                        ang = (h % 360) * math.pi / 180.0
+                        ux, uy = math.cos(ang), math.sin(ang)
+                    a["x"] -= ux * push; a["y"] -= uy * push
+                    b["x"] += ux * push; b["y"] += uy * push
+                    moved += push
+        # clamp to plot box
+        for a in placed:
+            a["x"] = max(PX0 + a["r"], min(PX1 - a["r"], a["x"]))
+            a["y"] = max(PY0 + a["r"], min(PY1 - a["r"], a["y"]))
+        if moved < 0.3: break
+
+    # draw larger first so small ones stay clickable on top
+    placed.sort(key=lambda a: -a["r"])
+    for a in placed:
+        p, V, C = a["p"], a["V"], a["C"]
+        cx, cy, r = a["x"], a["y"], a["r"]
         col = TIER_C.get(p["tier"], "#9a5b2b")
         short = p["name"].split(" — ")[0]
         if len(short) > 12: short = short[:11] + "…"
@@ -162,9 +269,25 @@ select{font-family:inherit;font-size:13px;padding:6px 8px;border:1.5px solid var
 .bar > span{display:block;height:100%}
 .barrow{display:flex;align-items:center;gap:8px}
 .barrow .pct{font-family:var(--hd);font-size:12px;font-weight:800;min-width:34px;text-align:right}
+.philo{font-family:var(--serif);font-style:italic;font-size:12.5px;line-height:1.5;color:var(--ink);background:rgba(241,226,189,.38);border-left:2px solid var(--gold);padding:7px 10px;margin:-2px 0 1px}
+.philo.empty{color:var(--rust);background:rgba(240,221,198,.45);border-left-color:var(--rust)}
 .next{font-size:13px}
 .next .k{color:var(--faint);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:1px}
 .dec{font-size:12.5px;color:var(--gold-d);background:var(--gold-bg);border:1px solid var(--line);padding:7px 9px}
+.sections{display:flex;flex-direction:column;gap:8px;margin-top:2px;border-top:1px dashed var(--line);padding-top:9px}
+.section .stitle{font-family:var(--hd);font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--ink2);margin:0 0 5px;display:flex;align-items:center;gap:6px}
+.section .stitle .ti{color:var(--gold);font-size:12px}
+.bul{display:flex;gap:7px;align-items:flex-start;font-size:12.5px;line-height:1.4;padding:4px 8px 4px 9px;border-left:3px solid var(--rule);background:var(--paper);margin-bottom:3px}
+.bul:last-child{margin-bottom:0}
+.bul .mark{width:6px;height:6px;border-radius:50%;flex:none;margin-top:5px;background:var(--ink2)}
+.bul.good{border-left-color:var(--green);background:var(--green-bg);color:var(--ink)} .bul.good .mark{background:var(--green)}
+.bul.note{border-left-color:var(--gold);background:var(--gold-bg);color:var(--ink)} .bul.note .mark{background:var(--gold)}
+.bul.now{border-left-color:var(--gold-d);background:var(--gold-bg);color:var(--ink)} .bul.now .mark{background:var(--gold-d)}
+.bul.soon{border-left-color:var(--rust);background:var(--rust-bg);color:var(--ink)} .bul.soon .mark{background:var(--rust)}
+.bul.later{border-left-color:var(--slate);background:var(--slate-bg);color:var(--ink)} .bul.later .mark{background:var(--slate)}
+.bul.high{border-left-color:var(--red);background:var(--red-bg);color:var(--ink)} .bul.high .mark{background:var(--red)}
+.bul.med{border-left-color:var(--rust);background:var(--rust-bg);color:var(--ink)} .bul.med .mark{background:var(--rust)}
+.bul.low{border-left-color:var(--slate);background:var(--slate-bg);color:var(--ink)} .bul.low .mark{background:var(--slate)}
 .acts{display:flex;gap:7px}
 button.act{font-family:var(--hd);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:6px 11px;border:1.5px solid var(--rule);background:var(--card);color:var(--ink);cursor:pointer}
 button.act:hover{background:var(--gold-bg)}
@@ -183,6 +306,61 @@ button.act.pri{background:var(--gold);color:#fff;border-color:var(--gold-d)}
    radial-gradient(120% 90px at 74% 135%, #7d5026 0 62%, transparent 63%);opacity:.5}
 .prairie svg{position:relative;z-index:2;display:block}
 .foot{color:var(--faint);font-size:11.5px;margin-top:24px;border-top:2px solid var(--rule);padding-top:11px;font-style:italic}
+/* Idea Board — the holding pen. Empty by default; that's the point. */
+.ideawrap{background:var(--card);border:1.5px solid var(--rule);border-top:6px solid var(--gold);padding:14px 16px 16px;margin-top:6px;box-shadow:3px 3px 0 rgba(43,37,32,.12)}
+.ideawrap .ihead{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.ideawrap .iblurb{font-family:var(--serif);font-style:italic;font-size:12.5px;color:var(--ink2);max-width:560px;line-height:1.5}
+.ideawrap .empty{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--rust);background:rgba(240,221,198,.45);border-left:3px solid var(--rust);padding:11px 14px;margin-top:4px}
+.idea{border:1px solid var(--rule);background:var(--paper2);padding:10px 12px;margin-bottom:8px;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:start}
+.idea:last-child{margin-bottom:0}
+.idea .ititle{font-weight:700;font-size:13.5px;line-height:1.3}
+.idea .iwhy{font-size:12.5px;color:var(--ink2);margin-top:3px;line-height:1.45}
+.idea .iaxes{display:flex;gap:4px;flex-wrap:wrap;margin-top:7px}
+.idea .ax{font-size:10.5px;color:var(--ink2);background:var(--paper);border:1px solid var(--line);padding:1px 6px}
+.idea .ax b{color:var(--ink);font-weight:700}
+.idea .ifoot{display:flex;gap:7px;align-items:center;font-size:10.5px;color:var(--faint);margin-top:6px;text-transform:uppercase;letter-spacing:.05em}
+.idea .src{padding:1px 6px;border:1px solid var(--line);background:var(--paper)}
+.idea .src.self{background:var(--green-bg);color:var(--green);border-color:var(--green)}
+.idea .src.sodclaw{background:var(--gold-bg);color:var(--gold-d);border-color:var(--gold)}
+.idea .src.external{background:var(--slate-bg);color:var(--slate);border-color:var(--slate)}
+.idea .composite{text-align:center;min-width:54px;border-left:2px solid var(--gold);padding-left:10px}
+.idea .composite .num{font-family:var(--hd);font-size:22px;font-weight:800;color:var(--ink);line-height:1}
+.idea .composite .lab{font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+.idea .iacts{grid-column:1 / span 2;display:flex;gap:7px;margin-top:4px}
+/* SodClaw Roadmap panel — narrative + scored items + traps */
+.rmwrap{background:var(--card);border:1.5px solid var(--rule);border-top:6px solid var(--rust);padding:14px 16px 16px;margin-top:6px;box-shadow:3px 3px 0 rgba(43,37,32,.12)}
+.rmwrap .ihead{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.rmwrap .iblurb{font-family:var(--serif);font-style:italic;font-size:12.5px;color:var(--ink2);max-width:560px;line-height:1.5}
+.rmstage{font-family:var(--hd);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);margin:14px 0 6px;display:flex;align-items:center;gap:8px}
+.rmstage:first-of-type{margin-top:4px}
+.rmstage .scount{color:var(--faint);font-weight:400;letter-spacing:0;text-transform:none;font-style:italic;font-size:11.5px}
+.rmstage .sbadge{display:inline-block;font-size:10px;font-weight:800;padding:2px 7px;border:1px solid var(--rule);background:var(--paper)}
+.rmstage.now .sbadge{background:var(--gold-bg);color:var(--gold-d);border-color:var(--gold)}
+.rmstage.d30 .sbadge{background:var(--rust-bg);color:var(--rust);border-color:var(--rust)}
+.rmstage.quarter .sbadge{background:var(--slate-bg);color:var(--slate);border-color:var(--slate)}
+.rmstage.queued .sbadge{background:var(--paper);color:var(--faint)}
+.rmitem{border:1px solid var(--rule);background:var(--paper2);padding:9px 12px;margin-bottom:7px;display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center}
+.rmitem:last-child{margin-bottom:0}
+.rmitem.shipped{opacity:.55;border-style:dashed}
+.rmitem .ititle{font-weight:700;font-size:13px;line-height:1.3}
+.rmitem .ititle .stat{font-family:var(--hd);font-size:10px;font-weight:800;padding:1px 6px;margin-left:6px;border:1px solid var(--rule);text-transform:uppercase;letter-spacing:.05em;vertical-align:1px}
+.rmitem .stat.proposed{background:var(--paper);color:var(--ink2)}
+.rmitem .stat.in_progress{background:var(--gold-bg);color:var(--gold-d);border-color:var(--gold)}
+.rmitem .stat.shipped{background:var(--green-bg);color:var(--green);border-color:var(--green)}
+.rmitem .stat.parked{background:var(--slate-bg);color:var(--slate);border-color:var(--slate)}
+.rmitem .isum{font-size:12px;color:var(--ink2);margin-top:3px;line-height:1.45}
+.rmitem .vc{text-align:center;font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;line-height:1.2;min-width:62px}
+.rmitem .vc .nums{font-family:var(--hd);font-size:14px;font-weight:800;color:var(--ink);text-transform:none;letter-spacing:0}
+.rmitem .vc .nums .v{color:var(--green)}
+.rmitem .vc .nums .c{color:var(--rust)}
+.rmitem .vc .nums .x{color:var(--faint);font-weight:400;margin:0 2px}
+.rmitem .ratio{text-align:center;font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;line-height:1.2;min-width:48px;border-left:2px solid var(--line);padding-left:9px}
+.rmitem .ratio .num{font-family:var(--hd);font-size:14px;font-weight:800;color:var(--ink)}
+.rmtraps{margin-top:16px;border-top:1px dashed var(--rule);padding-top:11px}
+.rmtraps .thead{font-family:var(--hd);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-bottom:6px;display:flex;align-items:center;gap:7px}
+.rmtraps .thead .ti{font-size:13px}
+.rmtrap{font-size:12.5px;line-height:1.45;padding:5px 10px;border-left:3px solid var(--red);background:var(--red-bg);margin-bottom:4px}
+.rmtrap b{color:var(--red)}
 </style>
 </head>
 <body>
@@ -244,6 +422,44 @@ button.act.pri{background:var(--gold);color:#fff;border-color:var(--gold-d)}
 </div>
 
 <div id="pipeline"></div>
+
+<h2><span class="ti">&#9788;</span> Idea Board</h2>
+<div class="ideawrap">
+  <div class="ihead">
+    <p class="iblurb">The holdin' pen. Stuff thought of, not started. Empty is the point — every idea logged here is a project NOT bein' scaffolded into another folder.</p>
+    <div style="display:flex;gap:8px;align-items:center">
+      <label style="font-size:11px;color:var(--ink2);text-transform:uppercase;letter-spacing:.06em">Sort</label>
+      <select id="isort">
+        <option value="composite">Composite score</option>
+        <option value="value">Value</option>
+        <option value="feasibility">Feasibility</option>
+        <option value="desire">Desire</option>
+        <option value="learning">Learning</option>
+        <option value="newest">Newest</option>
+      </select>
+      <button class="act pri" onclick="act('Log an idea: ')">Log an idea</button>
+    </div>
+  </div>
+  <div id="ideas"></div>
+</div>
+
+<h2><span class="ti">&#9874;</span> SodClaw Roadmap <span class="sub" style="font-weight:400;text-transform:none;letter-spacing:0">&middot; the tool itself</span></h2>
+<div class="rmwrap">
+  <div class="ihead">
+    <p class="iblurb">What's on the orchestrator's own bench. Value times complexity, traps named out loud. The 80% Watch applies to SodClaw too — most of what <i>could</i> be built <i>shouldn't</i> be.</p>
+    <div style="display:flex;gap:8px;align-items:center">
+      <label style="font-size:11px;color:var(--ink2);text-transform:uppercase;letter-spacing:.06em">Sort</label>
+      <select id="rmsort">
+        <option value="stage">By stage</option>
+        <option value="ratio">Value / complexity (sweet spot)</option>
+        <option value="value">Value (high → low)</option>
+        <option value="complexity">Complexity (low → high)</option>
+      </select>
+    </div>
+  </div>
+  <div id="roadmap"></div>
+  <div id="traps"></div>
+</div>
 
 <p class="foot" id="foot"></p>
 </div>
@@ -314,9 +530,26 @@ function renderGit(){
         <button class="act pri" onclick="act('Get ${esc(it.name)} into a private GitHub repo so I can reach it from mobile')">Set up Git</button>
       </div></div>`).join("")||`<p class="sub">Every priority project is in Git. Mobile can reach the trail.</p>`;
 }
+function bulletsHTML(items){
+  return items.map(b=>`<div class="bul ${b.tone||'note'}"><span class="mark"></span><span>${b.text}</span></div>`).join("");
+}
+function sectionHTML(title,glyph,items){
+  if(!items||!items.length)return"";
+  return `<div class="section"><div class="stitle"><span class="ti">${glyph}</span>${title}</div>${bulletsHTML(items)}</div>`;
+}
 function cardHTML(p){
+  const showSections=(p.tier==="autonomous"||p.tier==="active");
+  const sections=showSections?`<div class="sections">
+    ${sectionHTML("Updates","&#9788;",p.updates)}
+    ${sectionHTML("Next steps","&#10148;",p.next_steps)}
+    ${sectionHTML("Risks &amp; issues","&#9888;",p.risks_issues)}
+  </div>`:"";
+  const philo = p.philosophy
+    ? `<div class="philo${/existential evaluation needed/i.test(p.philosophy)?' empty':''}">${p.philosophy}</div>`
+    : `<div class="philo empty">Existential evaluation needed — best look this horse in the mouth.</div>`;
   return `<div class="card ${p.flag?'flag':''}">
     <div class="top"><div class="nm">${p.name}</div><span class="pill p-${p.status}">${p.status.replace('-',' · ')}</span></div>
+    ${philo}
     <div class="meta">
       <span class="chip"><span class="dot" style="background:${TIER[p.tier].c}"></span>${TIER[p.tier].label}</span>
       <span class="chip">value <b>${p.V.toFixed(1)}</b></span>
@@ -325,6 +558,7 @@ function cardHTML(p){
     <div class="barrow"><div class="bar" style="flex:1"><span style="width:${p.progress}%;background:${barColor(p.progress)}"></span></div><div class="pct">${p.progress}%</div></div>
     <div class="next"><span class="k">Next</span>${p.next_action}</div>
     ${p.decision?`<div class="dec">${p.decision}</div>`:""}
+    ${sections}
     <div class="acts"><button class="act pri" onclick="act('Work on ${esc(p.name)}')">Work on this</button>
     <button class="act" onclick="act('Give me a status update on ${esc(p.name)}')">Status</button></div>
   </div>`;
@@ -346,12 +580,117 @@ function renderPipeline(){
   });
   document.getElementById("pipeline").innerHTML=html||`<p class="sub">No claims in this filter.</p>`;
 }
+function ideaComposite(i){const s=i.scores||{};return (((s.value||0)+(s.feasibility||0)+(s.desire||0)+(s.learning||0))/4);}
+function ideaHTML(i){
+  const c=ideaComposite(i);
+  const sc=i.scores||{};
+  const src=(i.source||"self").toLowerCase();
+  return `<div class="idea">
+    <div>
+      <div class="ititle">${i.title||"(untitled)"}</div>
+      ${i.why?`<div class="iwhy">${i.why}</div>`:""}
+      <div class="iaxes">
+        <span class="ax">value <b>${sc.value||0}</b></span>
+        <span class="ax">feas <b>${sc.feasibility||0}</b></span>
+        <span class="ax">desire <b>${sc.desire||0}</b></span>
+        <span class="ax">learn <b>${sc.learning||0}</b></span>
+      </div>
+      <div class="ifoot">
+        <span class="src ${src}">${src}</span>
+        ${i.logged?`<span>logged ${i.logged}</span>`:""}
+        ${i.status&&i.status!=="idea"?`<span>· ${i.status}</span>`:""}
+      </div>
+    </div>
+    <div class="composite"><div class="num">${c.toFixed(1)}</div><div class="lab">score</div></div>
+    <div class="iacts">
+      <button class="act pri" onclick="act('Promote idea to a project: ${esc(i.title||"")}')">Promote</button>
+      <button class="act" onclick="act('Park idea: ${esc(i.title||"")}')">Park</button>
+      <button class="act" onclick="act('Tell me more about the idea: ${esc(i.title||"")}')">Discuss</button>
+    </div>
+  </div>`;
+}
+function renderIdeas(){
+  const wrap=document.getElementById("ideas");
+  const ideas=(DATA.ideas||[]).filter(i=>!i.status||i.status==="idea"||i.status==="exploring");
+  if(!ideas.length){
+    wrap.innerHTML=`<div class="empty">No new claims staked. That's the point — let the trail breathe.<br><span style="font-size:12px;font-style:normal;color:var(--ink2)">When somethin' worth thinkin' about lands, hit <b>Log an idea</b> above. It'll wait here till you decide.</span></div>`;
+    return;
+  }
+  const sortKey=document.getElementById("isort").value;
+  const sorters={
+    composite:(a,b)=>ideaComposite(b)-ideaComposite(a),
+    value:(a,b)=>(b.scores?.value||0)-(a.scores?.value||0),
+    feasibility:(a,b)=>(b.scores?.feasibility||0)-(a.scores?.feasibility||0),
+    desire:(a,b)=>(b.scores?.desire||0)-(a.scores?.desire||0),
+    learning:(a,b)=>(b.scores?.learning||0)-(a.scores?.learning||0),
+    newest:(a,b)=>(b.logged||"").localeCompare(a.logged||"")
+  };
+  wrap.innerHTML=ideas.slice().sort(sorters[sortKey]).map(ideaHTML).join("");
+}
+const RM_STAGE={now:{label:"Now",cls:"now"},"30d":{label:"Next 30 days",cls:"d30"},quarter:{label:"This quarter",cls:"quarter"},queued:{label:"Queued — earn the slot",cls:"queued"}};
+const RM_STAGE_ORDER=["now","30d","quarter","queued"];
+function rmItemHTML(it){
+  const v=it.value||0, c=it.complexity||0, r=c>0?(v/c):v;
+  const stat=(it.status||"proposed");
+  const shipped=stat==="shipped"?" shipped":"";
+  return `<div class="rmitem${shipped}">
+    <div>
+      <div class="ititle">${it.title}<span class="stat ${stat}">${stat.replace("_"," ")}</span></div>
+      <div class="isum">${it.summary||""}</div>
+    </div>
+    <div class="vc"><div class="nums"><span class="v">${v}</span><span class="x">×</span><span class="c">${c}</span></div>value · complexity</div>
+    <div class="ratio"><div class="num">${r.toFixed(1)}</div>v/c</div>
+  </div>`;
+}
+function renderRoadmap(){
+  const all=DATA.roadmap_items||[];
+  const sortKey=document.getElementById("rmsort").value;
+  const wrap=document.getElementById("roadmap");
+  if(sortKey==="stage"){
+    let html="";
+    RM_STAGE_ORDER.forEach(stage=>{
+      const grp=all.filter(it=>it.stage===stage);
+      if(!grp.length)return;
+      const s=RM_STAGE[stage];
+      const live=grp.filter(it=>it.status!=="shipped"&&it.status!=="parked").length;
+      const ship=grp.filter(it=>it.status==="shipped").length;
+      const tag=ship?` &middot; ${ship} shipped`:"";
+      html+=`<div class="rmstage ${s.cls}"><span class="sbadge">${s.label}</span><span class="scount">${live} live${tag}</span></div>`;
+      // within a stage: shipped at bottom, then by v/c ratio desc
+      grp.sort((a,b)=>{
+        const as=(a.status==="shipped"||a.status==="parked")?1:0;
+        const bs=(b.status==="shipped"||b.status==="parked")?1:0;
+        if(as!==bs)return as-bs;
+        const ar=(a.complexity?a.value/a.complexity:a.value)||0;
+        const br=(b.complexity?b.value/b.complexity:b.value)||0;
+        return br-ar;
+      });
+      html+=grp.map(rmItemHTML).join("");
+    });
+    wrap.innerHTML=html||`<p class="sub">Roadmap's empty. Add items to projects/sodclaw_roadmap.json.</p>`;
+  } else {
+    const sorters={
+      ratio:(a,b)=>((b.complexity?b.value/b.complexity:b.value)||0)-((a.complexity?a.value/a.complexity:a.value)||0),
+      value:(a,b)=>(b.value||0)-(a.value||0),
+      complexity:(a,b)=>(a.complexity||0)-(b.complexity||0)
+    };
+    wrap.innerHTML=all.slice().sort(sorters[sortKey]).map(rmItemHTML).join("");
+  }
+  // Traps — render once, sort-agnostic
+  const traps=DATA.roadmap_traps||[];
+  const tw=document.getElementById("traps");
+  tw.innerHTML=traps.length
+    ? `<div class="rmtraps"><div class="thead"><span class="ti">&#9888;</span>Traps &mdash; named so they don't sneak back</div>${traps.map(t=>`<div class="rmtrap"><b>${t.title}.</b> ${t.why}</div>`).join("")}</div>`
+    : "";
+}
 function boot(){
   document.getElementById("subline").textContent="Last updated "+DATA.last_updated+" · "+DATA.projects.length+" projects · scores ratified by Kevin";
-  document.getElementById("foot").textContent="Source of truth: SodClaw/projects/portfolio.json · generated by build_dashboard.py · a decision surface, not a to-do app.";
-  renderMetrics();renderAttention();renderGit();renderPipeline();
+  document.getElementById("foot").textContent="Source of truth: SodClaw/projects/{portfolio,ideas,sodclaw_roadmap}.json · generated by build_dashboard.py · a decision surface, not a to-do app.";
+  renderMetrics();renderAttention();renderGit();renderPipeline();renderIdeas();renderRoadmap();
   document.getElementById("sort").addEventListener("change",renderPipeline);
   document.getElementById("ftier").addEventListener("change",renderPipeline);
+  document.getElementById("isort").addEventListener("change",renderIdeas);
+  document.getElementById("rmsort").addEventListener("change",renderRoadmap);
 }
 if(document.readyState!=="loading")boot(); else document.addEventListener("DOMContentLoaded",boot);
 </script>

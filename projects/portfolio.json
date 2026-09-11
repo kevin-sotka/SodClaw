@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Single source of truth for the Meatbag Labs portfolio dashboard. SodClaw and the dashboard artifact both read this file. Update it whenever a project's status, progress, next action, or scores change.",
-    "last_updated": "2026-05-24",
+    "last_updated": "2026-09-04",
     "scoring": {
       "value_metrics": [
         "consumer_potential",
@@ -34,31 +34,37 @@
       "shelved",
       "launched-shelved"
     ],
-    "doc_briefing": "Listen here, Partner. This week you did the hard thing — you quit pretendin'. Five dead claims got shelved and two more (the Roblox rails and the @sodtoshi wire) are tied to the post; that ain't quittin', that's runnin' a lean outfit, and what's left finally fits in your saddlebags. The work feedin' your soul — Riventide's new music, the novel — keep it close; that's the campfire that keeps a body goin'. But the richest vein on this whole map is the consulting claim: top value on the board and the straightest shot to payin' dirt, just sittin' out in the exploratory hills waitin' on your stake. My counsel? Drive that stake — name what you sell and who buys it first — and roll Riventide's wagon over the last ridge while the music's still flowin'. The rest can wait for the thaw.",
-    "doc_briefing_date": "2026-05-24",
-    "last_swept": "2026-05-24",
+    "doc_briefing": "Listen here, Partner: the biggest news this sweep ain't a project, it's the map itself. Eleven claims picked up and moved into the Hit Factory camp — RT1, Oregon Fail, Foundry, Gerlok, swatch, the whole lot — so the tracker's addresses were pointin' at empty lots till just now. Fixed. Sixteen claims threw dust: Riventide got a brand-new vanilla-JS build published and five commits on the 2nd (first commits since February), the Foundry's got twenty-seven game packages stacked up in it now, jobclaw's at 161 files, and Kevin's own consultin' page got touched today. Two claims turn out to have had Git all along — The Wall and HR Derby both got clean synced repos one floor down, so scratch 'em off the not-portable list. Standin' chores: SodClaw's own 29 uncommitted with no commit since May, Riventide's 173, Train Lore's 2 unpushed. Claim Wrangler's the only thing past the sixty-day fence at 72 days idle. Two new strangers in camp: hit-factory and kevin-sotka.github.io.",
+    "doc_briefing_date": "2026-09-04",
+    "last_swept": "2026-09-04",
     "sodclaw_git_state": {
       "repo": true,
-      "state": "synced",
+      "state": "partially_synced",
       "remote": "https://github.com/kevin-sotka/SodClaw.git",
-      "uncommitted": 0,
-      "unpushed": 0,
       "branch": "main",
+      "uncommitted": 29,
+      "unpushed": 0,
       "last_commit": "2026-05-28",
-      "checked": "2026-05-28"
+      "checked": "2026-09-04"
     },
-    "git_inventory_run": "2026-05-28"
+    "git_inventory_run": "2026-09-04",
+    "public_page": {
+      "description": "Config for the public portfolio page at meatbagmade.com/projects. Built by build_public_page.py from projects with a 'public' field (live + active only; shelved/paused stay private). Blurbs are Doc voice per prompts/doc_voice.md — no progress %, scores, or decisions on the public surface.",
+      "doc_intro": "Well howdy, stranger. Name's Doc. I ride shotgun on this here wagon train of claims — games by the dozen, a gazette, a novel, and a whole land you can walk into. Some have struck the vein and you can stroll right in the door. Others are still gettin' hammered on, and I'll tell ya which is which straight. Go on, have a look around the territory.",
+      "last_generated": "2026-09-04"
+    }
   },
   "projects": [
     {
       "id": "train_lore",
       "name": "Train Lore — PNW Railroad Blog",
+      "philosophy": "A long-haul claim, not a sprint. The rails just give ya somethin' to write about — keep the dispatches comin' and the well stays primed.",
       "tier": "autonomous",
       "status": "active",
       "location": "/Users/kevinsotka/Meatbag_Labs/train_lore/",
       "website": "meatbagmade.com",
       "autonomy": "full-auto",
-      "progress": 40,
+      "progress": 45,
       "value": {
         "consumer_potential": 3,
         "personal_satisfaction": 4,
@@ -74,27 +80,65 @@
       "next_action": "Pick next topic from the 32-topic list, draft + publish post #6",
       "decision": null,
       "notes": "5 of ~32 topics published. Publishing system is built; content is the runway.",
-      "last_touched": "2026-03-03",
+      "updates": [
+        {
+          "text": "Publishing system is shipped — 5 of ~32 topics live",
+          "tone": "good"
+        },
+        {
+          "text": "Last commit 2026-05-27; folder not opened since 2026-03-03",
+          "tone": "note"
+        }
+      ],
+      "next_steps": [
+        {
+          "text": "Pick topic #6 from the 32-topic list",
+          "tone": "now"
+        },
+        {
+          "text": "Draft + publish via wordpress-blog-writer skill",
+          "tone": "now"
+        }
+      ],
+      "risks_issues": [
+        {
+          "text": "Content cadence is the bottleneck, not the system",
+          "tone": "med"
+        },
+        {
+          "text": "Gaps kill SEO momentum — value compounds with frequency",
+          "tone": "low"
+        }
+      ],
+      "last_touched": "2026-08-30",
       "git_state": {
         "repo": true,
-        "state": "synced",
+        "state": "partially_synced",
         "remote": "https://github.com/kevin-sotka/train_lore.git",
-        "uncommitted": 0,
-        "unpushed": 0,
         "branch": "main",
-        "last_commit": "2026-05-27",
-        "checked": "2026-05-28"
-      }
+        "uncommitted": 12,
+        "unpushed": 2,
+        "last_commit": "2026-07-27",
+        "checked": "2026-09-04"
+      },
+      "public": {
+        "label": "Live",
+        "blurb": "Dispatches from the iron roads of the Pacific Northwest — avalanches, railroad wars, and the fellas fool enough to lay track through 'em. The history's wilder than anything I could make up.",
+        "link": "https://meatbagmade.com/category/trains/",
+        "link_text": "Read the dispatches"
+      },
+      "file_count": 56
     },
     {
       "id": "gridiron_gazette",
       "name": "Gridiron Gazette — Fantasy Football Newsletter",
+      "philosophy": "This claim runs on the football clock. Either the season makes it work or it's just a renewed domain in a quiet town — there's a kill-date written in the calendar.",
       "tier": "autonomous",
-      "status": "dormant",
+      "status": "shipped",
       "location": "/Users/kevinsotka/Meatbag_Labs/thegridirongazette/",
       "website": "thegridirongazette.com → meatbagmade.com/thegridirongazette/",
       "autonomy": "full-auto",
-      "progress": 25,
+      "progress": 100,
       "value": {
         "consumer_potential": 3,
         "personal_satisfaction": 3,
@@ -107,26 +151,56 @@
         "integrations": 3,
         "manual_burden": 2
       },
-      "next_action": "Define content format, build the first automated issue",
-      "decision": "Kevin will pick this up in earnest ~2026-06-07 (reminder set). Needs attention soon — hold until then.",
-      "notes": "Domain renewed 2026-05-24 ($18/yr) — points to meatbagmade.com/thegridirongazette/index.html (vanity domain over the main site, same pattern as HR Derby). Live newsletter page exists; no content engine yet. Kill-date check at season's end if no real issue ships.",
-      "last_touched": "2025-06-26",
+      "next_action": "Shipped as a western-themed fantasy football newsletter. Keep the weekly cadence through the season.",
+      "decision": null,
+      "notes": "Launched 2026-06-23 as a western-themed fantasy football newsletter (the Gazette's real shipped form). News pipeline running (push-news.log/news.json), repo synced. The old product-briefs (9AM Brief / Coach / League Drama Engine) are now separate future products, not this — any brief that gets life becomes its own thing.",
+      "updates": [
+        {
+          "text": "Launched 2026-06-23 — western-themed fantasy football newsletter, live and shipping",
+          "tone": "good"
+        },
+        {
+          "text": "News pipeline running; repo clean + synced",
+          "tone": "good"
+        }
+      ],
+      "next_steps": [
+        {
+          "text": "Hold the weekly cadence through NFL season",
+          "tone": "now"
+        }
+      ],
+      "risks_issues": [
+        {
+          "text": "Cadence is the job now — keep issues flowing through the season",
+          "tone": "low"
+        }
+      ],
+      "last_touched": "2026-09-04",
       "git_state": {
         "repo": true,
-        "state": "synced",
+        "state": "partially_synced",
         "remote": "https://github.com/kevin-sotka/thegridirongazette.git",
-        "uncommitted": 0,
-        "unpushed": 0,
         "branch": "main",
-        "last_commit": "2026-05-27",
-        "checked": "2026-05-28"
-      }
+        "uncommitted": 2,
+        "unpushed": 0,
+        "last_commit": "2026-09-04",
+        "checked": "2026-09-04"
+      },
+      "public": {
+        "label": "Live",
+        "blurb": "A western broadsheet for fantasy football — the day's wire, what it means for your roster, and a tip of the hat. Doc's got his own news stand now, at his own address.",
+        "link": "https://thegridirongazette.com/",
+        "link_text": "Visit the Gazette"
+      },
+      "file_count": 37
     },
     {
       "id": "the_wall",
       "name": "The Wall — Bitcoin + 3D Art",
-      "tier": "autonomous",
-      "status": "active",
+      "philosophy": "Decided 2026-05-29: it's a paintin', not a marketplace. The ten-minute block wait killed the auction — strike the Stripe layer, let the wall just be beautiful, kin to Swatch.",
+      "tier": "exploratory",
+      "status": "shelved",
       "location": "/Users/kevinsotka/Meatbag_Labs/the_wall/",
       "website": "TBD",
       "autonomy": "draft-and-approve",
@@ -143,24 +217,65 @@
         "integrations": 4,
         "manual_burden": 2
       },
-      "next_action": "Finish Phase 1 build — foundation + beautiful static wall",
+      "next_action": "Shelved 2026-06-13. PRD + Next.js scaffold complete; revive when bandwidth allows.",
       "decision": null,
-      "notes": "PRD + build plan complete. Next.js app scaffolded, .next build exists. Highest engineering complexity in the portfolio.",
-      "last_touched": "2026-04-21",
+      "notes": "Shelved 2026-06-13 (moved to Exploratory). PRD + build plan complete, Next.js app scaffolded. Highest engineering complexity in the portfolio — parked until there is dedicated runway. 2026-09-04: pulled from the public /projects page (shelved, no link to send folks to).",
+      "updates": [
+        {
+          "text": "Kevin reconfirmed shelved 2026-07-13.",
+          "tone": "note"
+        },
+        {
+          "text": "Shelved 2026-06-13 — highest-complexity claim, parked for now",
+          "tone": "note"
+        },
+        {
+          "text": "PRD + Next.js scaffold complete; revivable",
+          "tone": "good"
+        }
+      ],
+      "next_steps": [
+        {
+          "text": "Finish Phase 1 — foundation + beautiful static wall",
+          "tone": "now"
+        },
+        {
+          "text": "Get it into a private GitHub repo (mobile reachability)",
+          "tone": "soon"
+        }
+      ],
+      "risks_issues": [
+        {
+          "text": "Not in Git yet — work isn't backed up",
+          "tone": "high"
+        },
+        {
+          "text": "Highest engineering complexity in the portfolio (5/5)",
+          "tone": "high"
+        },
+        {
+          "text": "Draft-and-approve autonomy → review cadence is the bottleneck",
+          "tone": "med"
+        }
+      ],
+      "last_touched": "2026-04-20",
       "git_state": {
-        "repo": false,
-        "state": "not_a_repo",
-        "remote": null,
-        "uncommitted": null,
-        "unpushed": null,
-        "branch": null,
-        "last_commit": null,
-        "checked": "2026-05-28"
-      }
+        "repo": true,
+        "state": "synced",
+        "remote": "https://github.com/kevin-sotka/the-wall.git",
+        "branch": "main",
+        "uncommitted": 0,
+        "unpushed": 0,
+        "last_commit": "2026-04-20",
+        "checked": "2026-09-04"
+      },
+      "public": false,
+      "file_count": 46
     },
     {
       "id": "robloxrailways",
       "name": "Roblox Railways",
+      "philosophy": "A wagon for ridin' with your boy, not a publishin' pipeline. Sits in the barn till he wants to hitch it up again — and that's the whole point.",
       "tier": "exploratory",
       "status": "shelved",
       "location": "/Users/kevinsotka/Meatbag_Labs/robloxrailways/",
@@ -182,23 +297,25 @@
       "next_action": "Shelved 2026-05-24 (moved to Exploratory). game-001 pipeline complete; revive for kid time.",
       "decision": null,
       "notes": "Co-build with his son. game-001 pipeline complete (gdd/scripts/vibe/QA). Moved to Exploratory + shelved 2026-05-24.",
-      "last_touched": "2026-03-16",
+      "last_touched": "2026-06-09",
       "git_state": {
         "repo": false,
         "state": "not_a_repo",
         "remote": null,
-        "uncommitted": null,
-        "unpushed": null,
         "branch": null,
+        "uncommitted": 0,
+        "unpushed": 0,
         "last_commit": null,
-        "checked": "2026-05-28"
-      }
+        "checked": "2026-09-04"
+      },
+      "file_count": 26
     },
     {
       "id": "hr_derby",
       "name": "HR Derby — Fantasy Baseball",
+      "philosophy": "A joy claim that asks for chores every mornin'. Keep it light, let the robots fetch the box score, and don't expect it to buy you supper.",
       "tier": "active",
-      "status": "active",
+      "status": "shipped",
       "location": "/Users/kevinsotka/Meatbag_Labs/hr-derby/",
       "website": "meatbagmade.com/hr-derby/",
       "autonomy": "kevin-only",
@@ -215,30 +332,76 @@
         "integrations": 3,
         "manual_burden": 4
       },
-      "next_action": "Maintain standings; automate the daily MLB HR pull to cut manual burden",
+      "next_action": "Live and in daily league use through the 2026 season, monitor standings. Optional: automate the daily MLB HR pull to cut manual burden.",
       "decision": null,
-      "notes": "2026 season live (~9 players). Daily updates are the manual-burden cost. Path was wrong in old registry (Desktop) — actually in Meatbag_Labs.",
+      "notes": "2026 season live (~9 players), in daily use by the league. Kept OPEN (not shelved) 2026-07-24 per Kevin: he monitors it daily. Status moved active->shipped so the 60-day file-mtime stale rule stops flagging a live-but-hands-off product (the standings move outside the folder). Daily updates are the manual-burden cost.",
+      "updates": [
+        {
+          "text": "Kept live (not shelved) 2026-07-24 — in daily league use; status active→shipped so staleness stops nagging",
+          "tone": "good"
+        },
+        {
+          "text": "2026 season live, ~9 players",
+          "tone": "good"
+        },
+        {
+          "text": "Last touched 2026-05-23 — fresh in your hands",
+          "tone": "good"
+        }
+      ],
+      "next_steps": [
+        {
+          "text": "Automate the daily MLB HR pull",
+          "tone": "now"
+        },
+        {
+          "text": "Hold the standings cadence through season",
+          "tone": "soon"
+        }
+      ],
+      "risks_issues": [
+        {
+          "text": "Manual burden 4/5 — daily updates eat time",
+          "tone": "high"
+        },
+        {
+          "text": "Not in Git",
+          "tone": "med"
+        },
+        {
+          "text": "Profitability ceiling 1/5 — keep it joyful, not heavy",
+          "tone": "low"
+        }
+      ],
       "last_touched": "2026-05-23",
       "git_state": {
-        "repo": false,
-        "state": "not_a_repo",
-        "remote": null,
-        "uncommitted": null,
-        "unpushed": null,
-        "branch": null,
-        "last_commit": null,
-        "checked": "2026-05-28"
-      }
+        "repo": true,
+        "state": "synced",
+        "remote": "https://github.com/kevin-sotka/hr-derby.git",
+        "branch": "main",
+        "uncommitted": 0,
+        "unpushed": 0,
+        "last_commit": "2026-04-05",
+        "checked": "2026-09-04"
+      },
+      "public": {
+        "label": "Live",
+        "blurb": "Nine fellas, one summer, and every home run counts. A backyard fantasy baseball derby runnin' all season long.",
+        "link": "https://meatbagmade.com/hr-derby/",
+        "link_text": "Check the standings"
+      },
+      "file_count": 32
     },
     {
       "id": "mbmnovel",
       "name": "Meatbag Made — Novel",
+      "philosophy": "The campfire that keeps every other claim warm. Don't put rails on it; don't systematize it; just keep writin' and let it feed the rest.",
       "tier": "active",
       "status": "active",
       "location": "/Users/kevinsotka/Meatbag_Labs/mbmnovel/",
       "website": null,
       "autonomy": "kevin-only",
-      "progress": 30,
+      "progress": 36,
       "value": {
         "consumer_potential": 3,
         "personal_satisfaction": 5,
@@ -251,24 +414,59 @@
         "integrations": 1,
         "manual_burden": 3
       },
-      "next_action": "Draft chapter 7 (novel-writer skill)",
+      "next_action": "Draft chapter 12 (novel-writer skill)",
       "decision": null,
-      "notes": "Series bible v5 + ~6 chapters drafted. Pure creative-energy project; recharges the rest.",
-      "last_touched": "2026-05-19",
+      "notes": "Series bible v5 + 11 chapters drafted (chapter_11_ella.md, confirmed 2026-06-23). Progress ~33% by Kevin's own read of the arc. Pure creative-energy project; recharges the rest.",
+      "updates": [
+        {
+          "text": "Chapter 11 drafted (chapter_11_ella.md) — confirmed 2026-06-23",
+          "tone": "good"
+        },
+        {
+          "text": "~33% of the planned arc; campfire still warm",
+          "tone": "good"
+        }
+      ],
+      "next_steps": [
+        {
+          "text": "Draft chapter 12 via novel-writer skill",
+          "tone": "now"
+        }
+      ],
+      "risks_issues": [
+        {
+          "text": "Not in Git — risk of losing prose",
+          "tone": "med"
+        },
+        {
+          "text": "Pure creative-energy project — protect from systematization",
+          "tone": "low"
+        }
+      ],
+      "last_touched": "2026-08-31",
       "git_state": {
         "repo": false,
         "state": "not_a_repo",
         "remote": null,
-        "uncommitted": null,
-        "unpushed": null,
         "branch": null,
+        "uncommitted": 0,
+        "unpushed": 0,
         "last_commit": null,
-        "checked": "2026-05-28"
-      }
+        "checked": "2026-09-04"
+      },
+      "public": {
+        "label": "On the workbench",
+        "blurb": "Neo‑Shenzhen, 2047. The rain's got lithium in it and a fella named Marcus certifies who's still human — 'til the day he certifies somebody who ain't. Book One's got a home now; the ink's still wet.",
+        "link": "https://meatbagmade.com/cyberpunk-noir-novel/",
+        "link_text": "Read the openin'",
+        "name": "Meatbag Made: The Novel"
+      },
+      "file_count": 70
     },
     {
       "id": "ghostwriter_sodtoshi",
       "name": "Ghostwriter — @sodtoshi",
+      "philosophy": "The megaphone for everything else you build. Was singin' loud, then went quiet — needs a steady drumbeat of work below it before it makes sense to start hollerin' again.",
       "tier": "exploratory",
       "status": "launched-shelved",
       "location": "/Users/kevinsotka/Meatbag_Labs/ghostwriter-sodtoshi/",
@@ -295,19 +493,21 @@
         "repo": false,
         "state": "not_a_repo",
         "remote": null,
-        "uncommitted": null,
-        "unpushed": null,
         "branch": null,
+        "uncommitted": 0,
+        "unpushed": 0,
         "last_commit": null,
-        "checked": "2026-05-28"
-      }
+        "checked": "2026-09-04"
+      },
+      "file_count": 9
     },
     {
       "id": "consulting_quickening",
       "name": "AI Enablement Startup — Consulting",
+      "philosophy": "Richest vein on this whole map and ya ain't drove a stake in it yet. This is the claim that actually buys the supper — name what ya sell, name who buys it.",
       "tier": "exploratory",
-      "status": "active",
-      "location": "/Users/kevinsotka/Meatbag_Labs/consulting-quickening/",
+      "status": "shelved",
+      "location": "/Users/kevinsotka/Meatbag_Labs/consulting/",
       "website": null,
       "autonomy": "kevin-only",
       "progress": 15,
@@ -323,28 +523,41 @@
         "integrations": 1,
         "manual_burden": 5
       },
-      "next_action": "Kevin to define MVP offering + first target client",
-      "decision": "Top of the value board and Kevin's clearest revenue path — staying flagged. Kevin is figuring out next steps (MVP offering + first target client).",
+      "next_action": "Grouped under the kevinsotka.com consulting hub. Shelved competitive briefs — revive as source material when Kevin drives the consulting stake (define MVP offering + first target client).",
+      "decision": null,
       "notes": "Only competitive briefs exist. Highest profitability score; all-manual / all-Kevin to run.",
-      "last_touched": "2026-03-08",
+      "last_touched": "2026-03-07",
       "git_state": {
         "repo": false,
         "state": "not_a_repo",
         "remote": null,
-        "uncommitted": null,
-        "unpushed": null,
         "branch": null,
+        "uncommitted": 0,
+        "unpushed": 0,
         "last_commit": null,
-        "checked": "2026-05-28"
-      }
+        "checked": "2026-09-04"
+      },
+      "updates": [
+        {
+          "text": "Rolled up under the kevinsotka.com consulting hub 2026-07-24 (tracker designation; files stay in place, still shelved).",
+          "tone": "note"
+        },
+        {
+          "text": "Shelved 2026-06-07 — 89 days idle. Shelved ≠ dead, just not now.",
+          "tone": "note"
+        }
+      ],
+      "part_of": "kevinsotka_com",
+      "file_count": 4
     },
     {
       "id": "riventide",
       "name": "Riventide — Indie RPG (RT1)",
+      "philosophy": "Shipped, and the trail gave ya music along the way. The missin'-asset panic was your own convoluted code — no real gap, just dust to sweep. Commit your changes and tip your hat.",
       "tier": "active",
       "status": "shipped",
-      "location": "/Users/kevinsotka/Meatbag_Labs/RT1/",
-      "website": "itch.io",
+      "location": "/Users/kevinsotka/Meatbag_Labs/hitfactory.games/RT1/",
+      "website": "https://sodzilla.itch.io/riventide",
       "autonomy": "paused",
       "progress": 95,
       "value": {
@@ -362,23 +575,65 @@
       "next_action": "Shipped. Optional cleanup: prune dead scene/music references the convoluted code still calls (NOT real gaps — that content was cut from the game).",
       "decision": null,
       "notes": "Shipped v1 on itch.io. The 2026-05-23 'missing asset' audit was a false alarm — the code grew convoluted and still references scenes/music that were removed from the game. No real content gap; just dead references to prune. Kevin made new music along the way.",
-      "last_touched": "2026-05-24",
+      "updates": [
+        {
+          "text": "Shipped v1 on itch.io",
+          "tone": "good"
+        },
+        {
+          "text": "Missing-asset audit was a false alarm — game is intact",
+          "tone": "good"
+        },
+        {
+          "text": "New music made along the way",
+          "tone": "good"
+        }
+      ],
+      "next_steps": [
+        {
+          "text": "Commit or stash the 171 uncommitted changes",
+          "tone": "soon"
+        },
+        {
+          "text": "Optional: prune dead scene/music references in code",
+          "tone": "later"
+        }
+      ],
+      "risks_issues": [
+        {
+          "text": "171 uncommitted changes on main — working copy has drifted",
+          "tone": "high"
+        },
+        {
+          "text": "Last commit 2026-02-19 — git state and code state diverged",
+          "tone": "high"
+        }
+      ],
+      "last_touched": "2026-09-02",
       "git_state": {
         "repo": true,
         "state": "partially_synced",
         "remote": "https://github.com/kevin-sotka/Riventide.git",
-        "uncommitted": 171,
-        "unpushed": 0,
         "branch": "main",
-        "last_commit": "2026-02-19",
-        "checked": "2026-05-28"
-      }
+        "uncommitted": 173,
+        "unpushed": 0,
+        "last_commit": "2026-09-02",
+        "checked": "2026-09-04"
+      },
+      "public": {
+        "label": "Shipped",
+        "blurb": "An indie RPG, built and shipped, music and all. No storefront to wander through no more — it plays right in your browser, boots on.",
+        "link": "https://kevin-sotka.github.io/riventide/",
+        "link_text": "Play it now"
+      },
+      "file_count": 3544
     },
     {
       "id": "ai_company_trail",
       "name": "AI Company Trail",
+      "philosophy": "Ya swore it was alive but ain't named what comes next. Existential evaluation needed — best look this horse in the mouth before saddlin' it again.",
       "tier": "exploratory",
-      "status": "active",
+      "status": "shelved",
       "location": "/Users/kevinsotka/Meatbag_Labs/AI-company-trail/",
       "website": null,
       "autonomy": "kevin-only",
@@ -395,27 +650,36 @@
         "integrations": 3,
         "manual_burden": 2
       },
-      "next_action": "Confirmed active by Kevin (2026-05-23) — define the next build milestone",
+      "next_action": "Shelved 2026-07-13 per Kevin. Existential eval resolved: parked, not dead. Consulting energy redirected to meatbag_method. Revive if a concrete build milestone calls it back.",
       "decision": null,
-      "notes": "Confirmed very much alive by Kevin 2026-05-23. Next.js + Supabase app with its own CLAUDE.md + build spec. Candidate for promotion from Exploratory to Active tier.",
-      "last_touched": "2026-04-26",
+      "notes": "Confirmed very much alive by Kevin 2026-05-23. Next.js + Supabase app with its own CLAUDE.md + build spec. Candidate for promotion from Exploratory to Active tier. 2026-09-04: pulled from the public /projects page (shelved, no link to send folks to).",
+      "last_touched": "2026-06-11",
       "git_state": {
         "repo": true,
         "state": "partially_synced",
         "remote": "https://github.com/kevin-sotka/AI-company-trail.git",
+        "branch": "main",
         "uncommitted": 6,
         "unpushed": 0,
-        "branch": "main",
         "last_commit": "2026-04-26",
-        "checked": "2026-05-28"
-      }
+        "checked": "2026-09-04"
+      },
+      "public": false,
+      "updates": [
+        {
+          "text": "Shelved 2026-07-13 per Kevin — shelved != dead. Focus shifts to meatbag_method as the consulting foray.",
+          "tone": "note"
+        }
+      ],
+      "file_count": 35
     },
     {
       "id": "gerlok",
       "name": "Gerlok",
+      "philosophy": "Even you don't recall what this was meant to be — a Node scaffold with an API-key prompt and no story. Best look this horse in the mouth before askin' it to ride.",
       "tier": "exploratory",
       "status": "shelved",
-      "location": "/Users/kevinsotka/Meatbag_Labs/Gerlok/",
+      "location": "/Users/kevinsotka/Meatbag_Labs/hitfactory.games/Gerlok/",
       "website": null,
       "autonomy": "shelved",
       "progress": 20,
@@ -439,16 +703,18 @@
         "repo": false,
         "state": "not_a_repo",
         "remote": null,
-        "uncommitted": null,
-        "unpushed": null,
         "branch": null,
+        "uncommitted": 0,
+        "unpushed": 0,
         "last_commit": null,
-        "checked": "2026-05-28"
-      }
+        "checked": "2026-09-04"
+      },
+      "file_count": 31
     },
     {
       "id": "the_block_train",
       "name": "The Block Train",
+      "philosophy": "A single rhymin' verse in a tin cup. Plant it if ya come back to it; let it rest if ya don't — no shame in either.",
       "tier": "active",
       "status": "paused",
       "location": "/Users/kevinsotka/Meatbag_Labs/the_block_train/",
@@ -470,24 +736,52 @@
       "next_action": "Hitched to a post 2026-05-24. One rhyming-story draft exists; resume if revived.",
       "decision": null,
       "notes": "Seed stage — a single rhyming story draft. Moved to Active + parked 2026-05-24.",
+      "updates": [
+        {
+          "text": "One rhyming-story draft exists",
+          "tone": "note"
+        },
+        {
+          "text": "Parked 2026-05-24, sitting in Active tier",
+          "tone": "note"
+        }
+      ],
+      "next_steps": [
+        {
+          "text": "Revive only if Kevin reopens it — nothing scheduled",
+          "tone": "later"
+        }
+      ],
+      "risks_issues": [
+        {
+          "text": "Last touched 2025-01-09 — over a year cold",
+          "tone": "med"
+        },
+        {
+          "text": "Seed stage, no traction signal yet",
+          "tone": "low"
+        }
+      ],
       "last_touched": "2025-01-09",
       "git_state": {
         "repo": false,
         "state": "not_a_repo",
         "remote": null,
-        "uncommitted": null,
-        "unpushed": null,
         "branch": null,
+        "uncommitted": 0,
+        "unpushed": 0,
         "last_commit": null,
-        "checked": "2026-05-28"
-      }
+        "checked": "2026-09-04"
+      },
+      "file_count": 1
     },
     {
       "id": "motif_cadence",
       "name": "Motif of the Cadence Collective",
+      "philosophy": "A Godot scaffold with no song attached. Existential evaluation needed — what was the cadence for, and is it still callin' you?",
       "tier": "exploratory",
       "status": "shelved",
-      "location": "/Users/kevinsotka/Meatbag_Labs/motif-of-the-cadence-collective/",
+      "location": "/Users/kevinsotka/Meatbag_Labs/hitfactory.games/motif-of-the-cadence-collective/",
       "website": null,
       "autonomy": "shelved",
       "progress": 20,
@@ -506,24 +800,26 @@
       "next_action": "Shelved 2026-05-23 — revive only if Kevin reopens it",
       "decision": null,
       "notes": "Shelved 2026-05-23. Godot project scaffold. Intent unknown.",
-      "last_touched": "2025-04-26",
+      "last_touched": "2025-04-25",
       "git_state": {
         "repo": false,
         "state": "not_a_repo",
         "remote": null,
-        "uncommitted": null,
-        "unpushed": null,
         "branch": null,
+        "uncommitted": 0,
+        "unpushed": 0,
         "last_commit": null,
-        "checked": "2026-05-28"
-      }
+        "checked": "2026-09-04"
+      },
+      "file_count": 164
     },
     {
       "id": "swatch",
       "name": "Swatch",
+      "philosophy": "Art-as-tool that found its level — small, self-contained, workin'. The template The Wall just decided to become.",
       "tier": "exploratory",
       "status": "launched-shelved",
-      "location": "/Users/kevinsotka/Meatbag_Labs/swatch/",
+      "location": "/Users/kevinsotka/Meatbag_Labs/hitfactory.games/swatch/",
       "website": null,
       "autonomy": "shelved",
       "progress": 60,
@@ -547,16 +843,18 @@
         "repo": false,
         "state": "not_a_repo",
         "remote": null,
-        "uncommitted": null,
-        "unpushed": null,
         "branch": null,
+        "uncommitted": 0,
+        "unpushed": 0,
         "last_commit": null,
-        "checked": "2026-05-28"
-      }
+        "checked": "2026-09-04"
+      },
+      "file_count": 2
     },
     {
       "id": "milk_and_butt",
       "name": "Milk And Butt",
+      "philosophy": "Complete and quiet, with a QR code pointin' nowhere in particular. Best look this horse in the mouth — what was it for, and is it still for that?",
       "tier": "exploratory",
       "status": "launched-shelved",
       "location": "/Users/kevinsotka/Meatbag_Labs/Milk And Butt/",
@@ -583,19 +881,21 @@
         "repo": false,
         "state": "not_a_repo",
         "remote": null,
-        "uncommitted": null,
-        "unpushed": null,
         "branch": null,
+        "uncommitted": 0,
+        "unpushed": 0,
         "last_commit": null,
-        "checked": "2026-05-28"
-      }
+        "checked": "2026-09-04"
+      },
+      "file_count": 9
     },
     {
       "id": "oregon_fail",
       "name": "Oregon Fail — Indie Game",
+      "philosophy": "Riventide's sibling, packed up with a playthrough tape. Mine it for content if ya got a story to tell about it; otherwise let it ride.",
       "tier": "exploratory",
-      "status": "launched-shelved",
-      "location": "/Users/kevinsotka/Meatbag_Labs/Oregon_Fail/",
+      "status": "shipped",
+      "location": "/Users/kevinsotka/Meatbag_Labs/hitfactory.games/Oregon_Fail/",
       "website": "itch.io",
       "autonomy": "paused",
       "progress": 100,
@@ -611,20 +911,957 @@
         "integrations": 2,
         "manual_burden": 1
       },
-      "next_action": "Launched then shelved. Has index.html + playthrough video. Revive or mine for content if reopened.",
+      "next_action": "Launched (web build + playthrough). Mine for content if a story calls for it.",
       "decision": null,
       "notes": "Discovered + added 2026-05-24. Launched indie game (web build + playthrough.mp4). Companion to Riventide.",
-      "last_touched": "2025-04-04",
+      "last_touched": "2026-09-02",
       "git_state": {
         "repo": false,
         "state": "not_a_repo",
         "remote": null,
-        "uncommitted": null,
-        "unpushed": null,
         "branch": null,
+        "uncommitted": 0,
+        "unpushed": 0,
         "last_commit": null,
-        "checked": "2026-05-28"
-      }
+        "checked": "2026-09-04"
+      },
+      "file_count": 20
+    },
+    {
+      "id": "factory_cats",
+      "name": "FACTORY CATS — Pool-Noodle FPS",
+      "philosophy": "Doom, but the gun is a pool noodle and the demons are cats. Spec'd, built, tested, and shipped in one sitting — the cleanest pipeline run in the portfolio.",
+      "tier": "active",
+      "status": "shipped",
+      "location": "/Users/kevinsotka/Meatbag_Labs/hitfactory.games/factory-cats/",
+      "website": "https://kevin-sotka.github.io/factory-cats/",
+      "autonomy": "paused",
+      "progress": 100,
+      "value": {
+        "consumer_potential": 3,
+        "personal_satisfaction": 4,
+        "reach": 3,
+        "profitability": 1
+      },
+      "complexity": {
+        "engineering": 3,
+        "review_frequency": 1,
+        "integrations": 1,
+        "manual_burden": 1
+      },
+      "next_action": "Play it once for real — automated tests couldn't verify pointer-lock mouse feel. Then decide on PRD §10 extras (sound, mobile, high scores).",
+      "decision": null,
+      "notes": "v0.1 shipped 2026-06-09 to GitHub Pages via agent pipeline (build → browser-test → deploy → live verify). Pure static Three.js, zero backend. Both levels verified end-to-end with zero console errors; one viewmodel bug found and fixed in testing. Value/complexity scores proposed by SodClaw, pending Kevin's ratification. 2026-09-04: public /projects card folded into the Hit Factory Games studio tile; it's in games.json and on hitfactory.games.",
+      "updates": [
+        {
+          "text": "v0.1 live at kevin-sotka.github.io/factory-cats",
+          "tone": "good"
+        },
+        {
+          "text": "Full browser test pass: both levels, win/lose, zero console errors",
+          "tone": "good"
+        }
+      ],
+      "next_steps": [
+        {
+          "text": "Human playthrough to feel-check real pointer lock",
+          "tone": "soon"
+        },
+        {
+          "text": "PRD §10: sound, mobile/touch, localStorage high score",
+          "tone": "later"
+        }
+      ],
+      "risks_issues": [
+        {
+          "text": "Pointer-lock feel never verified by a human (automation can't engage it)",
+          "tone": "low"
+        }
+      ],
+      "last_touched": "2026-06-10",
+      "git_state": {
+        "repo": true,
+        "state": "synced",
+        "remote": "https://github.com/kevin-sotka/factory-cats.git",
+        "branch": "main",
+        "uncommitted": 0,
+        "unpushed": 0,
+        "last_commit": "2026-06-09",
+        "checked": "2026-09-04"
+      },
+      "public": false,
+      "file_count": 13
+    },
+    {
+      "id": "kalevala_runo",
+      "name": "Runo — Songs of the Kalevala",
+      "philosophy": "First game off the Foundry line — proof the prompt-to-playable pipeline works, and a pretty thing in its own right.",
+      "tier": "exploratory",
+      "status": "shipped",
+      "location": "/Users/kevinsotka/Meatbag_Labs/hitfactory.games/kalevala-runo/",
+      "website": "https://kevin-sotka.github.io/kalevala-runo/",
+      "autonomy": "draft-and-approve",
+      "progress": 85,
+      "value": {
+        "consumer_potential": null,
+        "personal_satisfaction": null,
+        "reach": null,
+        "profitability": null
+      },
+      "complexity": {
+        "engineering": null,
+        "review_frequency": null,
+        "integrations": null,
+        "manual_burden": null
+      },
+      "next_action": "Kevin: playtest live on iPhone (rotate gate + add-to-home-screen icon), set scores; music pass later via audio.js",
+      "decision": "Third runo (Lemminkäinen / the Kantele) before promoting out of Exploratory, or let v1 ride?",
+      "notes": "Built 2026-06-11 by the SodClaw Game Foundry from a one-line prompt. Dark cinematic side-scroller through the Kalevala: Ep I Birth of Väinämöinen, Ep II The Sampo. Phaser 3 via CDN, 100% procedural art/audio, zero external assets, mobile touch controls. QA'd; one storm-sequence crash found and fixed at the gate. Scores left blank for Kevin — progress 75 is a Foundry proposal. Registered Exploratory per registry rule (new projects earn their way up) — promote if it earns it. 2026-09-04: public /projects card folded into the Hit Factory Games studio tile; it's in games.json and on hitfactory.games.",
+      "git_state": {
+        "repo": true,
+        "state": "partially_synced",
+        "remote": "https://github.com/kevin-sotka/kalevala-runo.git",
+        "branch": "main",
+        "uncommitted": 1,
+        "unpushed": 0,
+        "last_commit": "2026-06-13",
+        "checked": "2026-09-04"
+      },
+      "stack": "Phaser 3 (CDN, static, no build step)",
+      "last_touched": "2026-06-13",
+      "next_steps": [
+        "Kevin playtest live URL on desktop + phone",
+        "Set value/complexity scores",
+        "Music pass (Kevin's tracks into audio.js)",
+        "Decide: third episode or let v1 ride"
+      ],
+      "risks_issues": [],
+      "updates": [
+        {
+          "date": "2026-06-11",
+          "note": "v1 built end-to-end by the Game Foundry pipeline (design Sonnet/Fable, build Sonnet, polish+QA+deploy Haiku). Two episodes playable, README + deploy notes in folder."
+        },
+        {
+          "date": "2026-06-12",
+          "note": "Shipped: pushed to GitHub (kevin-sotka/kalevala-runo) and live on Pages at kevin-sotka.github.io/kalevala-runo/. Verse rename to 'the sotka' included. Audio pass deferred."
+        },
+        {
+          "date": "2026-06-13",
+          "note": "Mobile-friendly pass: rotate-to-landscape gate (portrait touch devices), multi-touch fix so move+jump work together, favicon + apple-touch-icon + PWA manifest from runo.png (iOS Add-to-Home-Screen = fullscreen landscape app). Pushed and live."
+        }
+      ],
+      "public": false,
+      "file_count": 23
+    },
+    {
+      "id": "foundry",
+      "name": "Foundry",
+      "tier": "exploratory",
+      "status": "active",
+      "location": "/Users/kevinsotka/Meatbag_Labs/hitfactory.games/Foundry/",
+      "website": null,
+      "autonomy": "kevin-only",
+      "progress": null,
+      "value": {
+        "consumer_potential": null,
+        "personal_satisfaction": null,
+        "reach": null,
+        "profitability": null
+      },
+      "complexity": {
+        "engineering": null,
+        "review_frequency": null,
+        "integrations": null,
+        "manual_burden": null
+      },
+      "next_action": "Confirm scope: prompt-to-playable game pipeline; run/playtest next Foundry build",
+      "decision": null,
+      "notes": "Tracked 2026-06-13 (was untracked). Game Foundry pipeline working folder — design→build→polish→test→deploy from a one-line prompt. First line-off output: Runo (Kalevala), shipped 2026-06-12.",
+      "last_touched": "2026-09-03",
+      "git_state": {
+        "repo": false,
+        "state": "not_a_repo",
+        "remote": null,
+        "branch": null,
+        "uncommitted": 0,
+        "unpushed": 0,
+        "last_commit": null,
+        "checked": "2026-09-04"
+      },
+      "updates": [
+        {
+          "text": "Promoted from untracked to tracked 2026-06-13",
+          "tone": "good"
+        }
+      ],
+      "file_count": 219
+    },
+    {
+      "id": "know_kevin",
+      "name": "Know Kevin",
+      "tier": "exploratory",
+      "status": "unknown",
+      "location": "/Users/kevinsotka/Meatbag_Labs/Know Kevin/",
+      "website": null,
+      "autonomy": "kevin-only",
+      "progress": null,
+      "value": {
+        "consumer_potential": null,
+        "personal_satisfaction": null,
+        "reach": null,
+        "profitability": null
+      },
+      "complexity": {
+        "engineering": null,
+        "review_frequency": null,
+        "integrations": null,
+        "manual_burden": null
+      },
+      "next_action": "Kevin: confirm whether to track this as a project or fold/ignore it",
+      "decision": null,
+      "notes": "Auto-added by sweep 2026-06-12 (untracked folder, 1 file). Pending Kevin: track or ignore.",
+      "last_touched": "2026-08-31",
+      "git_state": {
+        "repo": false,
+        "state": "not_a_repo",
+        "remote": null,
+        "branch": null,
+        "uncommitted": 0,
+        "unpushed": 0,
+        "last_commit": null,
+        "checked": "2026-09-04"
+      },
+      "file_count": 11
+    },
+    {
+      "id": "business_strategist",
+      "name": "business_strategist",
+      "tier": "exploratory",
+      "status": "unknown",
+      "location": "/Users/kevinsotka/Meatbag_Labs/business_strategist/",
+      "website": null,
+      "autonomy": "kevin-only",
+      "progress": null,
+      "value": {
+        "consumer_potential": null,
+        "personal_satisfaction": null,
+        "reach": null,
+        "profitability": null
+      },
+      "complexity": {
+        "engineering": null,
+        "review_frequency": null,
+        "integrations": null,
+        "manual_burden": null
+      },
+      "next_action": "Kevin: confirm whether to track this as a project or fold/ignore it",
+      "decision": null,
+      "notes": "Auto-added by sweep 2026-06-12 (untracked folder, 2 files). Pending Kevin: track or ignore.",
+      "last_touched": "2026-08-11",
+      "git_state": {
+        "repo": false,
+        "state": "not_a_repo",
+        "remote": null,
+        "branch": null,
+        "uncommitted": 0,
+        "unpushed": 0,
+        "last_commit": null,
+        "checked": "2026-09-04"
+      },
+      "file_count": 3
+    },
+    {
+      "id": "meatbag_made_brand",
+      "name": "Meatbag Made — The Land",
+      "tier": "exploratory",
+      "status": "active",
+      "location": "/Users/kevinsotka/Meatbag_Labs/meatbag_made_brand/",
+      "website": null,
+      "autonomy": "kevin-only",
+      "progress": null,
+      "value": {
+        "consumer_potential": null,
+        "personal_satisfaction": null,
+        "reach": null,
+        "profitability": null
+      },
+      "complexity": {
+        "engineering": null,
+        "review_frequency": null,
+        "integrations": null,
+        "manual_burden": null
+      },
+      "next_action": "Kevin: confirm whether to track this as a project or fold/ignore it",
+      "decision": null,
+      "notes": "Auto-added by sweep 2026-06-12 (untracked folder, 19 files). Pending Kevin: track or ignore. Front door rebuilt Aug 2026: meatbagmade.com is now 'the land' — an illustrated world you walk into, with Sotkajärvi village inside it (deploy bundles in meatbagmade-deploy-2026-08-17/, five homepage mockups in mockups/). 2026-09-04: made public.",
+      "last_touched": "2026-08-17",
+      "git_state": {
+        "repo": false,
+        "state": "not_a_repo",
+        "remote": null,
+        "branch": null,
+        "uncommitted": 0,
+        "unpushed": 0,
+        "last_commit": null,
+        "checked": "2026-09-04"
+      },
+      "public": {
+        "name": "Meatbag Made",
+        "label": "Live",
+        "blurb": "The front door to the whole territory. Ain't a homepage so much as a country — walk in and the land opens up around ya, villages and all.",
+        "link": "https://meatbagmade.com/",
+        "link_text": "Enter the land"
+      },
+      "file_count": 26
+    },
+    {
+      "id": "splice_lab",
+      "name": "Splice Lab — Hybrid Creature Mixer",
+      "philosophy": "A one-sitting toy from the Foundry. Mix-and-match parts, exquisite-corpse style — humans into aliens. Built, verified, and parked as a throwaway curio until Kevin says otherwise.",
+      "tier": "exploratory",
+      "status": "shipped",
+      "location": "/Users/kevinsotka/Meatbag_Labs/hitfactory.games/splice-lab/",
+      "website": null,
+      "autonomy": "manual",
+      "progress": 100,
+      "value": {
+        "consumer_potential": null,
+        "personal_satisfaction": null,
+        "reach": null,
+        "profitability": null
+      },
+      "complexity": {
+        "engineering": null,
+        "review_frequency": null,
+        "integrations": null,
+        "manual_burden": null
+      },
+      "next_action": "Launched + live on GitHub Pages. Optional: share it; add color tint / PNG export.",
+      "decision": null,
+      "notes": "Foundry build. Original prompt asked to stitch parts from photos of girls + aliens; reframed to original illustrated humans+aliens (216 hybrids) to keep it clean and asset-free. Single-file HTML/SVG, mobile-first, no build step. Verified rendering + mixing in preview.",
+      "updates": [
+        {
+          "date": "2026-06-12",
+          "text": "Published to GitHub Pages. Repo: https://github.com/kevin-sotka/splice-lab (public, main branch, root). Live: https://kevin-sotka.github.io/splice-lab/ — verified 200 + serving current build. .claude/ gitignored. Authorized + requested by Kevin."
+        },
+        {
+          "date": "2026-06-12",
+          "text": "v1.3 per Kevin: split splicing into per-part controls — head/torso/legs each get their own human + alien splice button (no more pick-a-part-first step). Decoupled naming from splicing: the ROLL NAME jackpot now appears only on CAPTURE and renders directly below the specimen (under the chamber/DNA readout), not beside the splice buttons. Removed the live working-name; DNA readout stays. Verified: 3 part-rows x human/alien splice deliberate-builds the alien girl (33/67), namer stays hidden until capture then sits below specimen + above the lab, rolls stay unique."
+        },
+        {
+          "date": "2026-06-12",
+          "text": "v1.2 per Kevin: renamed the saved-jars shelf to THE LAB; added a human-alien name jackpot. On CAPTURE a naming panel opens with a big gradient name + ROLL NAME button — each click generates a fresh weird human-girl-root x alien-affix name (8 patterns: apostrophes, hyphen-numbers, of-titles) that writes onto the specimen and its jar tag live; consecutive rolls never repeat; keep closes it. Verified: 6 rolls gave 6 unique names, jar tag + localStorage update live, delete-while-naming closes the panel."
+        },
+        {
+          "date": "2026-06-12",
+          "text": "v1.1 per Kevin: replaced auto-only splice with deliberate part control — pick a band (tap it or the HEAD/TORSO/LEGS picker, active band glows) then HUMAN SPLICE / ALIEN SPLICE set that part by species; ⚡ SPLICE ALL keeps the original full-random roll. Fixed the capture button feeling dead: added camera-flash + toast confirmation, renamed to CAPTURE, library now persists to localStorage across reloads with delete. Verified per-part mixing, capture, persistence, and delete in preview."
+        },
+        {
+          "date": "2026-06-12",
+          "text": "Built and verified in the Foundry pipeline. Full hybrid renders with aligned neck/waist seams; band-cycle, SPLICE randomize, SPECIMEN save-to-gallery, generated names, and human/alien DNA readout all working on mobile viewport."
+        }
+      ],
+      "next_steps": [
+        "Kevin playtests",
+        "Decide shelve vs. v1.1 feature list"
+      ],
+      "risks_issues": [
+        "Throwaway scope by default — only grows if Kevin wants it to."
+      ],
+      "last_touched": "2026-06-12",
+      "git_state": {
+        "repo": true,
+        "state": "synced",
+        "remote": "https://github.com/kevin-sotka/splice-lab.git",
+        "branch": "main",
+        "uncommitted": 0,
+        "unpushed": 0,
+        "last_commit": "2026-06-12",
+        "checked": "2026-09-04"
+      },
+      "public": false,
+      "live_url": "https://kevin-sotka.github.io/splice-lab/",
+      "repo_url": "https://github.com/kevin-sotka/splice-lab",
+      "file_count": 5
+    },
+    {
+      "id": "snow_day_tycoon",
+      "name": "Snow Day Tycoon",
+      "philosophy": "Foundry build from a one-line prompt: a Roblox-Snowplow-Simulator-style plow tycoon for the web. Drive, clear snow for cash, grow a fleet. Theme extracted from the prompt; shipped as a playable v1.",
+      "tier": "exploratory",
+      "status": "shipped",
+      "location": "/Users/kevinsotka/Meatbag_Labs/hitfactory.games/snow-day-tycoon/",
+      "website": null,
+      "autonomy": "manual",
+      "progress": 100,
+      "value": {
+        "consumer_potential": null,
+        "personal_satisfaction": null,
+        "reach": null,
+        "profitability": null
+      },
+      "complexity": {
+        "engineering": null,
+        "review_frequency": null,
+        "integrations": null,
+        "manual_burden": null
+      },
+      "next_action": "Launched. Optional: tune economy/balance or publish wider; Kevin to set subjective scores.",
+      "decision": null,
+      "notes": "Foundry pipeline (design Fable / build Sonnet sub-agent / QA by orchestrator at gate / deploy Haiku-class). Single-file Phaser 3 (CDN), zero external assets (all procedural art + Web Audio), localStorage save. Six features, all verified live in preview: power-ups, 5-vehicle selection+purchase, paint/blade/decal customization, 4-zone progression, real-time snowfall + blizzard bonus events, rotating daily contracts. Estimator predicted ~502k tokens; Sonnet build actual ~50k (estimator still ~2.5x+ hot at M/phaser). [06-14] Per-zone themed scenery added (houses/trees/buildings/terminal+jets), all procedural.",
+      "updates": [
+        {
+          "date": "2026-06-14",
+          "text": "Added themed scenery per zone (Fable in-session polish pass). A wide procedural margin now frames the plowable grid: Driveway = house + driveway apron + pines + mailbox; Cul-de-sac = ring of houses with driveways + trees; Downtown = skyscrapers w/ lit-window grids + street lamps; Airport = glass terminal + control tower + parked jets nose-in along the runway + apron lights. All procedural (zero assets), grid origin shifted to a 220px pad (plow/snowfall math untouched — routes through gridOrigin). Verified all 4 zones live in preview, no console errors, vehicle still centers, fresh save renders clean."
+        },
+        {
+          "date": "2026-06-13",
+          "text": "Built and verified in the Foundry. All 6 features exercised live in preview (drove + cleared snow to bank cash, triggered+survived a blizzard for the bonus, collected a Wide Blade power-up, bought the Pickup -> SELECT with cash debited, recolored the truck red live in Customize, confirmed 4 zones with the designed grid/rate/pay curve, localStorage save verified). Zero console errors. Stack: single-file Phaser 3 via CDN, procedural art, no asset 404s."
+        }
+      ],
+      "next_steps": [
+        "Kevin playtests",
+        "Decide: tune/balance vs. publish vs. shelve"
+      ],
+      "risks_issues": [
+        "Exploratory scope by default — only grows if Kevin wants it to.",
+        "Minor: in-garage purchases flush to localStorage on garage-close / play tick, not on the exact click — fine for normal play."
+      ],
+      "last_touched": "2026-06-14",
+      "git_state": {
+        "repo": false,
+        "state": "not_a_repo",
+        "remote": null,
+        "branch": null,
+        "uncommitted": 0,
+        "unpushed": 0,
+        "last_commit": null,
+        "checked": "2026-09-04"
+      },
+      "public": false,
+      "live_url": null,
+      "repo_url": null,
+      "file_count": 4
+    },
+    {
+      "id": "claim_wrangler",
+      "name": "Claim Wrangler",
+      "tier": "exploratory",
+      "status": "active",
+      "location": "/Users/kevinsotka/Meatbag_Labs/Claim_Wrangler/",
+      "website": null,
+      "autonomy": "draft-and-approve",
+      "progress": null,
+      "value": {
+        "consumer_potential": null,
+        "personal_satisfaction": null,
+        "reach": null,
+        "profitability": null
+      },
+      "complexity": {
+        "engineering": null,
+        "review_frequency": null,
+        "integrations": null,
+        "manual_burden": null
+      },
+      "next_action": "Use as claims come in: prep + track each superbill; watch the 12-month filing clock.",
+      "decision": null,
+      "notes": "Family tool for getting out-of-network superbills reimbursed by Aetna. Three jobs: PREP (parse superbill, validate Aetna's required fields, auto-fill the member claim form), TRACK (claims.json ledger from submitted→paid with the 12-month deadline clock), and assisted SUBMIT (Claude drives the portal up to the button; Kevin reviews and clicks). Has its own CLAUDE.md, superbill-prep skill, claims.json ledger, and dashboard.html. Hard guardrails: human clicks submit (fraud attestation), 12-month filing deadline per claim, and it's explicitly NOT a product — one family, no other PHI; if it ever serves others, stop (HIPAA conversation, not a rename). Tracked 2026-06-23 per Kevin.",
+      "last_touched": "2026-06-24",
+      "git_state": {
+        "repo": false,
+        "state": "not_a_repo",
+        "remote": null,
+        "branch": null,
+        "uncommitted": 0,
+        "unpushed": 0,
+        "last_commit": null,
+        "checked": "2026-09-04"
+      },
+      "updates": [
+        {
+          "text": "Tracked 2026-06-23 — family OON-claim prep + tracking tool (was untracked)",
+          "tone": "good"
+        },
+        {
+          "text": "Working: superbill-prep skill, claims.json ledger, dashboard",
+          "tone": "good"
+        }
+      ],
+      "philosophy": "A household utility, not a product. Wrangles out-of-network superbills into Aetna reimbursements with the least re-typing and zero dropped claims — preps everything, but a human always clicks submit.",
+      "next_steps": [
+        {
+          "text": "Run prep + track on each new superbill as it arrives",
+          "tone": "now"
+        },
+        {
+          "text": "Keep the 12-month deadline clock loud on open claims",
+          "tone": "soon"
+        }
+      ],
+      "risks_issues": [
+        {
+          "text": "Not in Git — family claim data + ledger isn't backed up",
+          "tone": "med"
+        },
+        {
+          "text": "Hard boundary: stays a one-family tool (multi-tenant = HIPAA, different architecture)",
+          "tone": "low"
+        }
+      ],
+      "public": false,
+      "file_count": 4
+    },
+    {
+      "id": "meatbag_method",
+      "name": "Meatbag Method — AI Education Brand",
+      "philosophy": "The claim that finally drives a stake in the consulting vein — but sells the pickaxe, not the gold. Teach folks to pan for themselves; every other project on the map becomes a live demo.",
+      "tier": "active",
+      "status": "active",
+      "location": "/Users/kevinsotka/Meatbag_Labs/meatbag_method/",
+      "website": "meatbagmade.com (YouTube series)",
+      "autonomy": "draft-and-approve",
+      "progress": null,
+      "value": {
+        "consumer_potential": null,
+        "personal_satisfaction": null,
+        "reach": null,
+        "profitability": null
+      },
+      "complexity": {
+        "engineering": null,
+        "review_frequency": null,
+        "integrations": null,
+        "manual_burden": null
+      },
+      "next_action": "Record Episode 1 (Build Your Own Newsletter deck); review + record Episode 0 (AI Basics) and publish it first. Ship Workshop 01 before any wrapper work.",
+      "decision": "Series name not final (candidates: The Meatbag Method, Prompt Shop Class, Go Get It, Built Not Bought, Fishing Lessons).",
+      "notes": "Kevin's first consulting foray (declared 2026-07-13). Consumer/education translation of his corporate AI-enablement methodology — a YouTube series teaching everyday people how to approach AI. Method: Pick -> Prompt -> Prune -> Ritual; prompt anatomy RCTFC (same framework as the day-job program — one methodology, two markets). Promise: 'leave with a skill, not a subscription.' Voice: Bob Ross, neither hype nor fear. Episode 0 (AI Basics, level-set, teal) and Episode 1 (Build Your Own Newsletter — fantasy football, purple) decks built July 2026, scripts in speaker notes. Existing projects (Gridiron Gazette, train blog) become live demos, not products. Guardrail: ship Workshop 01 before wrapper/funnel work; watch the 80% stall. Distinct from the shelved consulting-quickening (that was the startup framing; this is the education-brand framing). Scores blank pending Kevin.",
+      "updates": [
+        {
+          "text": "Tracked 2026-07-13 per Kevin — his first consulting foray, AI-education YouTube brand. Ep 0 + Ep 1 decks built.",
+          "tone": "good"
+        }
+      ],
+      "last_touched": "2026-08-19",
+      "git_state": {
+        "repo": false,
+        "state": "not_a_repo",
+        "remote": null,
+        "branch": null,
+        "uncommitted": 0,
+        "unpushed": 0,
+        "last_commit": null,
+        "checked": "2026-09-04"
+      },
+      "public": false,
+      "file_count": 30
+    },
+    {
+      "id": "jobclaw",
+      "name": "JobClaw — Job-Search Agent",
+      "tier": "exploratory",
+      "status": "active",
+      "location": "/Users/kevinsotka/Meatbag_Labs/jobclaw/",
+      "website": null,
+      "autonomy": "kevin-only",
+      "progress": null,
+      "value": {
+        "consumer_potential": null,
+        "personal_satisfaction": null,
+        "reach": null,
+        "profitability": null
+      },
+      "complexity": {
+        "engineering": null,
+        "review_frequency": null,
+        "integrations": null,
+        "manual_burden": null
+      },
+      "next_action": "Keep the pipeline current; candidate live demo for the Meatbag Method series.",
+      "decision": null,
+      "notes": "Auto-added by sweep 2026-07-13 (untracked folder, 30 files). Job-search agent: CLAUDE.md, PLAYBOOK.md, pipeline.json, and applications/dossiers/outreach/skills subfolders. Active Jul 2026. Pending Kevin: track or ignore. (Note: meatbag_method's brainstorm Episode 9 is 'Build Your Own Job Search Agent' — possible live demo.) 2026-09-04: confirmed as a tracked project and made public (no link — it's a personal tool, not a product).",
+      "last_touched": "2026-09-01",
+      "git_state": {
+        "repo": false,
+        "state": "not_a_repo",
+        "remote": null,
+        "branch": null,
+        "uncommitted": 0,
+        "unpushed": 0,
+        "last_commit": null,
+        "checked": "2026-09-04"
+      },
+      "public": {
+        "name": "JobClaw",
+        "label": "On the workbench",
+        "blurb": "A hired hand that runs a job hunt — keeps the pipeline, writes the dossiers, and does the outreach legwork so a person don't have to.",
+        "link": null,
+        "link_text": null
+      },
+      "file_count": 161
+    },
+    {
+      "id": "kevinsotka_com",
+      "name": "kevinsotka.com — Consulting Hub",
+      "tier": "active",
+      "status": "active",
+      "location": "/Users/kevinsotka/Meatbag_Labs/kevinsotka.com/",
+      "website": null,
+      "autonomy": "draft-and-approve",
+      "progress": null,
+      "value": {
+        "consumer_potential": null,
+        "personal_satisfaction": null,
+        "reach": null,
+        "profitability": null
+      },
+      "complexity": {
+        "engineering": null,
+        "review_frequency": null,
+        "integrations": null,
+        "manual_burden": null
+      },
+      "next_action": "Build out the consulting home (bio, methodology, evidence, offer briefs, ecosystem + mockups). consulting-quickening's competitive briefs feed in.",
+      "decision": null,
+      "notes": "Designated the MAIN consulting folder 2026-07-24 per Kevin (hub designation only — files stay where they are, nothing moved on disk). Rolled up under it: consulting-quickening (its competitive briefs). Web presence: bio, methodology, evidence (roi-ranges, use-cases, roles-trained, proof-points), ecosystem-strategy, enablement-offer-briefs, and 3 HTML mockups. business_strategist, meatbag_made_brand, Know Kevin, and meatbag_method stay independent for now (not folded in).",
+      "last_touched": "2026-09-04",
+      "git_state": {
+        "repo": false,
+        "state": "not_a_repo",
+        "remote": null,
+        "branch": null,
+        "uncommitted": 0,
+        "unpushed": 0,
+        "last_commit": null,
+        "checked": "2026-09-04"
+      },
+      "updates": [
+        {
+          "text": "Promoted to tracked Active project 2026-07-24 — Kevin's designated consulting hub",
+          "tone": "good"
+        }
+      ],
+      "rolls_up": [
+        "consulting_quickening"
+      ],
+      "public": {
+        "name": "Business & AI Consulting",
+        "label": "On the workbench",
+        "blurb": "Kevin's day-job trade, out on its own: teachin' real teams to actually use these machines. No hype, no hand-wavin' — you leave with a skill, not a subscription.",
+        "link": null,
+        "link_text": null
+      },
+      "file_count": 18
+    },
+    {
+      "id": "aphelion",
+      "name": "Aphelion — Space Exploration Game",
+      "philosophy": "Quality-first, not cheap. One bar, no final round. Stop by decision, not by schedule.",
+      "tier": "shelved",
+      "status": "shelved",
+      "location": "/Users/kevinsotka/Meatbag_Labs/hitfactory.games/giga-foundry/aphelion/",
+      "website": null,
+      "autonomy": "kevin-only",
+      "progress": 25,
+      "stack": "Three.js r185 + Vite 8, WebGL2, all content procedural",
+      "value": {
+        "consumer_potential": null,
+        "personal_satisfaction": null,
+        "reach": null,
+        "profitability": null
+      },
+      "complexity": {
+        "engineering": null,
+        "review_frequency": null,
+        "integrations": null,
+        "manual_burden": null
+      },
+      "next_action": "None. Shelved 2026-09-04. If it ever restarts, the order is in runs/aphelion/run_notes.md: light transport first (one fix, leverage across all nine scenarios), then the orbit black-planet defect, then anti-aliasing, then the sky tiling.",
+      "decision": "Kevin shelved it after the first critic round returned 3 of 3 losses and named a rendering-architecture fix as the price of continuing. Stopped by decision, which is how the gauntlet method is meant to end.",
+      "notes": "First giga-foundry gauntlet run. Bar: No Man's Sky as the floor everywhere; Elite Dangerous for cockpit/HUD, KSP + Space Engineers for the ship builder, Outer Wilds for system scale. 40 curated reference images on disk in runs/aphelion/bar/. Actuals go to runs/aphelion/run_notes.md, NEVER to foundry's calibration_log.jsonl.",
+      "part_of": "giga-foundry",
+      "last_touched": "2026-09-04",
+      "git_state": {
+        "repo": false,
+        "state": "not_a_repo",
+        "remote": null,
+        "branch": null,
+        "uncommitted": 0,
+        "unpushed": 0,
+        "last_commit": null,
+        "checked": "2026-09-04"
+      },
+      "public": false,
+      "file_count": 72
+    },
+    {
+      "id": "hitfactory_games",
+      "name": "Hit Factory Games — The Studio",
+      "philosophy": "A whole main street of attractions beats one lonely saloon. Keep the line runnin' and let the good ones find their crowd.",
+      "tier": "active",
+      "status": "active",
+      "location": "/Users/kevinsotka/Meatbag_Labs/hitfactory.games/",
+      "website": "hitfactory.games",
+      "autonomy": "draft-and-approve",
+      "progress": null,
+      "value": {
+        "consumer_potential": null,
+        "personal_satisfaction": null,
+        "reach": null,
+        "profitability": null
+      },
+      "complexity": {
+        "engineering": null,
+        "review_frequency": null,
+        "integrations": null,
+        "manual_burden": null
+      },
+      "next_action": "Keep games.json honest and push the site when the catalog shifts; ship the next Foundry build.",
+      "decision": "Kevin sets the value/complexity scores for the studio umbrella.",
+      "notes": "Tracked 2026-09-04. Kevin's game studio and the umbrella over every game folder: 34 games in games.json, 13 of 'em shipped and live in a browser. Two orchestrators underneath — Foundry (volume, cheapest tier that clears the bar) and giga-foundry (quality, loop 'til it beats an external bar). Public front door is a 1970s living room with a CRT: turn the dial, change the channel, each channel's a game (site/dist/index.html). games.json wins over portfolio.json for any game in that folder.",
+      "updates": [
+        {
+          "text": "Studio brand + games.json catalog stood up; 13 games shipped and playable",
+          "tone": "good"
+        },
+        {
+          "text": "hitfactory.games front door built (CRT dial room, site/dist)",
+          "tone": "good"
+        }
+      ],
+      "next_steps": [
+        {
+          "text": "Verify hitfactory.games is serving the built site, not a parked page",
+          "tone": "now"
+        },
+        {
+          "text": "Kevin: set value/complexity scores for the studio",
+          "tone": "next"
+        }
+      ],
+      "risks_issues": [
+        {
+          "text": "Two sources of truth (games.json vs portfolio.json) can drift",
+          "tone": "med"
+        }
+      ],
+      "last_touched": "2026-09-03",
+      "public": {
+        "name": "Hit Factory Games",
+        "label": "Live",
+        "blurb": "Kevin's game studio, and the front door's a livin' room with a CRT in it. Turn the dial, change the channel — every channel's a game that plays right there in your browser. Thirteen runnin' so far and the line ain't stopped.",
+        "link": "https://hitfactory.games/",
+        "link_text": "Turn the dial"
+      },
+      "git_state": {
+        "repo": false,
+        "state": "not_a_repo",
+        "remote": null,
+        "branch": null,
+        "uncommitted": 0,
+        "unpushed": 0,
+        "last_commit": null,
+        "checked": "2026-09-04"
+      },
+      "file_count": 4650
+    },
+    {
+      "id": "kalevala_stories",
+      "name": "Sotkajärvi — Kalevala Stories",
+      "philosophy": "Old songs, retold plain. Seven sheets of paper on a board — no machinery, nothin' to break.",
+      "tier": "exploratory",
+      "status": "shipped",
+      "location": "/Users/kevinsotka/Meatbag_Labs/kalevala-stories/",
+      "website": "meatbagmade.com/the-land/sotkajarvi/",
+      "autonomy": "draft-and-approve",
+      "progress": 100,
+      "value": {
+        "consumer_potential": null,
+        "personal_satisfaction": null,
+        "reach": null,
+        "profitability": null
+      },
+      "complexity": {
+        "engineering": null,
+        "review_frequency": null,
+        "integrations": null,
+        "manual_burden": null
+      },
+      "next_action": "Shipped. Add an eighth tale only if the village grows a building for it.",
+      "decision": null,
+      "notes": "Tracked 2026-09-04. Seven tales out of the Kalevala, retold — one per building in the Sotkajärvi village inside meatbagmade.com/the-land/. Hand-written single-file HTML, no build step, no JS. upload/ mirrors the server and is the only copy that ships; folder names ARE the live URLs and differ from the draft filenames (articles stripped) — see the folder README before touching it. Sibling to the Runo game, same source material.",
+      "updates": [
+        {
+          "text": "All seven tales written, plated and live under /the-land/sotkajarvi/",
+          "tone": "good"
+        }
+      ],
+      "next_steps": [
+        {
+          "text": "Nothing required — it's shipped",
+          "tone": "later"
+        }
+      ],
+      "risks_issues": [
+        {
+          "text": "URL slugs differ from draft filenames; a careless upload duplicates all seven pages",
+          "tone": "med"
+        }
+      ],
+      "last_touched": "2026-08-17",
+      "public": {
+        "name": "Songs of the Kalevala",
+        "label": "Live",
+        "blurb": "Seven old Finnish tales retold and hung one apiece in the buildings of Sotkajärvi village. Singin' matches, a stolen sun, and a mill that grinds out fortune.",
+        "link": "https://meatbagmade.com/the-land/sotkajarvi/",
+        "link_text": "Read the tales"
+      },
+      "git_state": {
+        "repo": false,
+        "state": "not_a_repo",
+        "remote": null,
+        "branch": null,
+        "uncommitted": 0,
+        "unpushed": 0,
+        "last_commit": null,
+        "checked": "2026-09-04"
+      },
+      "file_count": 33
+    },
+    {
+      "id": "sotka_family_history",
+      "name": "Sotka Family History",
+      "philosophy": "Slow claim. You don't rush a record that's been sittin' two hundred years — and you never write down what you can't source.",
+      "tier": "exploratory",
+      "status": "active",
+      "location": "/Users/kevinsotka/Meatbag_Labs/Sotka family history/",
+      "website": null,
+      "autonomy": "draft-and-approve",
+      "progress": null,
+      "value": {
+        "consumer_potential": null,
+        "personal_satisfaction": null,
+        "reach": null,
+        "profitability": null
+      },
+      "complexity": {
+        "engineering": null,
+        "review_frequency": null,
+        "integrations": null,
+        "manual_burden": null
+      },
+      "next_action": "Keep sotka-research-log.html current; the narrative gets written from the log, never from memory.",
+      "decision": null,
+      "notes": "Tracked 2026-09-04. Documented family history of the Sotka line — Siira farm No. 4, Sotkajärvi village, Pudasjärvi parish, North Ostrobothnia, to a dairy farm at Eden Valley, Washington near Naselle and Deep River. sotka-research-log.html is the single source of truth. Hard rules: never assert an unsourced fact (tree sites and AI summaries are leads, not facts), match people on birth dates not names, and a Finnish farm name is not a surname. Eventual output is a written narrative for the site.",
+      "updates": [
+        {
+          "text": "Research log established with a sourcing standard; scans and reunion article on hand",
+          "tone": "good"
+        }
+      ],
+      "next_steps": [
+        {
+          "text": "Continue parish-register work in the research log",
+          "tone": "next"
+        },
+        {
+          "text": "Draft the narrative only once the log supports it",
+          "tone": "later"
+        }
+      ],
+      "risks_issues": [
+        {
+          "text": "Pudasjärvi name collisions make wrong matches easy — birth-date test is load-bearing",
+          "tone": "med"
+        }
+      ],
+      "last_touched": "2026-08-17",
+      "public": {
+        "name": "Sotka Family History",
+        "label": "On the workbench",
+        "blurb": "Trackin' one Finnish family from a farm in Pudasjärvi to a dairy in Washington state, one parish record at a time. Slow work, and every line of it sourced.",
+        "link": null,
+        "link_text": null
+      },
+      "git_state": {
+        "repo": false,
+        "state": "not_a_repo",
+        "remote": null,
+        "branch": null,
+        "uncommitted": 0,
+        "unpushed": 0,
+        "last_commit": null,
+        "checked": "2026-09-04"
+      },
+      "file_count": 11
+    },
+    {
+      "id": "sodclaw",
+      "name": "SodClaw — The Orchestrator",
+      "philosophy": "The trail boss don't drive a wagon. He keeps the whole train movin' and tells ya which fork matters today.",
+      "tier": "active",
+      "status": "active",
+      "location": "/Users/kevinsotka/Meatbag_Labs/SodClaw/",
+      "website": null,
+      "autonomy": "draft-and-approve",
+      "progress": null,
+      "value": {
+        "consumer_potential": null,
+        "personal_satisfaction": null,
+        "reach": null,
+        "profitability": null
+      },
+      "complexity": {
+        "engineering": null,
+        "review_frequency": null,
+        "integrations": null,
+        "manual_burden": null
+      },
+      "next_action": "Keep the Friday sweep honest; portfolio.json stays the single source of truth.",
+      "decision": null,
+      "notes": "Tracked 2026-09-04 (the orchestrator finally has a row in its own ledger). The agent that runs Meatbag Labs: portfolio.json as source of truth, the generated command-center dashboard, Doc's voice, the Friday-evening portfolio sweep, and the sweep/budget/gate/verifier skills. Also builds this public page.",
+      "updates": [
+        {
+          "text": "Weekly sweep loop running with budget guard and verifier",
+          "tone": "good"
+        },
+        {
+          "text": "Public projects page generated from portfolio.json",
+          "tone": "good"
+        }
+      ],
+      "next_steps": [
+        {
+          "text": "Keep the tracker and dashboard in sync after every change",
+          "tone": "now"
+        }
+      ],
+      "risks_issues": [
+        {
+          "text": "A stale tracker makes every other SodClaw decision wrong",
+          "tone": "med"
+        }
+      ],
+      "last_touched": "2026-09-04",
+      "public": {
+        "name": "SodClaw",
+        "label": "On the workbench",
+        "blurb": "The trail boss for this whole outfit — an agent that keeps every claim on the map, rides the fence line each Friday, and tells Kevin which fork in the trail actually matters.",
+        "link": null,
+        "link_text": null
+      },
+      "git_state": {
+        "repo": true,
+        "state": "partially_synced",
+        "remote": "https://github.com/kevin-sotka/SodClaw.git",
+        "branch": "main",
+        "uncommitted": 29,
+        "unpushed": 0,
+        "last_commit": "2026-05-28",
+        "checked": "2026-09-04"
+      },
+      "file_count": 68
     }
   ]
 }

@@ -1,0 +1,23 @@
+{
+  "_meta": {
+    "description": "Budget guard config for the portfolio-sweep loop. Single source of truth for which model tier runs each stage and the per-run token ceiling. The loop reads this; budget.py enforces it. Same principle templates onto the content loops, where the cap actually bites.",
+    "principle": "Cheap models for triage/checking, expensive only where a second opinion is worth paying for. On the weekly sweep the cap barely matters — the point is to build the tiering muscle for higher-cadence loops.",
+    "last_updated": "2026-06-29"
+  },
+  "tiers": {
+    "haiku":  { "model": "claude-haiku-4-5",  "role": "mechanical: crawl, verify, parse/apply" },
+    "opus":   { "model": "claude-opus-4-8",   "role": "judgment: reconcile, phrase, escalated calls" }
+  },
+  "stages": [
+    { "stage": "crawl",          "tier": "haiku", "est_tokens": 12000, "why": "read-only folder + git crawl" },
+    { "stage": "reconcile",      "tier": "opus",  "est_tokens": 18000, "why": "judgment: what moved, what to propose, how to phrase" },
+    { "stage": "verify",         "tier": "haiku", "est_tokens": 10000, "why": "re-derive truth, grade the draft" },
+    { "stage": "gate",           "tier": "haiku", "est_tokens":  4000, "why": "parse reply, apply approved proposals" },
+    { "stage": "escalated_call", "tier": "opus",  "est_tokens": 15000, "why": "ONLY when verifier flags a real judgment call", "conditional": true }
+  ],
+  "caps": {
+    "per_run_tokens": 90000,
+    "on_exceed": "stop_before_next_stage",
+    "note": "If the projected total before a stage would exceed the cap, stop and return the partial result rather than silently spending. The cap is sized to fit a normal sweep with headroom; tripping it means something is wrong (a runaway crawl), not a bigger-than-usual week."
+  }
+}

@@ -26,7 +26,7 @@ When the Routine has run cleanly for a couple of weeks, the local Cowork `weekly
 | Repositories | `kevin-sotka/SodClaw` (primary), plus `kevin-sotka/train_lore`, `kevin-sotka/thegridirongazette`, `kevin-sotka/Riventide`, `kevin-sotka/AI-company-trail` for git-state checks |
 | Branch policy | Default — push only to `claude/sweep-YYYY-MM-DD` branches (Routines enforces this) |
 | Webhook URL | Pasted inline into the Routine's prompt body at `<PASTE_DOC_WEBHOOK_URL_HERE>`. Routines has no secrets store, so this lives in the Routine config (Anthropic-side, only Kevin's account sees it). The Git copy of the prompt keeps the placeholder. |
-| Connectors | None required for the post (we post via webhook + curl, not the Slack connector, so Doc's identity stays intact) |
+| Connectors | **DO NOT add Slack as a connector to this Routine.** Posting goes via curl-to-webhook to preserve Doc's identity. If Slack is connected, Claude inside the Routine may pick the connector tool over the curl path, which posts as Kevin (the wrong identity). GitHub is mounted automatically via the repos list and is fine. |
 | Run cap impact | 1 run / week against Kevin's Pro budget of 5 runs / day. Negligible. |
 
 ## The prompt
