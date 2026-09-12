@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Single source of truth for the Meatbag Labs portfolio dashboard. SodClaw and the dashboard artifact both read this file. Update it whenever a project's status, progress, next action, or scores change.",
-    "last_updated": "2026-09-11",
+    "last_updated": "2026-09-12",
     "scoring": {
       "value_metrics": [
         "consumer_potential",
@@ -34,20 +34,21 @@
       "shelved",
       "launched-shelved"
     ],
-    "doc_briefing": "Listen here, Partner: the biggest news this sweep ain't a project, it's the map itself. Eleven claims picked up and moved into the Hit Factory camp — RT1, Oregon Fail, Foundry, Gerlok, swatch, the whole lot — so the tracker's addresses were pointin' at empty lots till just now. Fixed. Sixteen claims threw dust: Riventide got a brand-new vanilla-JS build published and five commits on the 2nd (first commits since February), the Foundry's got twenty-seven game packages stacked up in it now, jobclaw's at 161 files, and Kevin's own consultin' page got touched today. Two claims turn out to have had Git all along — The Wall and HR Derby both got clean synced repos one floor down, so scratch 'em off the not-portable list. Standin' chores: SodClaw's own 29 uncommitted with no commit since May, Riventide's 173, Train Lore's 2 unpushed. Claim Wrangler's the only thing past the sixty-day fence at 72 days idle. Two new strangers in camp: hit-factory and kevin-sotka.github.io.",
-    "doc_briefing_date": "2026-09-04",
-    "last_swept": "2026-09-04",
+    "doc_briefing": "Cloud sweep this week, Partner, so read me right: from up here I see what's pushed to the remotes, not the papers on yer desk. Two claims threw fresh dust on main. The Gazette's been runnin' its daily wire like clockwork, five dispatches 09-05 through 09-11, right on the football clock. And SodClaw itself caught up big: yer ratify of last week's thirteen proposals plus the Sept sweep-infra landed on main, so the ol' 29-uncommitted flag on the orchestrator's cleared from where I'm standin'. Quiet on the rest of the visible five: Train Lore's main ain't moved off 07-27, Riventide holds at 09-02, AI Company Trail's still the April scaffold. Here's the honest part: last local sweep flagged drift I can't confirm from the cloud, 173 uncommitted in Riventide and 12/2 on Train Lore, so those stay flagged till a local sweep can eyeball yer working tree. Nothin' crossed the sixty-day fence this week, no new shelve candidates. And eleven claims live off-Git entirely, plumb invisible from the cloud.",
+    "doc_briefing_date": "2026-09-12",
+    "last_swept": "2026-09-12",
     "sodclaw_git_state": {
       "repo": true,
-      "state": "partially_synced",
+      "state": "synced",
       "remote": "https://github.com/kevin-sotka/SodClaw.git",
       "branch": "main",
-      "uncommitted": 29,
+      "uncommitted": 0,
       "unpushed": 0,
-      "last_commit": "2026-05-28",
-      "checked": "2026-09-04"
+      "last_commit": "2026-09-11",
+      "checked": "2026-09-12",
+      "cloud_view": true
     },
-    "git_inventory_run": "2026-09-04",
+    "git_inventory_run": "2026-09-12",
     "public_page": {
       "description": "Config for the public portfolio page at meatbagmade.com/projects. Built by build_public_page.py from projects with a 'public' field (live + active only; shelved/paused stay private). Blurbs are Doc voice per prompts/doc_voice.md — no progress %, scores, or decisions on the public surface.",
       "doc_intro": "Well howdy, stranger. Name's Doc. I ride shotgun on this here wagon train of claims — games by the dozen, a gazette, a novel, and a whole land you can walk into. Some have struck the vein and you can stroll right in the door. Others are still gettin' hammered on, and I'll tell ya which is which straight. Go on, have a look around the territory.",
@@ -122,7 +123,8 @@
         "uncommitted": 12,
         "unpushed": 2,
         "last_commit": "2026-07-27",
-        "checked": "2026-09-04"
+        "checked": "2026-09-12",
+        "cloud_view": true
       },
       "public": {
         "label": "Live",
@@ -179,16 +181,17 @@
           "tone": "low"
         }
       ],
-      "last_touched": "2026-09-04",
+      "last_touched": "2026-09-11",
       "git_state": {
         "repo": true,
-        "state": "partially_synced",
+        "state": "synced",
         "remote": "https://github.com/kevin-sotka/thegridirongazette.git",
         "branch": "main",
-        "uncommitted": 2,
+        "uncommitted": 0,
         "unpushed": 0,
-        "last_commit": "2026-09-04",
-        "checked": "2026-09-04"
+        "last_commit": "2026-09-11",
+        "checked": "2026-09-12",
+        "cloud_view": true
       },
       "public": {
         "label": "Live",
@@ -621,7 +624,8 @@
         "uncommitted": 173,
         "unpushed": 0,
         "last_commit": "2026-09-02",
-        "checked": "2026-09-04"
+        "checked": "2026-09-12",
+        "cloud_view": true
       },
       "public": {
         "label": "Shipped",
@@ -665,7 +669,8 @@
         "uncommitted": 6,
         "unpushed": 0,
         "last_commit": "2026-04-26",
-        "checked": "2026-09-04"
+        "checked": "2026-09-12",
+        "cloud_view": true
       },
       "public": false,
       "updates": [
@@ -1846,7 +1851,7 @@
           "tone": "med"
         }
       ],
-      "last_touched": "2026-09-04",
+      "last_touched": "2026-09-11",
       "public": {
         "name": "SodClaw",
         "label": "On the workbench",
@@ -1856,13 +1861,14 @@
       },
       "git_state": {
         "repo": true,
-        "state": "partially_synced",
+        "state": "synced",
         "remote": "https://github.com/kevin-sotka/SodClaw.git",
         "branch": "main",
-        "uncommitted": 29,
+        "uncommitted": 0,
         "unpushed": 0,
-        "last_commit": "2026-05-28",
-        "checked": "2026-09-04"
+        "last_commit": "2026-09-11",
+        "checked": "2026-09-12",
+        "cloud_view": true
       },
       "file_count": 68
     },
