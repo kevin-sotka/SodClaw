@@ -1,0 +1,430 @@
+<title>Episode One Call Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&amp;family=Courier+Prime:ital,wght@0,400;0,700;1,400&amp;display=swap">
+<style>
+/* Call sheet for THE JOY OF PROMPTING ep.01.
+   Same studio world as the series bible, but utilitarian: this gets read
+   one-handed on a phone at 7am. Single theme on purpose; every color painted. */
+:root{
+  color-scheme: dark;
+  --studio:#14110C; --studio-2:#1F1B14; --studio-3:#302921; --studio-4:#3E3527;
+  --on-dark:#E9E2D3; --canvas:#F3EEE3; --faint:#998F7E;
+  --cadmium:#E0A536; --cadmium-dim:#8A6A22;
+  --alizarin:#C4483A; --sap:#8FAE62; --phthalo:#4FA3B6;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --mono:"Courier Prime","Courier New",monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--studio);color:var(--on-dark);
+  font-family:var(--display);font-size:16px;line-height:1.55;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:780px;margin:0 auto;padding:0 18px}
+h1,h2,h3{margin:0;text-wrap:balance}
+:focus-visible{outline:2px solid var(--cadmium);outline-offset:3px}
+
+/* header */
+.top{background:var(--studio-2);border-bottom:2px solid var(--cadmium);padding:26px 0 22px}
+.slug{font-family:var(--mono);font-size:12.5px;color:var(--cadmium);letter-spacing:.06em;margin:0 0 12px}
+h1{font-size:clamp(30px,7vw,48px);font-weight:800;line-height:1.02;letter-spacing:-.02em;color:var(--canvas)}
+.hsub{font-family:var(--mono);font-size:14px;color:var(--faint);margin:12px 0 0;line-height:1.7}
+.hsub b{color:var(--on-dark);font-weight:700}
+.prog{margin-top:18px;display:flex;align-items:center;gap:12px}
+.progbar{flex:1;height:8px;background:var(--studio-3);overflow:hidden}
+.progbar i{display:block;height:100%;width:0;background:var(--cadmium);transition:width .3s ease}
+.progtxt{font-family:var(--mono);font-size:12px;color:var(--faint);font-variant-numeric:tabular-nums;white-space:nowrap}
+@media(prefers-reduced-motion:reduce){.progbar i{transition:none}}
+
+/* sections */
+section{padding:34px 0;border-bottom:1px solid var(--studio-3)}
+section:last-of-type{border-bottom:0}
+.num{font-family:var(--mono);font-size:12px;color:var(--cadmium);letter-spacing:.1em;display:block;margin-bottom:9px}
+h2{font-size:clamp(21px,4.4vw,29px);font-weight:800;color:var(--canvas);line-height:1.12;letter-spacing:-.01em}
+.say{font-size:16.5px;color:var(--on-dark);margin:13px 0 0;max-width:62ch}
+.say b{color:var(--canvas);font-weight:700}
+.say + .say{margin-top:11px}
+.say.dim{color:var(--faint)}
+
+/* checklist */
+ul.ck{list-style:none;margin:20px 0 0;padding:0;border:1px solid var(--studio-3)}
+ul.ck li{border-bottom:1px solid var(--studio-3)}
+ul.ck li:last-child{border-bottom:0}
+ul.ck label{display:flex;gap:14px;align-items:flex-start;padding:14px 16px;cursor:pointer;
+  font-size:16px;line-height:1.48;-webkit-tap-highlight-color:transparent}
+ul.ck label:hover{background:var(--studio-2)}
+ul.ck input{appearance:none;-webkit-appearance:none;flex:none;width:22px;height:22px;margin:0;
+  border:2px solid var(--studio-4);background:var(--studio);cursor:pointer;position:relative;top:1px}
+ul.ck input:checked{background:var(--cadmium);border-color:var(--cadmium)}
+ul.ck input:checked::after{content:"";position:absolute;left:6px;top:1px;width:6px;height:12px;
+  border:solid var(--studio);border-width:0 3px 3px 0;transform:rotate(42deg)}
+ul.ck input:checked ~ .t{color:var(--faint);text-decoration:line-through;text-decoration-color:var(--studio-4)}
+ul.ck .t{flex:1}
+ul.ck .t b{color:var(--canvas);font-weight:700}
+ul.ck .t em{font-style:normal;font-family:var(--mono);font-size:13.5px;color:var(--faint);display:block;margin-top:4px}
+
+/* verdict / buy boxes */
+.buy{border:1px solid var(--studio-3);margin-top:20px}
+.buy .bh{display:flex;gap:11px;align-items:baseline;padding:14px 16px;background:var(--studio-2);
+  border-bottom:1px solid var(--studio-3);flex-wrap:wrap}
+.vd{font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 9px;white-space:nowrap}
+.vd.no{background:var(--alizarin);color:#fff}
+.vd.yes{background:var(--sap);color:#14110C}
+.vd.have{background:var(--studio-4);color:var(--on-dark)}
+.buy .bn{font-weight:700;font-size:16.5px;color:var(--canvas)}
+.buy .bp{font-family:var(--mono);font-size:13px;color:var(--faint);margin-left:auto}
+.buy .bb{padding:15px 16px;font-size:15.5px;line-height:1.55;color:var(--on-dark)}
+.buy .bb b{color:var(--canvas);font-weight:700}
+.buy .bb + .bb{border-top:1px solid var(--studio-3);color:var(--faint)}
+
+/* cards to write */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px;margin-top:20px}
+.card{background:var(--canvas);color:#241F17;padding:15px 16px 17px;min-height:112px;
+  display:flex;flex-direction:column;box-shadow:0 8px 20px rgba(0,0,0,.36)}
+.card .cn{font-family:var(--mono);font-size:11px;color:#8A7F6C;margin-bottom:8px}
+.card .cl{font-family:var(--mono);font-size:16px;font-weight:700;line-height:1.4;color:#241F17;white-space:pre-line}
+.card .cw{font-size:13px;color:#5A5041;margin-top:auto;padding-top:10px;line-height:1.4}
+.card.joke{background:#F6E3E0}
+.card.joke .cw{color:#8E2A20;font-weight:700}
+
+/* run of show */
+.run{border:1px solid var(--studio-3);margin-top:20px}
+.shot{display:grid;grid-template-columns:78px 1fr;border-bottom:1px solid var(--studio-3)}
+.shot:last-child{border-bottom:0}
+.shot .clock{background:var(--studio-2);padding:15px 12px;font-family:var(--mono);font-size:12.5px;
+  color:var(--cadmium);border-right:1px solid var(--studio-3);font-variant-numeric:tabular-nums;line-height:1.4}
+.shot .clock span{display:block;color:var(--faint);font-size:11px;margin-top:3px}
+.shot .what{padding:15px 16px}
+.shot .wn{font-weight:700;font-size:16px;color:var(--canvas);margin-bottom:5px}
+.shot .wd{font-size:15px;color:var(--on-dark);line-height:1.5}
+.shot .wd b{color:var(--canvas);font-weight:700}
+.shot .tag{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+  text-transform:uppercase;padding:2px 7px;margin-top:8px;border:1px solid var(--studio-4);color:var(--faint)}
+.shot .tag.cam{color:var(--phthalo);border-color:var(--phthalo)}
+.shot .tag.scr{color:var(--sap);border-color:var(--sap)}
+.shot .tag.oh{color:var(--cadmium);border-color:var(--cadmium)}
+@media(max-width:520px){.shot{grid-template-columns:62px 1fr}.shot .clock{padding:13px 8px;font-size:11.5px}}
+
+/* rules */
+.rules{margin-top:20px;border:1px solid var(--studio-3)}
+.rule{display:grid;grid-template-columns:52px 1fr;border-bottom:1px solid var(--studio-3);align-items:center}
+.rule:last-child{border-bottom:0}
+.rule .m{font-family:var(--mono);font-size:19px;font-weight:700;text-align:center;padding:14px 0;
+  border-right:1px solid var(--studio-3);align-self:stretch;display:flex;align-items:center;justify-content:center}
+.rule.no .m{color:var(--alizarin)}
+.rule.do .m{color:var(--sap)}
+.rule .r{padding:13px 16px;font-size:15.5px;line-height:1.5}
+.rule .r b{color:var(--canvas);font-weight:700}
+.rule .r span{display:block;color:var(--faint);font-size:14px;margin-top:4px}
+
+/* schedule */
+.sched{margin-top:20px;border:1px solid var(--studio-3)}
+.sd{display:grid;grid-template-columns:118px 1fr;border-bottom:1px solid var(--studio-3)}
+.sd:last-child{border-bottom:0}
+.sd.now{background:var(--studio-2)}
+.sd .d{padding:14px 14px;font-family:var(--mono);font-size:13px;color:var(--cadmium);
+  border-right:1px solid var(--studio-3);line-height:1.5}
+.sd .d span{display:block;color:var(--faint);font-size:11.5px;margin-top:3px}
+.sd .e{padding:14px 16px;font-size:15.5px;line-height:1.5}
+.sd .e b{color:var(--canvas);font-weight:700}
+.sd .e span{display:block;color:var(--faint);font-size:14px;margin-top:5px}
+@media(max-width:520px){.sd{grid-template-columns:96px 1fr}.sd .d{padding:12px 10px;font-size:12px}}
+
+.done{border:2px solid var(--sap);margin-top:22px;padding:20px 20px 8px}
+.done h3{font-size:18px;font-weight:800;color:var(--canvas);margin-bottom:6px}
+.done .say{margin-top:8px}
+.done ul.ck{border-color:var(--studio-4);margin-bottom:16px}
+
+.warn{border-left:4px solid var(--alizarin);background:var(--studio-2);padding:16px 18px;margin-top:22px}
+.warn p{margin:0;font-size:15.5px;line-height:1.55;color:var(--on-dark)}
+.warn p b{color:var(--canvas);font-weight:700}
+.warn p + p{margin-top:10px;color:var(--faint)}
+
+footer{padding:30px 0 52px}
+footer p{margin:0;font-family:var(--mono);font-size:12.5px;color:var(--studio-4);line-height:1.7}
+footer p b{color:var(--faint)}
+</style>
+
+<div class="top">
+  <div class="wrap">
+    <p class="slug">THE JOY OF PROMPTING &mdash; SEASON 1</p>
+    <h1>Episode One<br>Call Sheet</h1>
+    <p class="hsub">
+      <b>"One Page, Your Whole Life"</b><br>
+      Sat 19 Sep 2026 &middot; call 07:00 &middot; wrap by 09:00<br>
+      Target runtime <b>6:30</b> &middot; raw footage <b>~25 min</b>
+    </p>
+    <div class="prog">
+      <span class="progbar"><i id="pbar"></i></span>
+      <span class="progtxt" id="ptxt">0 / 0 done</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<section>
+  <span class="num">01 &mdash; THE BUY</span>
+  <h2>Skip the Zoom. Buy a wireless lav and an overhead arm.</h2>
+  <p class="say">You asked about a Zoom portable podcast recorder. <b>Don't.</b> Those are tabletop mixers built for two to four people sitting still around a desk mic. Your show does not sit still &mdash; episode 1 has you holding a phone up to the lens, ep 4 is on the floor with a kid, ep 8 is at the kitchen table and then the recycling bin, ep 6 is on location at an archive. A desk box anchors you to a desk and adds a second device to sync at 7am.</p>
+  <p class="say">Buy the thing that clips to your shirt and follows you.</p>
+
+  <div class="buy">
+    <div class="bh"><span class="vd no">Skip</span><span class="bn">Zoom PodTrak / AMS series</span><span class="bp">~$150&ndash;220</span></div>
+    <div class="bb">Wrong shape for this show. Built for seated multi-mic podcasts. You'd be paying for three inputs you never use and gaining a sync step you don't want.</div>
+    <div class="bb">If you already own one, fine &mdash; use it for scoring the music at your desk, not for the show.</div>
+  </div>
+
+  <div class="buy">
+    <div class="bh"><span class="vd yes">Buy</span><span class="bn">Wireless lav, 2-transmitter kit</span><span class="bp">~$90&ndash;170</span></div>
+    <div class="bb"><b>DJI Mic Mini</b> or <b>Rode Wireless Micro.</b> Clips on, pairs straight to the iPhone, and &mdash; the part that actually matters &mdash; <b>records a safety copy onto the transmitter itself.</b> If the wireless link hiccups, the audio still exists. That single feature is worth the whole purchase.</div>
+    <div class="bb">Get the two-transmitter kit, not the single. Episode 4 is you and the kid; episode 9 is bedtime. You'll want the second mic and you will not want to re-buy in October. Check current price before you order &mdash; these move.</div>
+  </div>
+
+  <div class="buy">
+    <div class="bh"><span class="vd yes">Buy</span><span class="bn">Overhead phone arm + clamp</span><span class="bp">~$25&ndash;35</span></div>
+    <div class="bb">The one thing you genuinely cannot improvise. <b>The Palette shot is the show's signature</b> and it is a locked-off top-down of the desk. Any articulating arm that clamps to a desk edge and holds a phone face-down will do. This is the highest-value $30 in the whole season.</div>
+  </div>
+
+  <div class="buy">
+    <div class="bh"><span class="vd have">Already have</span><span class="bn">Camera, lights, screen capture</span><span class="bp">$0</span></div>
+    <div class="bb"><b>Camera:</b> your iPhone. Shoot 4K/30, locked exposure, locked focus. Do not shoot 60 &mdash; you don't need slow motion except one shot in ep 3, and 60 doubles your file sizes for nothing.</div>
+    <div class="bb"><b>Light:</b> a window. Face it. That's the whole lighting plan.<br><b>Screen:</b> QuickTime screen recording on the Mac, free. Include system audio.</div>
+  </div>
+
+  <div class="warn">
+    <p><b>The two-camera problem, and the answer: don't solve it.</b> One phone cannot shoot your face and the overhead at the same time. Do not buy a second camera and do not try to run both.</p>
+    <p>The overhead is a locked-off insert of a hand placing cards on a desk. Shoot it <b>separately</b>, as its own setup, with no continuity to match. Nobody will ever know, and it saves you an hour and a headache every single week.</p>
+  </div>
+</section>
+
+<section>
+  <span class="num">02 &mdash; FRIDAY NIGHT</span>
+  <h2>Thirty minutes tonight buys you the morning.</h2>
+  <p class="say">Do this Friday. Not Saturday. Saturday-you has 90 minutes and no patience for a firmware update.</p>
+  <ul class="ck" data-ck="fri">
+    <li><label><input type="checkbox"><span class="t"><b>Charge everything.</b> Phone, both lav transmitters, the receiver, the laptop. <em>A dead transmitter at 7:40 ends the shoot.</em></span></label></li>
+    <li><label><input type="checkbox"><span class="t"><b>Free up 30GB on the phone.</b> <em>4K eats about 400MB/min. You're shooting ~25 min plus retakes.</em></span></label></li>
+    <li><label><input type="checkbox"><span class="t"><b>Pair the lav and record a 20-second test.</b> Play it back <b>in headphones.</b> <em>Listening on the phone speaker tells you nothing.</em></span></label></li>
+    <li><label><input type="checkbox"><span class="t"><b>Clamp the overhead arm and frame the desk.</b> Leave it clamped overnight. <em>Framing it cold on Saturday costs 15 minutes.</em></span></label></li>
+    <li><label><input type="checkbox"><span class="t"><b>Write the six index cards by hand.</b> Content is in section 03. <em>Handwritten. Not typed. The handwriting is half of why the shot works.</em></span></label></li>
+    <li><label><input type="checkbox"><span class="t"><b>Clear the desk down to: keyboard, mug, plant, one notebook.</b> <em>Every extra object on that desk is something the eye has to sort past.</em></span></label></li>
+    <li><label><input type="checkbox"><span class="t"><b>Put the mug out.</b> Episode 1 is <b>WORLD'S OKAYEST PROMPT ENGINEER.</b> <em>If you don't own it, any plain mug &mdash; start the gag in ep 2 rather than faking it.</em></span></label></li>
+    <li><label><input type="checkbox"><span class="t"><b>Do NOT pre-build the dashboard.</b> <em>Seriously. If you rehearse the build, the pauses look rehearsed and the whole premise dies.</em></span></label></li>
+  </ul>
+</section>
+
+<section>
+  <span class="num">03 &mdash; THE SIX CARDS</span>
+  <h2>These are the 98%. Write them tonight, in pen.</h2>
+  <p class="say">The whole episode turns on these. The model brings the HTML &mdash; it has written ten million dashboards. It has never heard of The Wall, or the novel, or the fact that you have eleven projects and a six-year-old. <b>That comes off the cards.</b></p>
+  <p class="say">Keep them short and a little sloppy. You wrote these over coffee, not in a planning session. One line per card, plus whatever scrap of status you actually remember.</p>
+
+  <div class="cards">
+    <div class="card"><span class="cn">CARD 1</span><span class="cl">THE WALL
+btc art thing
+— stuck on what?</span><span class="cw">Real project, real vagueness. Good.</span></div>
+    <div class="card"><span class="cn">CARD 2</span><span class="cl">NOVEL
+Meatbag Made
+ch. 4?</span><span class="cw">The question mark is the point.</span></div>
+    <div class="card"><span class="cn">CARD 3</span><span class="cl">TRAIN BLOG
+5 of 32 posted</span><span class="cw">A number it can actually use.</span></div>
+    <div class="card"><span class="cn">CARD 4</span><span class="cl">HR DERBY
+2026 season
+running itself</span><span class="cw">Teaches it that "done" is a state.</span></div>
+    <div class="card"><span class="cn">CARD 5</span><span class="cl">KID STUFF
+roblox + school</span><span class="cw">Not a project. It won't know that yet.</span></div>
+    <div class="card joke"><span class="cn">CARD 6</span><span class="cl">GYM</span><span class="cw">THE JOKE. Write it plain and last. This is the card that sets up the happy accident at 4:40.</span></div>
+  </div>
+
+  <p class="say" style="margin-top:20px"><b>Card six is load-bearing.</b> The scripted beat &mdash; <em>"it thinks gym is a project&hellip; which, honestly, fair"</em> &mdash; only happens if GYM is sitting there in the pile looking exactly like the other five. Don't flag it, don't explain it, don't write anything else on it. One word.</p>
+</section>
+
+<section>
+  <span class="num">04 &mdash; ROOM &amp; RIG</span>
+  <h2>Set it once. You're repeating this five Saturdays.</h2>
+  <ul class="ck" data-ck="rig">
+    <li><label><input type="checkbox"><span class="t"><b>Face the window.</b> Camera between you and the window, never behind you. <em>Backlight turns you into a silhouette and no grade fixes it.</em></span></label></li>
+    <li><label><input type="checkbox"><span class="t"><b>Shoot at the same hour every week &mdash; 7 to 9am.</b> <em>Five Saturdays have to intercut. Noon light in week three will not match 7am light in week one.</em></span></label></li>
+    <li><label><input type="checkbox"><span class="t"><b>Lock exposure and white balance.</b> Long-press to lock on iPhone. <em>Auto-exposure hunting mid-take is the #1 thing that makes phone footage look like phone footage.</em></span></label></li>
+    <li><label><input type="checkbox"><span class="t"><b>Phone at eye height, roughly an arm and a half away.</b> <em>Below eye height is a Zoom call. At eye height is a show.</em></span></label></li>
+    <li><label><input type="checkbox"><span class="t"><b>Lav clipped a hand's width below the chin, cable hidden.</b> <em>Then <b>don't</b> wear the crinkly jacket. Cotton only, for five weeks.</em></span></label></li>
+    <li><label><input type="checkbox"><span class="t"><b>Airplane mode, both phones.</b> <em>One notification buzz in the audio and the take is gone.</em></span></label></li>
+    <li><label><input type="checkbox"><span class="t"><b>Kill the HVAC and the fridge if you can hear them.</b> <em>Stand still for ten seconds and just listen before the first take. You'll hear something you stopped noticing years ago.</em></span></label></li>
+    <li><label><input type="checkbox"><span class="t"><b>Photograph the finished setup.</b> <em>Your week-two self will thank you. Match the frame from the photo and you're set up in four minutes.</em></span></label></li>
+  </ul>
+</section>
+
+<section>
+  <span class="num">05 &mdash; RUN OF SHOW</span>
+  <h2>Shoot it out of order. Story order is for the edit.</h2>
+  <p class="say">Two setups, not six. Do everything that needs the overhead rig, then everything that needs the talking-head rig, then the screen captures. <b>The cold open gets shot last</b> &mdash; you'll type that sentence with much more confidence once you already know what it built.</p>
+
+  <div class="run">
+    <div class="shot">
+      <div class="clock">07:00<span>20 min</span></div>
+      <div class="what">
+        <div class="wn">Setup &amp; sound check</div>
+        <div class="wd">Frame both rigs. Record 30 seconds, play it back <b>in headphones.</b> Fix it now or live with it for six minutes of finished video.</div>
+        <span class="tag">rig</span>
+      </div>
+    </div>
+    <div class="shot">
+      <div class="clock">07:20<span>10 min</span></div>
+      <div class="what">
+        <div class="wn">The Palette insert</div>
+        <div class="wd">Overhead, locked off. A hand enters, sets the six cards down, leaves. <b>Shoot it four times.</b> Once slow, once quick, once with a small squaring-up of the stack, once where you also set the coffee down.</div>
+        <div class="wd" style="margin-top:7px">Then say the supplies line to camera on the talking-head rig: <em>"Today's supplies: six index cards and a cup of coffee."</em> Nothing else. Do not explain them.</div>
+        <span class="tag oh">overhead</span>
+      </div>
+    </div>
+    <div class="shot">
+      <div class="clock">07:30<span>35 min</span></div>
+      <div class="what">
+        <div class="wn">THE BUILD &mdash; one continuous take</div>
+        <div class="wd">Screen recording running the whole time. Camera on you the whole time. <b>Say the prompt, hit enter, and then actually wait.</b> Talk over the wait or don't &mdash; three seconds of quiet is fine and is the format.</div>
+        <div class="wd" style="margin-top:7px">Read the cards in one at a time. Hit the ugly beat honestly (<em>"that's ugly"</em>). Let card six do its thing. Then the one-line polish pass.</div>
+        <div class="wd" style="margin-top:7px"><b>You may stop and restart between prompts. Never cut inside a wait.</b> The waiting is the show.</div>
+        <span class="tag cam">camera</span> <span class="tag scr">screen</span>
+      </div>
+    </div>
+    <div class="shot">
+      <div class="clock">08:05<span>10 min</span></div>
+      <div class="what">
+        <div class="wn">The payoff</div>
+        <div class="wd">Save to home screen. Hold the actual phone up in your actual hand. <b>Get three takes and in one of them, don't say anything at all</b> &mdash; just look at it. That's probably the one you'll use.</div>
+        <span class="tag cam">camera</span>
+      </div>
+    </div>
+    <div class="shot">
+      <div class="clock">08:15<span>10 min</span></div>
+      <div class="what">
+        <div class="wn">Outro + the meter</div>
+        <div class="wd">The outro lines. Then hold on the desk for a full ten seconds of nothing, room tone only. <b>Do not cut that short in the edit.</b> The silence is the flex.</div>
+        <span class="tag cam">camera</span>
+      </div>
+    </div>
+    <div class="shot">
+      <div class="clock">08:25<span>10 min</span></div>
+      <div class="what">
+        <div class="wn">Cold open &mdash; shot last</div>
+        <div class="wd">Screen capture only. Black background, big cursor, type the sentence at a human speed, hit enter. <b>Three takes.</b> You now know exactly what it built, so you'll type it like someone who isn't nervous.</div>
+        <span class="tag scr">screen</span>
+      </div>
+    </div>
+    <div class="shot">
+      <div class="clock">08:35<span>10 min</span></div>
+      <div class="what">
+        <div class="wn">Stills &amp; backup</div>
+        <div class="wd">Photograph the six cards flat, overhead, clean &mdash; <b>that photo is the launch tweet.</b> Then dump everything to the laptop and to one other place before you stand up.</div>
+        <span class="tag oh">overhead</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <span class="num">06 &mdash; PERFORMANCE</span>
+  <h2>The register is the whole differentiator.</h2>
+  <p class="say">Ross's trick was never the painting. It was that he talked like someone who had nowhere else to be. That's a <b>performance</b>, and it's the one you have to actually rehearse.</p>
+  <div class="rules">
+    <div class="rule do"><span class="m">&#10003;</span><div class="r"><b>Talk at 80% of your normal volume.</b><span>The mic is six inches from your mouth. Let it do the work.</span></div></div>
+    <div class="rule do"><span class="m">&#10003;</span><div class="r"><b>Drop your pitch at the end of every sentence.</b><span>Upspeak reads as asking permission. Ross never once asked permission.</span></div></div>
+    <div class="rule do"><span class="m">&#10003;</span><div class="r"><b>Let three seconds of nothing happen.</b><span>It will feel like thirty. It reads as confidence.</span></div></div>
+    <div class="rule do"><span class="m">&#10003;</span><div class="r"><b>Say "muy relaxando" exactly once.</b><span>In the outro. Twice makes it a bit; once makes it yours.</span></div></div>
+    <div class="rule no"><span class="m">&times;</span><div class="r"><b>Never start a sentence with "So&hellip;"</b><span>It's the tell of someone about to explain. You're not explaining, you're doing.</span></div></div>
+    <div class="rule no"><span class="m">&times;</span><div class="r"><b>Never apologize for the wait.</b><span>"Sorry, this takes a second" tells the viewer the wait is a defect. It isn't. It's the pacing.</span></div></div>
+    <div class="rule no"><span class="m">&times;</span><div class="r"><b>Never explain what AI is.</b><span>Not one sentence, all season. The audience is non-technical, not uninformed.</span></div></div>
+    <div class="rule no"><span class="m">&times;</span><div class="r"><b>Never mention the other guy.</b><span>Not in the video, not in the title, not in the description. Ross never named another painter in eleven years.</span></div></div>
+    <div class="rule no"><span class="m">&times;</span><div class="r"><b>No "hey guys," no "don't forget to subscribe."</b><span>The cold open is a sentence typing itself. That's the open, forever.</span></div></div>
+  </div>
+</section>
+
+<section>
+  <span class="num">07 &mdash; WHEN IT BREAKS</span>
+  <h2>Keep rolling. A real accident beats the scripted one.</h2>
+  <p class="say">The gym beat at 4:40 is a <b>backup</b>, not a requirement. If the model does something genuinely wrong earlier in the take &mdash; misreads a card, invents a project you don't have, builds something hideous &mdash; <b>use that instead and cut the scripted beat.</b> Real is better and it's not close.</p>
+  <div class="rules">
+    <div class="rule do"><span class="m">1</span><div class="r"><b>Don't stop recording.</b><span>You cannot get authentic back once you've reset for it.</span></div></div>
+    <div class="rule do"><span class="m">2</span><div class="r"><b>Never argue with it on camera.</b><span>No "no, that's wrong." Only ever: here's what you didn't know. That rule is the entire show's thesis and episode 7 is built on it.</span></div></div>
+    <div class="rule do"><span class="m">3</span><div class="r"><b>If it's still broken after two tries, fix it by hand and say so.</b><span>"I'm going to do this the boring way" is a perfectly good beat. Hiding it is not.</span></div></div>
+    <div class="rule do"><span class="m">4</span><div class="r"><b>If the whole build collapses &mdash; shoot it anyway.</b><span>Then it's episode 7, a month early, and it's the best thing you'll make all season.</span></div></div>
+  </div>
+</section>
+
+<section>
+  <span class="num">08 &mdash; DONE BY NINE</span>
+  <div class="done">
+    <h3>What has to exist before you close the laptop</h3>
+    <p class="say dim">Not "done editing." Done <em>shooting.</em> Editing is weeknights.</p>
+    <ul class="ck" data-ck="done">
+      <li><label><input type="checkbox"><span class="t"><b>~25 minutes of raw footage</b>, backed up in two places</span></label></li>
+      <li><label><input type="checkbox"><span class="t"><b>A dashboard that actually works</b>, on your actual home screen <em>If it doesn't work, the episode is a lie. Finish it even if the camera's off.</em></span></label></li>
+      <li><label><input type="checkbox"><span class="t"><b>The six cards photographed clean</b> <em>That's the launch post. Shoot it while the light is still good.</em></span></label></li>
+      <li><label><input type="checkbox"><span class="t"><b>The screen recording, saved and labeled</b></span></label></li>
+      <li><label><input type="checkbox"><span class="t"><b>A photo of the room setup</b> for week two</span></label></li>
+      <li><label><input type="checkbox"><span class="t"><b>One sentence in your notes: what surprised you</b> <em>That sentence is the blog post. Write it before you forget.</em></span></label></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <span class="num">09 &mdash; THE FIVE SATURDAYS</span>
+  <h2>Revised, because two episodes on day one isn't real.</h2>
+  <p class="say">The bible says two per Saturday. <b>Day one gets one</b> &mdash; you're learning the rig, and that tax is real and only gets paid once. Two continuity facts also force the order:</p>
+  <p class="say"><b>Episode 5 has to be shot near-last</b>, because at 4:40 you place all four earlier palette objects on the desk. You can't place props you haven't shot yet. <b>Episode 10 gets shot during the release window</b>, not before &mdash; it uses real viewer prompts, and those don't exist until episode 1 is public.</p>
+  <div class="sched">
+    <div class="sd now"><div class="d">Sat Sep 19<span>day one</span></div><div class="e"><b>Ep 1</b> &mdash; One Page, Your Whole Life<span>Just the one. Setup tax. If you finish early, go outside.</span></div></div>
+    <div class="sd"><div class="d">Sat Sep 26<span>day two</span></div><div class="e"><b>Ep 2 + Ep 3</b> &mdash; Newsletter, Too Many Projects<span>Paired because both are desk-only and both run on a data file. One setup, two episodes.</span></div></div>
+    <div class="sd"><div class="d">Sat Oct 3<span>day three</span></div><div class="e"><b>Ep 4 + Ep 7</b> &mdash; The Kid's Game, Happy Accidents<span>Kid's available on a Saturday. Ep 7 is low-setup and quick — good back half.</span></div></div>
+    <div class="sd"><div class="d">Sat Oct 10<span>day four</span></div><div class="e"><b>Ep 8 + Ep 9</b> &mdash; The Shoebox, Bedtime Story<span>Both are "around the house." Different rooms, one morning. Ep 9's last shot needs actual bedtime — pick that up that evening.</span></div></div>
+    <div class="sd"><div class="d">Sat Oct 17<span>day five</span></div><div class="e"><b>Ep 5 + Ep 6</b> &mdash; Context File, Family History<span>Ep 5 last because it needs every earlier prop on the desk. Ep 6 needs a week of archive prep — start that research on Oct 10.</span></div></div>
+    <div class="sd"><div class="d">During release<span>~week 6</span></div><div class="e"><b>Ep 10</b> &mdash; Your Turn<span>Shot live off real comments. This is the one episode that cannot be batched, and that's the point of it.</span></div></div>
+  </div>
+  <div class="warn">
+    <p><b>Nine episodes in the can before episode one publishes.</b> That's the whole 80% countermeasure. Once the season is shot, the remaining work is editing against a schedule you've already announced &mdash; which is the one kind of finishing work you reliably do.</p>
+    <p>If Oct 17 arrives and you have six episodes instead of nine, don't publish. Add a sixth Saturday. A delayed season is fine; a season that trails off at episode six in public is the thing you can't undo.</p>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <p><b>The Joy of Prompting</b> &middot; ep.01 call sheet &middot; Meatbag Labs<br>
+    Boxes save in this browser. Series bible: content/joy_of_prompting.html</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var KEY='jop-ep01-v1';
+  var boxes=[].slice.call(document.querySelectorAll('ul.ck input[type=checkbox]'));
+  boxes.forEach(function(b,i){ b.dataset.idx=i; });
+
+  function load(){
+    try{
+      var raw=localStorage.getItem(KEY); if(!raw) return;
+      var on=JSON.parse(raw);
+      if(Object.prototype.toString.call(on)!=='[object Array]') return;
+      boxes.forEach(function(b,i){ b.checked = on.indexOf(i)>-1; });
+    }catch(e){/* private mode, blocked storage — page still works */}
+  }
+  function save(){
+    try{
+      var on=[]; boxes.forEach(function(b,i){ if(b.checked) on.push(i); });
+      localStorage.setItem(KEY, JSON.stringify(on));
+    }catch(e){}
+  }
+  function paint(){
+    var n=boxes.filter(function(b){return b.checked;}).length;
+    var pct = boxes.length ? Math.round(n/boxes.length*100) : 0;
+    var bar=document.getElementById('pbar'), txt=document.getElementById('ptxt');
+    if(bar) bar.style.width=pct+'%';
+    if(txt) txt.textContent = n+' / '+boxes.length+' done';
+  }
+  boxes.forEach(function(b){ b.addEventListener('change', function(){ save(); paint(); }); });
+  load(); paint();
+})();
+</script>

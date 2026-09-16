@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Single source of truth for the Meatbag Labs portfolio dashboard. SodClaw and the dashboard artifact both read this file. Update it whenever a project's status, progress, next action, or scores change.",
-    "last_updated": "2026-05-30",
+    "last_updated": "2026-09-16",
     "scoring": {
       "value_metrics": [
         "consumer_potential",
@@ -34,8 +34,8 @@
       "shelved",
       "launched-shelved"
     ],
-    "doc_briefing": "Listen here, Partner. This week you did the hard thing — you quit pretendin'. Five dead claims got shelved and two more (the Roblox rails and the @sodtoshi wire) are tied to the post; that ain't quittin', that's runnin' a lean outfit, and what's left finally fits in your saddlebags. The work feedin' your soul — Riventide's new music, the novel — keep it close; that's the campfire that keeps a body goin'. But the richest vein on this whole map is the consulting claim: top value on the board and the straightest shot to payin' dirt, just sittin' out in the exploratory hills waitin' on your stake. My counsel? Drive that stake — name what you sell and who buys it first — and roll Riventide's wagon over the last ridge while the music's still flowin'. The rest can wait for the thaw.",
-    "doc_briefing_date": "2026-05-24",
+    "doc_briefing": "Listen here, Partner. You just filed a brand-new claim and I reckon it's the best-sited one on this map — The Joy of Prompting. Ten episodes, first one shot this Saturday. What makes it worth the powder ain't novelty; it's that every other claim out here asks you to learn a new trade, and this one just asks you to point a camera at the trade you already got paid to practice. Value runs high and the engineerin' runs near zero. But read the fine print on the assay: manual burden is a five. I can't hold the camera, I can't cut the footage, and there ain't a machine on this trail that'll do it for you. That's five Saturdays of your own two hands, so shoot all ten before you publish a one of 'em — you know how you are about the last stretch. And mind this: a show fills the saloon, it don't work the register. That consultin' claim next door is still unstaked, and it's the one that takes the money. Drive that stake before Episode Five goes out, or you'll have a crowd and no counter to sell across.",
+    "doc_briefing_date": "2026-09-16",
     "last_swept": "2026-05-30",
     "sodclaw_git_state": {
       "repo": true,
@@ -300,6 +300,42 @@
         "branch": null,
         "last_commit": null,
         "checked": "2026-05-28"
+      }
+    },
+    {
+      "id": "joy_of_prompting",
+      "name": "The Joy of Prompting — Video Series",
+      "tier": "active",
+      "status": "active",
+      "location": "/Users/kevinsotka/Meatbag_Labs/joy_of_prompting/",
+      "website": "meatbagmade.com",
+      "autonomy": "Kevin-only",
+      "progress": 15,
+      "value": {
+        "consumer_potential": 5,
+        "personal_satisfaction": 5,
+        "reach": 5,
+        "profitability": 3
+      },
+      "complexity": {
+        "engineering": 1,
+        "review_frequency": 2,
+        "integrations": 2,
+        "manual_burden": 5
+      },
+      "next_action": "Shoot Episode 1 Saturday Sep 19 — follow content/joy_of_prompting_shoot_pack.html",
+      "decision": "The show is top-of-funnel, not revenue. Name what it sells (cohort / workshop / engagement) before Ep 5 publishes, or the audience has nowhere to convert.",
+      "notes": "Season-one bible complete (content/joy_of_prompting.html): 10 episodes with prompts, scenes, scripts, music, and a named skill each. Bob Ross format, calm counter-positioning to the AI-fail-video genre. Batch-shoot schedule is the 80% guard — all 10 in the can across 5 Saturdays (Sep 19 – Oct 17) before Ep 1 publishes. Manual burden is 5 because none of the shooting or editing can be delegated to SodClaw; that is the whole constraint. 14 season-two ideas parked in ideas_backlog — do not start any until Ep 10 ships.",
+      "last_touched": "2026-09-16",
+      "git_state": {
+        "repo": false,
+        "state": "n/a — lives in SodClaw/content/ until it needs its own repo",
+        "remote": null,
+        "uncommitted": 0,
+        "unpushed": 0,
+        "branch": null,
+        "last_commit": null,
+        "checked": "2026-09-16"
       }
     },
     {

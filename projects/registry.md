@@ -71,6 +71,19 @@ Last updated: 2026-05-24 (weekly sweep)
 - **Autonomy level:** Draft-and-approve (drafts tweets, Kevin approves before posting)
 - **Next action:** Parked. Launch post for the dashboard tool drafted (`outputs/2026-05-24-portfolio-command-center.md`). Resume when Kevin wants a posting cadence.
 
+### 7b. The Joy of Prompting (Video Series)  *(NEW — promoted 2026-09-16)*
+- **Status:** Active — season-one bible complete, Episode 1 shoots Sat Sep 19
+- **Location:** `/Users/kevinsotka/Meatbag_Labs/joy_of_prompting/` (planning docs live in `SodClaw/content/`)
+- **Context:** `content/joy_of_prompting.html` (series bible) · `content/joy_of_prompting_shoot_pack.html` (Ep 1 shoot pack)
+- **Autonomy level:** Kevin-only for production. SodClaw drafts scripts, cards, descriptions, and cut lists; it cannot hold a camera.
+- **What it is:** A Bob Ross-format show teaching non-technical people to use AI. One-sentence prompts, a physical object on the desk each week, and a corner meter reading `PROMPT 2% / CONTEXT 98%`. Calm counter-positioning to the AI-fail-video genre — the foil is never named.
+- **Why it's Active and not Exploratory:** It is the only project in the portfolio that packages expertise Kevin already has rather than asking him to build a new one. Post-Panasonic, it is the shortest path from existing competence to an owned asset.
+- **The scoring tell:** Value composite 4.5, complexity 2.5 — but manual burden alone is a **5**. Nothing about shooting or editing can be delegated. That single sub-score is the entire constraint on the project and the reason it can't run autonomously.
+- **The 80% guard:** All ten episodes shot across five Saturdays (Sep 19 – Oct 17) **before Episode 1 publishes.** If the release schedule depends on future Kevin, episodes 7–10 die in a folder. This is not a production preference, it is the failure-mode countermeasure.
+- **Next action:** Shoot Episode 1 — "One Page, Your Whole Life" — Saturday Sep 19. Follow the shoot pack.
+- **Standing decision:** The show is top-of-funnel, not revenue. Name what it sells before Ep 5 publishes.
+- **Season two:** 14 bench ideas parked in `sod_profile/ideas_backlog.md`. **Do not start any of them until Ep 10 ships.**
+
 ---
 
 ## Exploratory Tier: Early Stage / Paused
@@ -148,6 +161,7 @@ Live, interactive version: open `dashboard.html` or the **Portfolio Command Cent
 
 ### Decisions waiting on Kevin (from the dashboard)
 - **AI Enablement / Consulting** — top of the value board, Kevin's clearest revenue path. Kevin defining next steps (MVP offering + first client). Staying flagged.
+- **The Joy of Prompting** — the show fills the room; it does not work the register. Decide what it sells (cohort, workshop, or engagement) before Episode 5 publishes. This decision and the consulting one above are the same decision wearing two hats.
 - **Gridiron Gazette** — picking up in earnest ~2026-06-07 (reminder set). Needs attention soon.
 
 _Resolved 2026-05-24: Riventide is shipped — the "28 missing assets" were a false alarm (dead references to cut content), so it's off the attention list._
