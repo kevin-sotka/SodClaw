@@ -1,35 +1,39 @@
 # Kevin's Decision Rules — SodClaw Reference
 
 > How Kevin decides what to work on, what to say yes to, and what to kill.
+>
+> **This is a default framework, not a rule Kevin is bound by.** He reserves the final call week to week and project to project. Use this to make a first recommendation and to catch drift, not to argue him out of a call he's already made.
 
 ---
 
 ## The Priority Stack
 
-When multiple things compete for Kevin's ~1 hour/day:
+*Revised Sept 2026: full-time now (5-8 hours/day), weighted toward quality, value, and building on skills rather than raw shipping speed.*
 
-1. **Shipping something** — if a project is 80%+ done, finish it before starting anything new
-2. **Revenue-adjacent work** — content that builds audience, consulting prep, lead generation
-3. **Momentum maintenance** — keep active projects from stalling (small touches > long gaps)
-4. **Creative energy** — novel writing, music, games with kid. These recharge everything else.
-5. **New ideas** — log them, don't act on them. The backlog is full.
+1. **Deep, high-quality work on something that matters** — with more hours available, favor doing one thing well over sprinting across many things.
+2. **Skill-building that compounds** — work that makes Kevin measurably better at something he'll reuse, even without an immediate payoff. This used to be a "maybe," it's a real priority now.
+3. **Shipping something** — if a project is 80%+ done, finish it before starting anything new.
+4. **Revenue-adjacent work** — content that builds audience, consulting prep, lead generation.
+5. **Momentum maintenance** — keep active projects from stalling (small touches > long gaps).
+6. **Creative energy** — novel writing, music, games with kid. These recharge everything else.
+7. **New ideas** — log them, don't act on them by default. The backlog is full.
 
 ## Yes/No Framework
 
 ### Say YES to:
-- Things that ship in one session (~1 hour)
+- Things that ship in one focused session
 - Things that produce publishable content as a side effect
 - Things that compound (each effort makes the next one easier)
 - Things that only Kevin can do (voice, taste, relationships, creative judgment)
+- **Learning for learning's sake** — as of Sept 2026, this is a yes on its own terms, not only when it directly serves an active project
 
 ### Say NO to:
-- New projects before current ones ship
 - Anything that requires ongoing manual maintenance Kevin won't do
 - Tools/platforms that cost >$20/month without clear revenue offset
 - Complexity that Kevin can't maintain solo
-- "Learning for learning's sake" unless it directly serves an active project
 
 ### Say MAYBE (log and revisit) to:
+- New projects before current ones ship — used to be a flat no; with more capacity and a 30+ project portfolio, weigh it instead of blocking it automatically
 - Partnership opportunities — evaluate against time cost
 - New platforms/tools — only if they replace something worse
 - Consulting inquiries — only if they fit the "trusted guide to AI" positioning
@@ -45,9 +49,9 @@ When multiple things compete for Kevin's ~1 hour/day:
 
 ## Resource Constraints
 
-- **Time:** ~1 hour/day of focused build time (nights and weekends)
+- **Time:** Full-time, self-employed as of Sept 2026. Build-time budget is 5-8 hours/day, not the old ~1hr/day nights-and-weekends ceiling.
 - **Money:** Bootstrapped. $0 is best. Monthly costs must justify themselves.
-- **Attention:** 10+ projects means each one gets ~6 minutes/day on average. That's not enough. SodClaw's job is to focus Kevin's attention on the 2-3 things that matter most right now.
+- **Attention:** The portfolio has grown past 30 tracked projects. Even full-time, that's not enough attention per project to go around. SodClaw's job is to focus Kevin's attention on the 2-3 things that matter most right now, favoring quality over spreading thin.
 - **Energy:** D/I profile means energy is highest at project start and during creative sprints. Lowest during maintenance, documentation, and the last 20%. Design workflows accordingly.
 
 ## The 80% Rule

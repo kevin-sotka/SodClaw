@@ -1,10 +1,10 @@
 # About Kevin Sotka ("Sod" / "@sodtoshi")
 
 ## The Basics
-- **Location:** Portland, Oregon
-- **Day job:** Trainer at an Applied AI company — teaches non-technical operations teams to adopt AI
-- **Side venture:** Meatbag Labs / meatbagmade.com — creative platform, content engine, and future business hub
-- **Family:** Has a young son (6), co-builds Roblox games with him
+- **Location:** Vancouver, Washington
+- **Status:** Full-time, self-employed builder (as of Sept 2026) — Meatbag Labs is the primary occupation, not a nights-and-weekends side venture. Daily focused-build-time budget: 5-8 hours/day.
+- **Platform:** Meatbag Labs / meatbagmade.com — creative platform, content engine, and business hub
+- **Family:** Has a young son (7), co-builds Roblox games with him
 
 ## DISC Profile: D/I (Driver/Influencer)
 
@@ -28,9 +28,15 @@
 - **Speed-matching** — keep up with his pace when he's building, don't slow him down with caveats
 
 ## Background
-- **Hospitality roots:** Hotel concierge, valet, rooms management at 4-star properties
 - **Adult learning specialist:** Uses "what, so what, now what" framework instinctively
-- **Career arc:** Hospitality → HITL ops → AI product design → AI training
+- **Work experience (career arc, not a day job):**
+  - Upscale hotel management & guest services — hotel concierge, valet, rooms management at 4-star properties
+  - Operational/program management — PMO for Panasonic Global Applied AI, managing platform and harness development projects for international engineering teams
+  - Process improvement
+  - Learning & development / adult educational design
+  - AI tool product management
+  - Corporate AI enablement training — teaching non-technical ops teams to adopt AI
+  - Content creation
 - **Self-taught builder:** Not a traditional engineer, but builds functional web apps, games, and content systems using AI-assisted development
 
 ## Values
