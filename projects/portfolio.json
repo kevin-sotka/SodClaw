@@ -2,7 +2,6 @@
   "_meta": {
     "description": "Single source of truth for the Meatbag Labs portfolio dashboard. SodClaw and the dashboard artifact both read this file. Update it whenever a project's status, progress, next action, or scores change.",
     "last_updated": "2026-09-16",
-    "last_updated": "2026-09-11",
     "scoring": {
       "value_metrics": [
         "consumer_potential",
@@ -37,9 +36,6 @@
     ],
     "doc_briefing": "Listen here, Partner. You just filed a brand-new claim and I reckon it's the best-sited one on this map — The Joy of Prompting. Ten episodes, first one shot this Saturday. What makes it worth the powder ain't novelty; it's that every other claim out here asks you to learn a new trade, and this one just asks you to point a camera at the trade you already got paid to practice. Value runs high and the engineerin' runs near zero. But read the fine print on the assay: manual burden is a five. I can't hold the camera, I can't cut the footage, and there ain't a machine on this trail that'll do it for you. That's five Saturdays of your own two hands, so shoot all ten before you publish a one of 'em — you know how you are about the last stretch. And mind this: a show fills the saloon, it don't work the register. That consultin' claim next door is still unstaked, and it's the one that takes the money. Drive that stake before Episode Five goes out, or you'll have a crowd and no counter to sell across.",
     "doc_briefing_date": "2026-09-16",
-    "last_swept": "2026-05-30",
-    "doc_briefing": "Listen here, Partner: the biggest news this sweep ain't a project, it's the map itself. Eleven claims picked up and moved into the Hit Factory camp — RT1, Oregon Fail, Foundry, Gerlok, swatch, the whole lot — so the tracker's addresses were pointin' at empty lots till just now. Fixed. Sixteen claims threw dust: Riventide got a brand-new vanilla-JS build published and five commits on the 2nd (first commits since February), the Foundry's got twenty-seven game packages stacked up in it now, jobclaw's at 161 files, and Kevin's own consultin' page got touched today. Two claims turn out to have had Git all along — The Wall and HR Derby both got clean synced repos one floor down, so scratch 'em off the not-portable list. Standin' chores: SodClaw's own 29 uncommitted with no commit since May, Riventide's 173, Train Lore's 2 unpushed. Claim Wrangler's the only thing past the sixty-day fence at 72 days idle. Two new strangers in camp: hit-factory and kevin-sotka.github.io.",
-    "doc_briefing_date": "2026-09-04",
     "last_swept": "2026-09-04",
     "sodclaw_git_state": {
       "repo": true,
