@@ -23,23 +23,23 @@ When the Routine has run cleanly for a couple of weeks, the local Cowork `weekly
 | Name | `sodclaw-friday-sweep` |
 | Description | Weekly portfolio sweep — Friday 6pm Pacific, posts as Doc to #sodclaw |
 | Schedule | Weekly, **Friday 18:00 America/Los_Angeles** |
-| Repositories | `kevin-sotka/SodClaw` (primary), plus `kevin-sotka/train_lore`, `kevin-sotka/thegridirongazette`, `kevin-sotka/Riventide`, `kevin-sotka/AI-company-trail` for git-state checks |
+| Repositories | `kevin-sotka/SodClaw` (primary), plus every other repo named in a project's `repo` field in `projects/portfolio.json` (read-only, for git-state checks). Attach each one to the Routine, and to the GitHub token if it is fine-grained. Do not grant the whole account. |
 | Branch policy | Default — push only to `claude/sweep-YYYY-MM-DD` branches (Routines enforces this) |
-| Webhook URL | Pasted inline into the Routine's prompt body at `<PASTE_DOC_WEBHOOK_URL_HERE>`. Routines has no secrets store, so this lives in the Routine config (Anthropic-side, only Kevin's account sees it). The Git copy of the prompt keeps the placeholder. |
+| Webhook URL | Pasted inline into the Routine's short stub prompt (see below), replacing `<PASTE_DOC_WEBHOOK_URL_HERE>`. Routines has no secrets store, so this lives in the Routine config (Anthropic-side, only Kevin's account sees it). Nothing in Git contains the real URL. |
 | Connectors | **DO NOT add Slack as a connector to this Routine.** Posting goes via curl-to-webhook to preserve Doc's identity. If Slack is connected, Claude inside the Routine may pick the connector tool over the curl path, which posts as Kevin (the wrong identity). GitHub is mounted automatically via the repos list and is fine. |
 | Run cap impact | 1 run / week against Kevin's Pro budget of 5 runs / day. Negligible. |
 
 ## The prompt
 
-Paste the contents of [`prompts/routine_weekly_sweep_prompt.md`](../prompts/routine_weekly_sweep_prompt.md) as the Routine's prompt verbatim. It's maintained as a separate file so it can be edited in Git without re-saving the Routine config every time.
+**The Routine does not pull prompt files by itself.** Its prompt is a static copy stored in the Routine config, so editing a prompt file in Git changes nothing on its own (corrected 2026-09-20; the earlier wording here implied otherwise). To make Git the real source, the Routine's prompt should be a short stub that tells each run to read the full prompt from `main` of `kevin-sotka/SodClaw` and follow it. The stub text is at the bottom of [`prompts/routine_weekly_sweep_prompt_v2.md`](../prompts/routine_weekly_sweep_prompt_v2.md). Until the Routine is switched to that stub, it keeps running whatever prompt was last pasted in, which is the v1 file.
 
 ## Setup steps (one-time, in the Routines UI / CLI)
 
 1. Open Claude Code Routines and create a new routine named `sodclaw-friday-sweep`.
-2. Add the five repositories above. `kevin-sotka/SodClaw` is the primary; the others are read-only context.
+2. Add the repositories above. `kevin-sotka/SodClaw` is the primary; the others are read-only context.
 3. Schedule: **Weekly, Friday 18:00, America/Los_Angeles**.
-4. Paste the prompt from `prompts/routine_weekly_sweep_prompt.md` into the Routine's prompt field.
-5. In the pasted prompt, find `<PASTE_DOC_WEBHOOK_URL_HERE>` and replace it with the real Doc incoming-webhook URL from the Slack app's Incoming Webhooks page. **Only edit the live Routine config — do not put the real URL into the Git file.**
+4. Paste the stub from the bottom of `prompts/routine_weekly_sweep_prompt_v2.md` into the Routine's prompt field (or, for the old v1 flow, the full v1 file).
+5. In the pasted stub (or v1 prompt), find `<PASTE_DOC_WEBHOOK_URL_HERE>` and replace it with the real Doc incoming-webhook URL from the Slack app's Incoming Webhooks page. **Only edit the live Routine config — do not put the real URL into the Git file.**
 6. Save and enable. The first run will fire next Friday at 6pm Pacific — or trigger one manually now to confirm Doc speaks correctly end-to-end before Friday.
 
 ## What to watch for
