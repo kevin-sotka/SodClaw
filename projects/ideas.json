@@ -1,0 +1,237 @@
+{
+  "_meta": {
+    "description": "Source of truth for the SodClaw Idea Board. Mirrors the holding-pen pattern of projects/portfolio.json: structured data here, narrative pointer in sod_profile/ideas_backlog.md. The board exists to slow the rate at which new projects begin — empty IS the default, not a problem to solve.",
+    "last_updated": "2026-09-11",
+    "scoring": {
+      "axes": [
+        "value",
+        "feasibility",
+        "desire",
+        "learning"
+      ],
+      "scale": "1-5 (1=low, 5=high)",
+      "composite": "mean of the four axes — what the board sorts by default",
+      "note": "Scores proposed by SodClaw (or by Kevin), ratified by Kevin. Re-score when context shifts."
+    },
+    "sources": {
+      "self": "Kevin logged it directly",
+      "sodclaw": "SodClaw noticed it during work and surfaced it",
+      "external": "Pulled in by a future external-signal ingestion routine (30-day roadmap item)"
+    },
+    "statuses": [
+      "idea",
+      "exploring",
+      "promoted",
+      "parked"
+    ],
+    "lifecycle": "idea (default) → exploring (Kevin is poking at it) → promoted (moved to portfolio.json at Exploratory tier) → parked (decided not to pursue). Promoted ideas get deleted from this file once they exist in portfolio.json — no duplication."
+  },
+  "ideas": [
+    {
+      "id": "model_railroading_dropship",
+      "title": "Model railroading — drop-ship business",
+      "why": "Drop-shipping for model railroading. You go to the shows; you've had an HO set since you were 10. Train-theme adjacency to train_lore but a distinct business — drop-shipping has a real playbook and your collector network is a moat.",
+      "scores": {
+        "value": 3,
+        "feasibility": 4,
+        "desire": 5,
+        "learning": 3
+      },
+      "source": "self",
+      "status": "idea",
+      "logged": "2026-05-29"
+    },
+    {
+      "id": "ai_training",
+      "title": "AI training — companion to consulting",
+      "why": "Training materials and courses for ops teams + business owners to actually use AI / automation / technical implementation in their current workflows. Direct companion to consulting_quickening — should be cross-sold or bundled, not its own folder yet.",
+      "scores": {
+        "value": 4,
+        "feasibility": 4,
+        "desire": 4,
+        "learning": 3
+      },
+      "source": "self",
+      "status": "idea",
+      "logged": "2026-05-29"
+    },
+    {
+      "id": "negoti8",
+      "title": "Negoti8 — AI negotiation / errand agent",
+      "why": "AI agent that handles the calls you don't want to make: 'get me a better deal on internet,' 'find out why insurance didn't cover this medication,' 'find me a red Lexus coupe from around 2020.' Personal-shopper meets negotiator. Real pain, increasingly feasible.",
+      "scores": {
+        "value": 4,
+        "feasibility": 3,
+        "desire": 4,
+        "learning": 4
+      },
+      "source": "self",
+      "status": "idea",
+      "logged": "2026-05-29"
+    },
+    {
+      "id": "questwalk_ellazena",
+      "title": "Questwalk (hosted by Ellazena)",
+      "why": "Pokemon Go-inspired AR walking app. Ellazena — an AI dungeon master — turns your walks into fantastical storytelling using location, maps, AR imaging. The name carries deep meaning (your wife's middle name / grandma's name Alazena, almost your daughter's name) — the soul of the project is in the host. Stack is heavy (AR + location + AI + maps) so feasibility is low, but desire is the whole point.",
+      "scores": {
+        "value": 4,
+        "feasibility": 2,
+        "desire": 5,
+        "learning": 5
+      },
+      "source": "self",
+      "status": "idea",
+      "logged": "2026-05-29"
+    },
+    {
+      "id": "auto_research",
+      "title": "Auto-research agent (Karpathy-style)",
+      "why": "Automated research agent — Karpathy's 'agent does the literature review' idea. Could feed multiple other projects (train_lore research, novel research, consulting deliverables). High learning, multi-purpose. Refs: github.com/msitarzewski/agency-agents, github.com/public-apis/public-apis.",
+      "scores": {
+        "value": 3,
+        "feasibility": 3,
+        "desire": 4,
+        "learning": 5
+      },
+      "source": "self",
+      "status": "idea",
+      "logged": "2026-05-29"
+    },
+    {
+      "id": "transforming_frame",
+      "title": "Digital frame that transforms photos",
+      "why": "Digital picture frame that AI-transforms photos as you look — Lego mode, Ghibli mode, watercolor, etc. Hardware + AI = serious build, but a delightful artifact. Gift-shaped product.",
+      "scores": {
+        "value": 3,
+        "feasibility": 2,
+        "desire": 4,
+        "learning": 4
+      },
+      "source": "self",
+      "status": "idea",
+      "logged": "2026-05-29"
+    },
+    {
+      "id": "daycare_directory",
+      "title": "Daycare directory with price transparency",
+      "why": "Online directory of local daycares with prices surfaced — the kind of thing parents Google in panic. Could be the wedge into broader 'pro services with prices' SaaS. Refs: outscraper, crawl4AI, shipyourdirectory.com.",
+      "scores": {
+        "value": 4,
+        "feasibility": 3,
+        "desire": 2,
+        "learning": 3
+      },
+      "source": "self",
+      "status": "idea",
+      "logged": "2026-05-29"
+    },
+    {
+      "id": "family_todos",
+      "title": "Family todos — DFY complexity service",
+      "why": "'I will navigate complexity you find tedious.' Done-for-you service for busy families — appointments, claims, the small bureaucracies. Strong tagline. Service business, not software.",
+      "scores": {
+        "value": 3,
+        "feasibility": 3,
+        "desire": 3,
+        "learning": 3
+      },
+      "source": "self",
+      "status": "idea",
+      "logged": "2026-05-29"
+    },
+    {
+      "id": "hotel_concierge_bot",
+      "title": "Hotel concierge bot — Max Headroom vibes",
+      "why": "AI concierge for hotels with a playful 'Max Headroom' aesthetic. Real B2B market but B2B sales cycles aren't where your energy is. Park-friendly.",
+      "scores": {
+        "value": 4,
+        "feasibility": 2,
+        "desire": 2,
+        "learning": 4
+      },
+      "source": "self",
+      "status": "idea",
+      "logged": "2026-05-29"
+    },
+    {
+      "id": "pro_services_directory",
+      "title": "Pro services directory (broader play)",
+      "why": "Generalization of the daycare-directory idea — directories for niche professional services with price transparency. Same scraping + UX stack. Probably folds INTO the daycare one as v2, not a separate build.",
+      "scores": {
+        "value": 3,
+        "feasibility": 3,
+        "desire": 2,
+        "learning": 3
+      },
+      "source": "self",
+      "status": "idea",
+      "logged": "2026-05-29"
+    },
+    {
+      "id": "local_newsletter",
+      "title": "Local-area newsletter",
+      "why": "Local newsletter for your area. Cheap to start (you already write) but unclear ROI vs train_lore unless local sponsors actually materialize. Probably a 'not yet' candidate.",
+      "scores": {
+        "value": 2,
+        "feasibility": 4,
+        "desire": 3,
+        "learning": 2
+      },
+      "source": "self",
+      "status": "idea",
+      "logged": "2026-05-29"
+    },
+    {
+      "id": "irl_meetup_directory",
+      "title": "IRL meetup directory — 'virtual reality is so old fashioned'",
+      "why": "Directory of in-person meetups / physical activities, riding the loneliness-correction trend (Greg Isenberg noted physical activities + making friends as rising searches). Tagline energy is strong and very Kevin. BUT: third directory idea on the board (see daycare_directory, pro_services_directory) and the incumbents are brutal — Meetup, Partiful, Luma, Eventbrite, Facebook Events, Nextdoor. The GENERIC version is parked. 2026-07-31 narrowed to two candidate niches: (1) PNW train/rail events, (2) Vancouver WA music scene. Recommendation: build neither as a standalone product. Train events becomes an events-calendar FEATURE of train_lore (existing autonomous project, zero cold-start, SEO magnet, feeds post ideas). Music is a personal need, not a market — Kevin should attend, not build.",
+      "scores": {
+        "value": 3,
+        "feasibility": 3,
+        "desire": 4,
+        "learning": 2
+      },
+      "source": "self",
+      "status": "parked",
+      "logged": "2026-07-31",
+      "spun_off": "PNW rail events calendar proposed as a train_lore feature, not a new project",
+      "audit": "projects/research/pnw_rail_events_source_audit.md — 2026-07-31 source check: 6 GREEN structured sources (The Events Calendar JSON, Squarespace iCal, FareHarbor, trainshows.net), 4 YELLOW. Key finding: the data is low-churn (~40-60 events/yr, ~15% annual change), so this is a curated events.yaml + monthly diff check, NOT a scraper pipeline. Verdict: BUILD as a train_lore page."
+    },
+    {
+      "id": "oss_local_agent",
+      "title": "Open-source local agentic assistant",
+      "why": "Set up an open-source agentic assistant running on Kevin's own machine, for learning/sharing/content. Lines up with the enablement-practice plan to build one demonstrator agent each on Copilot, Claude, and an offline/open-source stack — this would be the open-source leg, and doubles as Meatbag content (\"here's what running your own agent actually looks like\").",
+      "scores": null,
+      "source": "self",
+      "status": "idea",
+      "logged": "2026-09-11"
+    },
+    {
+      "id": "irlactions_com",
+      "title": "irlactions.com — \"humans for hire by agents\"",
+      "why": "Domain already bought. Concept: agents hire humans for last-mile, real-world actions — draws directly on Kevin's Yohana experience training a human workforce to use AI tools for productivity while delivering last-mile service for a to-do app. Adjacent to the Negoti8 idea already on this board (an agent that handles calls a human doesn't want to make) but framed the other direction — agents dispatching humans, not humans dispatching agents.",
+      "scores": null,
+      "source": "self",
+      "status": "idea",
+      "logged": "2026-09-11"
+    },
+    {
+      "id": "lifesgr8_com",
+      "title": "lifesgr8.com — Yahoo fantasy API-enabled league features",
+      "why": "Domain already bought, for Yahoo fantasy API-enabled features for Kevin's own fantasy football league. Directly adjacent to two projects already in the portfolio — HR Derby (Google Sheets + Apps Script + MLB Stats API) and Gridiron Gazette (fantasy football media product) — same API-driven fantasy-sports pattern, different league/sport and a dedicated domain rather than living inside an existing project.",
+      "scores": null,
+      "source": "self",
+      "status": "idea",
+      "logged": "2026-09-11"
+    },
+    {
+      "id": "silver_tsunami_businesses",
+      "title": "Silver tsunami — generational business handoff",
+      "why": "Helping families and small businesses survive the generational handoff as boomer owners retire without succession plans (the \"silver tsunami\"). Broader and more service-business-shaped than Kevin's other ideas on this board — closer in spirit to the managed-AI-agent-retainer stream already being explored in the enablement practice than to a software product.",
+      "scores": null,
+      "source": "self",
+      "status": "idea",
+      "logged": "2026-09-11"
+    }
+  ]
+}

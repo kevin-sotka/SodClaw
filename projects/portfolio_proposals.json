@@ -1,0 +1,7 @@
+{
+  "_meta": {
+    "description": "Pending held proposals awaiting Kevin's in-app ratification. The sweep gate reads/writes this.",
+    "last_resolved_batch": "2026-09-11: all 13 pending proposals ratified by Kevin in chat (aphelion cut, jobclaw/sotka_family_history/hit-factory onboarded, train_lore/mbmnovel/riventide progress bumped, claim_wrangler shelved, oregon_fail enhanced not split, kevin-sotka.github.io ignored, foundry/giga_foundry resolved via games.json instead of individual stubs)."
+  },
+  "proposals": []
+}

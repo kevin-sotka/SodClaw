@@ -11,7 +11,12 @@ Thumbs.db
 
 # Transient portfolio backups — git history is the real backup
 projects/portfolio.backup-*.json
+projects/portfolio.json.bak*
 
 # Runtime sweep/workflow logs (keep the folder, not its contents)
 workflows/logs/*
 !workflows/logs/.gitkeep
+
+# Python bytecode cache
+__pycache__/
+*.pyc
