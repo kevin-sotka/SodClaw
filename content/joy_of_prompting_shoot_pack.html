@@ -78,15 +78,29 @@ ul.ck .t em{font-style:normal;font-family:var(--mono);font-size:13.5px;color:var
 .buy .bb b{color:var(--canvas);font-weight:700}
 .buy .bb + .bb{border-top:1px solid var(--studio-3);color:var(--faint)}
 
-/* cards to write */
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px;margin-top:20px}
-.card{background:var(--canvas);color:#241F17;padding:15px 16px 17px;min-height:112px;
+/* cards to write.
+   The paper holds ONLY what gets written. The note lives outside the paper,
+   on the dark ground, so it can never read as card content. */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:20px 14px;margin-top:20px}
+.cardset{display:flex;flex-direction:column}
+.card{background:var(--canvas);color:#241F17;padding:15px 16px 18px;min-height:104px;
   display:flex;flex-direction:column;box-shadow:0 8px 20px rgba(0,0,0,.36)}
-.card .cn{font-family:var(--mono);font-size:11px;color:#8A7F6C;margin-bottom:8px}
-.card .cl{font-family:var(--mono);font-size:16px;font-weight:700;line-height:1.4;color:#241F17;white-space:pre-line}
-.card .cw{font-size:13px;color:#5A5041;margin-top:auto;padding-top:10px;line-height:1.4}
+.card .cn{font-family:var(--mono);font-size:11px;color:#8A7F6C;margin-bottom:9px;
+  padding-bottom:8px;border-bottom:1px solid #DDD4C0}
+.card .cl{font-family:var(--mono);font-size:16px;font-weight:700;line-height:1.5;color:#241F17;white-space:pre-line}
 .card.joke{background:#F6E3E0}
-.card.joke .cw{color:#8E2A20;font-weight:700}
+.cnote{margin:10px 0 0;font-size:13.5px;line-height:1.45;color:var(--faint);
+  padding-left:15px;position:relative}
+.cnote::before{content:"";position:absolute;left:0;top:7px;width:7px;height:1px;background:var(--studio-4)}
+.cnote b{color:var(--cadmium);font-weight:700}
+.cardset.joke .cnote{color:var(--on-dark)}
+.cardset.joke .cnote b{color:var(--alizarin)}
+.notekey{display:flex;gap:10px;align-items:baseline;margin-top:22px;
+  border:1px solid var(--studio-3);padding:13px 15px;background:var(--studio-2)}
+.notekey .k{font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--studio);background:var(--cadmium);padding:3px 8px;white-space:nowrap}
+.notekey p{margin:0;font-size:15px;line-height:1.5;color:var(--on-dark)}
+.notekey p b{color:var(--canvas);font-weight:700}
 
 /* run of show */
 .run{border:1px solid var(--studio-3);margin-top:20px}
@@ -219,23 +233,46 @@ footer p b{color:var(--faint)}
   <span class="num">03 &mdash; THE SIX CARDS</span>
   <h2>These are the 98%. Write them tonight, in pen.</h2>
   <p class="say">The whole episode turns on these. The model brings the HTML &mdash; it has written ten million dashboards. It has never heard of The Wall, or the novel, or the fact that you have eleven projects and a six-year-old. <b>That comes off the cards.</b></p>
-  <p class="say">Keep them short and a little sloppy. You wrote these over coffee, not in a planning session. One line per card, plus whatever scrap of status you actually remember.</p>
+  <p class="say">Keep them short and a little sloppy. You wrote these over coffee, not in a planning session. One line per card, plus whatever scrap of status you actually remember. <b>Two or three lines is a whole card</b> &mdash; if you're writing a fourth, you're planning, not remembering.</p>
+
+  <div class="notekey">
+    <span class="k">Read me</span>
+    <p><b>Only the typewriter text on the paper gets written on the card.</b> The grey line under each card is my note to you about why it's worded that way &mdash; that stays off the card.</p>
+  </div>
 
   <div class="cards">
-    <div class="card"><span class="cn">CARD 1</span><span class="cl">THE WALL
+    <div class="cardset">
+      <div class="card"><span class="cn">CARD 1</span><span class="cl">THE WALL
 btc art thing
-— stuck on what?</span><span class="cw">Real project, real vagueness. Good.</span></div>
-    <div class="card"><span class="cn">CARD 2</span><span class="cl">NOVEL
+— stuck on what?</span></div>
+      <p class="cnote">Real project, real vagueness. Good.</p>
+    </div>
+    <div class="cardset">
+      <div class="card"><span class="cn">CARD 2</span><span class="cl">NOVEL
 Meatbag Made
-ch. 4?</span><span class="cw">The question mark is the point.</span></div>
-    <div class="card"><span class="cn">CARD 3</span><span class="cl">TRAIN BLOG
-5 of 32 posted</span><span class="cw">A number it can actually use.</span></div>
-    <div class="card"><span class="cn">CARD 4</span><span class="cl">HR DERBY
+ch. 4?</span></div>
+      <p class="cnote">The question mark is the point.</p>
+    </div>
+    <div class="cardset">
+      <div class="card"><span class="cn">CARD 3</span><span class="cl">TRAIN BLOG
+5 of 32 posted</span></div>
+      <p class="cnote">A number it can actually use.</p>
+    </div>
+    <div class="cardset">
+      <div class="card"><span class="cn">CARD 4</span><span class="cl">HR DERBY
 2026 season
-running itself</span><span class="cw">Teaches it that "done" is a state.</span></div>
-    <div class="card"><span class="cn">CARD 5</span><span class="cl">KID STUFF
-roblox + school</span><span class="cw">Not a project. It won't know that yet.</span></div>
-    <div class="card joke"><span class="cn">CARD 6</span><span class="cl">GYM</span><span class="cw">THE JOKE. Write it plain and last. This is the card that sets up the happy accident at 4:40.</span></div>
+running itself</span></div>
+      <p class="cnote">Teaches it that "done" is a state.</p>
+    </div>
+    <div class="cardset">
+      <div class="card"><span class="cn">CARD 5</span><span class="cl">KID STUFF
+roblox + school</span></div>
+      <p class="cnote">Not a project. It won't know that yet.</p>
+    </div>
+    <div class="cardset joke">
+      <div class="card joke"><span class="cn">CARD 6</span><span class="cl">GYM</span></div>
+      <p class="cnote"><b>The joke.</b> One word, nothing else. Write it last. Sets up the happy accident at 4:40.</p>
+    </div>
   </div>
 
   <p class="say" style="margin-top:20px"><b>Card six is load-bearing.</b> The scripted beat &mdash; <em>"it thinks gym is a project&hellip; which, honestly, fair"</em> &mdash; only happens if GYM is sitting there in the pile looking exactly like the other five. Don't flag it, don't explain it, don't write anything else on it. One word.</p>
